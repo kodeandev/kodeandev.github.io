@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZAHRANI MODEST | Syari Essence Collection Vol. 05</title>
+    <meta name="description" content="Tampil Syar’i, Tetap Elegan Setiap Hari. Koleksi pakaian muslim dan hijab syari premium dengan desain modern minimalis.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sage: '#8F9779', /* Sage Green Calm */
+                        sageLight: '#A3AB8E',
+                        cream: '#F5F5DC',
+                        mocha: '#C09E82',
+                        olive: '#708238',
+                        dusty: '#DCAE96',
+                        ivory: '#FFFFF0',
+                        nude: '#E3C2B0',
+                        dark: '#2F3E2C', /* Text Dark Sage */
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS -->
+    <style>
+        /* Utility Classes */
+        body { font-family: 'Inter', sans-serif; color: #2F3E2C; background-color: #FFFFF0; }
+        h1, h2, h3, h4, h5, h6, .font-serif { font-family: 'Playfair Display', serif; }
+        
+        /* Hide Scrollbar */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Glassmorphism */
+        .glass { background: rgba(255, 255, 255, 0.65); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.3); }
+        .glass-dark { background: rgba(47, 62, 44, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
+
+        /* Animations */
+        .animate-gradient { background: linear-gradient(-45deg, #8F9779, #C09E82, #DCAE96, #F5F5DC); background-size: 400% 400%; animation: gradientBG 10s ease infinite; }
+        @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+        /* Scroll Reveal */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Hover Zoom */
+        .img-hover-zoom { transition: transform 0.7s ease; }
+        .group:hover .img-hover-zoom { transform: scale(1.05); }
+
+        /* Loading Spinner */
+        .loader { border: 3px solid #F5F5DC; border-top: 3px solid #8F9779; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* Fake Notification Popup */
+        .notification-popup { transform: translateX(-150%); transition: transform 0.5s ease-in-out; }
+        .notification-popup.show { transform: translateX(0); }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden">
+
+    <!-- Loading Animation -->
+    <div id="loader" class="fixed inset-0 z-[100] bg-ivory flex flex-col items-center justify-center transition-opacity duration-500">
+        <h1 class="font-serif text-3xl text-sage mb-4 tracking-widest">ZAHRANI</h1>
+        <div class="loader"></div>
+    </div>
+
+    <!-- Floating Promo Badge -->
+    <div class="fixed top-24 right-4 z-40 animate-bounce">
+        <div class="bg-dusty text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg shadow-dusty/40">
+            Diskon 20% + Gratis Ongkir!
+        </div>
+    </div>
+
+    <!-- Fake Live Order Popup -->
+    <div id="fake-order" class="notification-popup fixed bottom-24 md:bottom-8 left-4 z-50 glass px-4 py-3 rounded-xl shadow-lg flex items-center gap-3 max-w-xs border-l-4 border-sage">
+        <div class="w-10 h-10 rounded-full bg-sage flex items-center justify-center text-white">
+            <i class="fa-solid fa-bag-shopping text-sm"></i>
+        </div>
+        <div>
+            <p id="fo-name" class="text-xs font-semibold text-dark">Siti, Jakarta</p>
+            <p id="fo-item" class="text-xs text-gray-600">Baru saja membeli Syari Set</p>
+            <p class="text-[10px] text-sage mt-0.5">Beberapa detik lalu</p>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4 px-6 md:px-12">
+        <div class="max-w-7xl mx-auto flex justify-between items-center bg-transparent rounded-full px-6 py-3 transition-all duration-300" id="navbar-inner">
+            <a href="#" class="font-serif text-2xl font-bold text-dark tracking-wide">ZAHRANI<span class="text-sage">.</span></a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex gap-8 text-sm font-medium text-dark">
+                <a href="#koleksi" class="hover:text-sage transition-colors">Koleksi Baru</a>
+                <a href="#material" class="hover:text-sage transition-colors">Keunggulan</a>
+                <a href="#lookbook" class="hover:text-sage transition-colors">Lookbook</a>
+                <a href="#promo" class="hover:text-sage transition-colors">Promo</a>
+            </div>
+
+            <!-- CTA Desktop -->
+            <a href="#promo" class="hidden md:inline-block bg-sage hover:bg-sageLight text-white px-6 py-2.5 rounded-full text-sm transition-all shadow-lg shadow-sage/30 hover:shadow-sage/50">
+                Pre-Order Now
+            </a>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="mobile-menu-btn" class="md:hidden text-2xl text-dark">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-ivory shadow-lg border-t border-cream/50 flex-col items-center py-6 gap-4 font-medium md:hidden">
+            <a href="#koleksi" class="mobile-link">Koleksi Baru</a>
+            <a href="#material" class="mobile-link">Keunggulan</a>
+            <a href="#lookbook" class="mobile-link">Lookbook</a>
+            <a href="#promo" class="mobile-link">Promo</a>
+            <a href="#promo" class="bg-sage text-white px-8 py-2 rounded-full mt-2">Pre-Order</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative h-screen flex items-center justify-center overflow-hidden">
+        <!-- Animated Background / Hero Image Replacement -->
+        <div class="absolute inset-0 bg-nude/20">
+            <img src="img-hijab-hero.png" alt="Muslim Fashion Background" class="w-full h-full object-cover object-top opacity-60">
+            <div class="absolute inset-0 bg-gradient-to-t from-ivory via-ivory/50 to-transparent"></div>
+        </div>
+
+        <div class="relative z-10 text-center px-6 max-w-4xl mx-auto mt-16 reveal">
+            <span class="uppercase tracking-[0.3em] text-xs font-bold text-sage mb-4 block">Eksklusif Launching Bulanan</span>
+            <h1 class="text-5xl md:text-7xl font-serif font-bold text-dark leading-tight mb-6">Syari Essence <br><span class="italic font-light text-sage">Collection Vol. 05</span></h1>
+            <p class="text-lg md:text-xl text-gray-700 mb-10 font-light max-w-2xl mx-auto">"Tampil Syar’i, Tetap Elegan Setiap Hari." Koleksi pakaian muslim & hijab syari premium dengan desain modern minimalis. Sage Green Calm Edition.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#koleksi" class="bg-sage hover:bg-dark text-white px-8 py-4 rounded-full text-sm uppercase tracking-wide transition-all shadow-xl shadow-sage/30">
+                    Lihat Koleksi
+                </a>
+                <a href="#promo" class="glass text-dark px-8 py-4 rounded-full text-sm uppercase tracking-wide hover:bg-white transition-all border border-sage/20">
+                    Klaim Diskon 20%
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Brand Story Section -->
+    <section class="py-24 px-6 md:px-12 bg-ivory relative">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16">
+            <div class="w-full md:w-1/2 reveal">
+                <div class="relative rounded-t-full rounded-b-3xl overflow-hidden aspect-[3/4] shadow-2xl shadow-sage/20">
+                    <img src="img-hijab-brand-story.png" alt="Brand Story Zahrani Modest" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 border-4 border-sage/30 m-4 rounded-t-full rounded-b-2xl"></div>
+                </div>
+            </div>
+            <div class="w-full md:w-1/2 reveal">
+                <h2 class="text-4xl font-serif font-bold text-dark mb-6">Kemewahan dalam <br>Kesyariahan.</h2>
+                <p class="text-gray-600 leading-relaxed mb-6">
+                    Dirancang khusus untuk wanita muslim usia 20-40 tahun, hijabers modern, ibu muda, dan para profesional muslimah. ZAHRANI MODEST percaya bahwa tampil syar'i adalah sebuah kebanggaan yang bisa berpadu sempurna dengan keanggunan.
+                </p>
+                <p class="text-gray-600 leading-relaxed mb-8">
+                    Dengan sentuhan warna <strong>Sage Green Calm</strong> pada Volume 05 ini, kami menghadirkan nuansa premium, tenang, dan elegan untuk menemani aktivitas harian maupun acara spesial Anda.
+                </p>
+                <div class="flex items-center gap-4 border-t border-cream pt-6">
+                    <div class="w-12 h-12 rounded-full bg-cream flex items-center justify-center text-sage">
+                        <i class="fa-solid fa-leaf"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-dark">Desain Flowy Elegant</h4>
+                        <p class="text-sm text-gray-500">Modern, minimalis & tetap menjaga syariat.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Collection Showcase (Bento Grid) -->
+    <section id="koleksi" class="py-24 px-6 md:px-12 bg-cream/30">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl font-serif font-bold text-dark mb-4">The Collection Menu</h2>
+                <p class="text-gray-600">Pilihan varian lengkap dari hijab hingga abaya premium.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Product 1 -->
+                <div class="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all reveal cursor-pointer">
+                    <div class="relative overflow-hidden aspect-[4/5]">
+                        <img src="img-hijab-collection-1.png" alt="Gamis" class="w-full h-full object-cover img-hover-zoom">
+                        <div class="absolute top-4 left-4 bg-white/80 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-sage">Best Seller</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-serif text-xl font-bold text-dark mb-2">Naura Premium Gamis</h3>
+                        <p class="text-sm text-gray-500 mb-4">Warna Sage Green Eksklusif</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-lg">Rp289.000</span>
+                            <button class="w-8 h-8 rounded-full bg-sage/10 text-sage flex items-center justify-center group-hover:bg-sage group-hover:text-white transition-colors">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all reveal cursor-pointer delay-100">
+                    <div class="relative overflow-hidden aspect-[4/5]">
+                        <img src="img-hijab-collection-2.png" alt="Abaya" class="w-full h-full object-cover img-hover-zoom">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-serif text-xl font-bold text-dark mb-2">Humaira Abaya Modern</h3>
+                        <p class="text-sm text-gray-500 mb-4">Cutting flowy & bahan premium</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-lg">Rp425.000</span>
+                            <button class="w-8 h-8 rounded-full bg-sage/10 text-sage flex items-center justify-center group-hover:bg-sage group-hover:text-white transition-colors">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all reveal cursor-pointer delay-200">
+                    <div class="relative overflow-hidden aspect-[4/5]">
+                        <img src="img-hijab-collection-3.png" alt="Bundling Set" class="w-full h-full object-cover img-hover-zoom">
+                        <div class="absolute top-4 left-4 bg-dusty text-white px-3 py-1 rounded-full text-xs font-bold shadow-md">Bundling Hemat</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-serif text-xl font-bold text-dark mb-2">Alya Daily Syari Set</h3>
+                        <p class="text-sm text-gray-500 mb-4">Set Gamis + Hijab Matching</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-lg">Rp499.000</span>
+                            <button class="w-8 h-8 rounded-full bg-sage/10 text-sage flex items-center justify-center group-hover:bg-sage group-hover:text-white transition-colors">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- List Varian Lainnya -->
+            <div class="mt-12 bg-white rounded-2xl p-6 md:p-8 shadow-sm reveal border border-cream">
+                <h4 class="font-serif text-lg font-bold mb-4 border-b border-cream pb-2">Koleksi Lengkap Lainnya:</h4>
+                <div class="flex flex-wrap gap-3">
+                    <span class="bg-ivory border border-cream px-4 py-2 rounded-full text-sm text-gray-600">Qanita Khimar Layer - Rp145k</span>
+                    <span class="bg-ivory border border-cream px-4 py-2 rounded-full text-sm text-gray-600">Salsabila Dress Syari</span>
+                    <span class="bg-ivory border border-cream px-4 py-2 rounded-full text-sm text-gray-600">Zea Instant Hijab - Rp79k</span>
+                    <span class="bg-ivory border border-cream px-4 py-2 rounded-full text-sm text-gray-600">Lavena Pashmina Ceruty - Rp95k</span>
+                    <span class="bg-ivory border border-cream px-4 py-2 rounded-full text-sm text-gray-600">Maryam Couple Set</span>
+                    <span class="bg-ivory border border-cream px-4 py-2 rounded-full text-sm text-gray-600">Khimar Sport Active</span>
+                    <span class="bg-ivory border border-cream px-4 py-2 rounded-full text-sm text-gray-600">Exclusive Eid Collection</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Material & Detail Section (Keunggulan) -->
+    <section id="material" class="py-24 px-6 md:px-12 bg-sage text-white relative animate-gradient">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl font-serif font-bold mb-4">Dibuat Dengan Ketulusan</h2>
+                <p class="text-ivory/80 max-w-2xl mx-auto">Setiap detail dipikirkan untuk kenyamanan maksimal saat kajian, bekerja, maupun kumpul bersama.</p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="glass-dark p-6 rounded-2xl text-center reveal">
+                    <i class="fa-solid fa-wind text-3xl mb-4 text-cream"></i>
+                    <h3 class="font-bold mb-2">Anti Gerah</h3>
+                    <p class="text-xs text-ivory/70">Bahan premium yang adem dan menyerap keringat seharian.</p>
+                </div>
+                <div class="glass-dark p-6 rounded-2xl text-center reveal delay-100">
+                    <i class="fa-solid fa-eye-slash text-3xl mb-4 text-cream"></i>
+                    <h3 class="font-bold mb-2">Tidak Menerawang</h3>
+                    <p class="text-xs text-ivory/70">Tebal pas, menjaga aurat dengan aman sesuai syariat.</p>
+                </div>
+                <div class="glass-dark p-6 rounded-2xl text-center reveal delay-200">
+                    <i class="fa-solid fa-scissors text-3xl mb-4 text-cream"></i>
+                    <h3 class="font-bold mb-2">Kualitas Butik</h3>
+                    <p class="text-xs text-ivory/70">Jahitan sangat rapi standar butik premium.</p>
+                </div>
+                <div class="glass-dark p-6 rounded-2xl text-center reveal delay-300">
+                    <i class="fa-solid fa-check-double text-3xl mb-4 text-cream"></i>
+                    <h3 class="font-bold mb-2">Hijab Mudah Dibentuk</h3>
+                    <p class="text-xs text-ivory/70">Material khusus yang tegak di dahi dan anti letoy.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TikTok Style Lookbook / Lifestyle -->
+    <section id="lookbook" class="py-24 px-6 md:px-0 bg-ivory overflow-hidden">
+        <div class="max-w-7xl mx-auto md:px-12 mb-12 text-center md:text-left reveal">
+            <h2 class="text-4xl font-serif font-bold text-dark">Modest Lifestyle</h2>
+            <p class="text-gray-600 mt-2">Inspirasi styling untuk berbagai aktivitas.</p>
+        </div>
+        
+        <!-- Horizontal Scrollable Gallery -->
+        <div class="flex overflow-x-auto gap-4 px-6 md:px-12 pb-8 no-scrollbar snap-x snap-mandatory reveal">
+            <!-- Video/Image Card 1 -->
+            <div class="flex-none w-64 md:w-80 aspect-[9/16] rounded-2xl overflow-hidden relative snap-center group shadow-lg">
+                <img src="img-hijab-lookbook-1.jpg" alt="Look 1" class="w-full h-full object-cover img-hover-zoom">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-6">
+                    <div class="text-white">
+                        <p class="text-sm font-bold">Office Look</p>
+                        <p class="text-xs text-white/80">Humaira Abaya + Zea Instant</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Video/Image Card 2 -->
+            <div class="flex-none w-64 md:w-80 aspect-[9/16] rounded-2xl overflow-hidden relative snap-center group shadow-lg">
+                <img src="img-hijab-lookbook-2.jpg" alt="Look 2" class="w-full h-full object-cover img-hover-zoom">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-6">
+                    <div class="text-white">
+                        <p class="text-sm font-bold">Kajian Outfit</p>
+                        <p class="text-xs text-white/80">Alya Daily Syari Set</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Video/Image Card 3 -->
+            <div class="flex-none w-64 md:w-80 aspect-[9/16] rounded-2xl overflow-hidden relative snap-center group shadow-lg">
+                <img src="img-hijab-brand-story.png" alt="Look 3" class="w-full h-full object-cover img-hover-zoom">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-6">
+                    <div class="text-white">
+                        <p class="text-sm font-bold">Casual Weekend</p>
+                        <p class="text-xs text-white/80">Salsabila Dress + Pashmina</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Video/Image Card 4 -->
+            <div class="flex-none w-64 md:w-80 aspect-[9/16] rounded-2xl overflow-hidden relative snap-center group shadow-lg">
+                <img src="img-hijab-hero.png" alt="Look 4" class="w-full h-full object-cover img-hover-zoom">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-6">
+                    <div class="text-white">
+                        <p class="text-sm font-bold">Special Event</p>
+                        <p class="text-xs text-white/80">Naura Premium Gamis</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Size Chart -->
+    <section class="py-20 px-6 md:px-12 bg-white border-y border-cream">
+        <div class="max-w-4xl mx-auto reveal">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-serif font-bold text-dark mb-2">Panduan Ukuran Lengkap</h2>
+                <p class="text-gray-600">Pilih ukuran yang paling pas untuk kenyamanan maksimal Anda.</p>
+            </div>
+            
+            <!-- Tabs -->
+            <div class="flex flex-wrap justify-center gap-2 mb-8">
+                <button class="size-tab active bg-sage text-white px-6 py-2 rounded-full text-sm font-semibold transition-all" data-target="size-S">S</button>
+                <button class="size-tab bg-ivory text-dark border border-cream hover:border-sage px-6 py-2 rounded-full text-sm font-semibold transition-all" data-target="size-M">M</button>
+                <button class="size-tab bg-ivory text-dark border border-cream hover:border-sage px-6 py-2 rounded-full text-sm font-semibold transition-all" data-target="size-L">L</button>
+                <button class="size-tab bg-ivory text-dark border border-cream hover:border-sage px-6 py-2 rounded-full text-sm font-semibold transition-all" data-target="size-XL">XL</button>
+                <button class="size-tab bg-ivory text-dark border border-cream hover:border-sage px-6 py-2 rounded-full text-sm font-semibold transition-all" data-target="size-XXL">XXL</button>
+            </div>
+
+            <!-- Content Panel -->
+            <div class="bg-ivory p-6 rounded-2xl border border-cream shadow-sm relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-4 opacity-10">
+                    <i class="fa-solid fa-ruler-combined text-6xl"></i>
+                </div>
+                
+                <div id="size-S" class="size-panel">
+                    <h3 class="font-bold text-xl text-dark mb-4">Ukuran Small (S)</h3>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex justify-between border-b border-cream pb-2"><span>Lingkar Dada (LD)</span> <span class="font-semibold">92 cm</span></li>
+                        <li class="flex justify-between border-b border-cream pb-2"><span>Panjang Baju (PB)</span> <span class="font-semibold">132 cm</span></li>
+                        <li class="flex justify-between border-b border-cream pb-2"><span>Panjang Lengan</span> <span class="font-semibold">55 cm</span></li>
+                        <li class="flex justify-between pt-1 text-sm text-sage">Cocok untuk BB 40-50 kg</li>
+                    </ul>
+                </div>
+                
+                <div id="size-M" class="size-panel hidden">
+                    <h3 class="font-bold text-xl text-dark mb-4">Ukuran Medium (M)</h3>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex justify-between border-b border-cream pb-2"><span>Lingkar Dada (LD)</span> <span class="font-semibold">96 cm</span></li>
+                        <li class="flex justify-between border-b border-cream pb-2"><span>Panjang Baju (PB)</span> <span class="font-semibold">135 cm</span></li>
+                        <li class="flex justify-between border-b border-cream pb-2"><span>Panjang Lengan</span> <span class="font-semibold">56 cm</span></li>
+                        <li class="flex justify-between pt-1 text-sm text-sage">Cocok untuk BB 51-60 kg</li>
+                    </ul>
+                </div>
+
+                <div id="size-L" class="size-panel hidden">
+                    <h3 class="font-bold text-xl text-dark mb-4">Ukuran Large (L)</h3>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex justify-between border-b border-cream pb-2"><span>Lingkar Dada (LD)</span> <span class="font-semibold">100 cm</span></li>
+                        <li class="flex justify-between border-b border-cream pb-2"><span>Panjang Baju (PB)</span> <span class="font-semibold">138 cm</span></li>
+                        <li class="flex justify-between border-b border-cream pb-2"><span>Panjang Lengan</span> <span class="font-semibold">57 cm</span></li>
+                        <li class="flex justify-between pt-1 text-sm text-sage">Cocok untuk BB 61-70 kg</li>
+                    </ul>
+                </div>
+
+                <div id="size-XL" class="size-panel hidden">
+                    <h3 class="font-bold text-xl text-dark mb-4">Ukuran Extra Large (XL)</h3>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex justify-between border-b border-cream pb-2"><span>Lingkar Dada (LD)</span> <span class="font-semibold">104 cm</span></li>
+                        <li class="flex justify-between border-b border-cream pb-2"><span>Panjang Baju (PB)</span> <span class="font-semibold">140 cm</span></li>
+                        <li class="flex justify-between border-b border-cream pb-2"><span>Panjang Lengan</span> <span class="font-semibold">58 cm</span></li>
+                        <li class="flex justify-between pt-1 text-sm text-sage">Cocok untuk BB 71-80 kg</li>
+                    </ul>
+                </div>
+
+                <div id="size-XXL" class="size-panel hidden">
+                    <h3 class="font-bold text-xl text-dark mb-4">Ukuran Double XL (XXL)</h3>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex justify-between border-b border-cream pb-2"><span>Lingkar Dada (LD)</span> <span class="font-semibold">110 cm</span></li>
+                        <li class="flex justify-between border-b border-cream pb-2"><span>Panjang Baju (PB)</span> <span class="font-semibold">142 cm</span></li>
+                        <li class="flex justify-between border-b border-cream pb-2"><span>Panjang Lengan</span> <span class="font-semibold">59 cm</span></li>
+                        <li class="flex justify-between pt-1 text-sm text-sage">Cocok untuk BB 81-90 kg</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Auto Sliding Testimonial -->
+    <section class="py-24 bg-cream/20 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 mb-12 text-center reveal">
+            <h2 class="text-4xl font-serif font-bold text-dark mb-4">Kepercayaan Hijabers</h2>
+            <p class="text-gray-600">Apa kata mereka yang sudah merasakan kenyamanan Zahrani Modest.</p>
+        </div>
+
+        <div class="relative max-w-6xl mx-auto">
+            <!-- Fade edges -->
+            <div class="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-ivory to-transparent z-10 pointer-events-none hidden md:block"></div>
+            <div class="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-ivory to-transparent z-10 pointer-events-none hidden md:block"></div>
+
+            <div id="testimonial-slider" class="flex gap-6 overflow-x-auto no-scrollbar snap-x snap-mandatory px-6 pb-8">
+                <!-- Testi 1 -->
+                <div class="flex-none w-80 bg-white p-6 rounded-2xl shadow-sm border border-cream snap-center">
+                    <div class="flex text-yellow-400 mb-4 text-sm"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="text-gray-600 text-sm mb-6">"MasyaAllah bahannya jatuh banget dan nggak nerawang sama sekali. Dipakai buat kajian seharian tetep adem. Warna Sage-nya cantik poll!"</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-mocha/30 flex items-center justify-center font-bold text-dark">A</div>
+                        <div><p class="font-bold text-sm">Annisa R.</p><p class="text-xs text-gray-500">Ibu Rumah Tangga</p></div>
+                    </div>
+                </div>
+                <!-- Testi 2 -->
+                <div class="flex-none w-80 bg-white p-6 rounded-2xl shadow-sm border border-cream snap-center">
+                    <div class="flex text-yellow-400 mb-4 text-sm"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="text-gray-600 text-sm mb-6">"Jahitannya rapi banget sekelas butik mahal, tapi harganya sangat affordable. Beli bundling set jadi hemat, hijabnya gampang dibentuk."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-sage/30 flex items-center justify-center font-bold text-dark">D</div>
+                        <div><p class="font-bold text-sm">Dina M.</p><p class="text-xs text-gray-500">Pekerja Kantoran</p></div>
+                    </div>
+                </div>
+                <!-- Testi 3 -->
+                <div class="flex-none w-80 bg-white p-6 rounded-2xl shadow-sm border border-cream snap-center">
+                    <div class="flex text-yellow-400 mb-4 text-sm"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="text-gray-600 text-sm mb-6">"Suka banget sama detail cuttingnya yang bikin kelihatan ramping tapi tetep syari. Udah nungguin Vol 05 ini dan ga ngecewain!"</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-dusty/30 flex items-center justify-center font-bold text-dark">F</div>
+                        <div><p class="font-bold text-sm">Fatimah Z.</p><p class="text-xs text-gray-500">Mahasiswi</p></div>
+                    </div>
+                </div>
+                 <!-- Testi 4 -->
+                 <div class="flex-none w-80 bg-white p-6 rounded-2xl shadow-sm border border-cream snap-center">
+                    <div class="flex text-yellow-400 mb-4 text-sm"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="text-gray-600 text-sm mb-6">"Adminnya ramah, panduan size chartnya ngebantu banget pas checkout di web. Pengiriman super cepat & packagingnya luxury."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-sage/30 flex items-center justify-center font-bold text-dark">R</div>
+                        <div><p class="font-bold text-sm">Rina K.</p><p class="text-xs text-gray-500">Pengusaha</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promo / Countdown Bundle Offer -->
+    <section id="promo" class="py-24 px-6 md:px-12 bg-dark relative overflow-hidden">
+        <!-- Abstract Decoration -->
+        <div class="absolute top-0 right-0 w-64 h-64 bg-sage/20 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-mocha/20 rounded-full blur-3xl"></div>
+
+        <div class="max-w-5xl mx-auto relative z-10 glass-dark rounded-3xl p-8 md:p-16 border border-sage/30 reveal">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="bg-sage text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-6 inline-block">Limited Offer 100 Pembeli Pertama</span>
+                    <h2 class="text-4xl md:text-5xl font-serif font-bold text-white mb-4">Launching Collection Promo!</h2>
+                    <p class="text-ivory/80 text-lg mb-6">Dapatkan Diskon 20% + Gratis Ongkir Seluruh Indonesia. Tersedia Bonus Pouch Eksklusif setiap pembelian Bundling Set Syari.</p>
+                    
+                    <!-- Countdown Timer -->
+                    <div class="flex gap-4 mb-8">
+                        <div class="bg-white/10 backdrop-blur-sm p-3 rounded-lg text-center w-20 border border-white/20">
+                            <span id="days" class="text-2xl font-bold text-white block">02</span>
+                            <span class="text-xs text-ivory/70">Hari</span>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-sm p-3 rounded-lg text-center w-20 border border-white/20">
+                            <span id="hours" class="text-2xl font-bold text-white block">14</span>
+                            <span class="text-xs text-ivory/70">Jam</span>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-sm p-3 rounded-lg text-center w-20 border border-white/20">
+                            <span id="minutes" class="text-2xl font-bold text-white block">45</span>
+                            <span class="text-xs text-ivory/70">Menit</span>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-sm p-3 rounded-lg text-center w-20 border border-white/20">
+                            <span id="seconds" class="text-2xl font-bold text-sage block animate-pulse">00</span>
+                            <span class="text-xs text-ivory/70">Detik</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-ivory rounded-2xl p-8 text-center shadow-2xl relative">
+                    <div class="absolute -top-4 -right-4 bg-dusty text-white w-16 h-16 rounded-full flex items-center justify-center font-bold rotate-12 shadow-lg">Save 20%</div>
+                    <h3 class="font-serif text-2xl font-bold text-dark mb-2">Alya Daily Syari Set</h3>
+                    <p class="text-gray-500 text-sm mb-6">Gamis Premium + Hijab Matching + Pouch</p>
+                    
+                    <div class="flex justify-center items-end gap-3 mb-8">
+                        <span class="text-gray-400 line-through text-lg">Rp625.000</span>
+                        <span class="text-4xl font-bold text-sage">Rp499.000</span>
+                    </div>
+
+                    <a href="https://wa.me/6281234567890?text=Halo%20Admin%20Zahrani%20Modest,%20saya%20mau%20pesan%20Alya%20Daily%20Syari%20Set%20Promo%20Launching" class="block w-full bg-sage hover:bg-dark text-white py-4 rounded-full font-bold uppercase tracking-wide transition-all shadow-lg hover:shadow-xl hover:-translate-y-1">
+                        Pesan Sekarang (WhatsApp)
+                    </a>
+                    <p class="text-xs text-gray-400 mt-4"><i class="fa-solid fa-shield-halved mr-1"></i> Garansi retur jika barang cacat.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-24 px-6 md:px-12 bg-ivory">
+        <div class="max-w-3xl mx-auto reveal">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-serif font-bold text-dark mb-4">Pertanyaan Seputar Produk</h2>
+            </div>
+            
+            <div class="space-y-4">
+                <!-- FAQ 1 -->
+                <div class="faq-item bg-white border border-cream rounded-xl overflow-hidden transition-all">
+                    <button class="faq-btn w-full px-6 py-4 text-left font-bold text-dark flex justify-between items-center focus:outline-none">
+                        <span>Apakah bahannya menerawang?</span>
+                        <i class="fa-solid fa-chevron-down text-sage transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-4 text-gray-600 text-sm leading-relaxed">
+                        Tidak, kami menggunakan material premium pilihan yang tebalnya pas namun tetap flowy. Dijamin aman menutup aurat tanpa perlu khawatir menerawang.
+                    </div>
+                </div>
+                <!-- FAQ 2 -->
+                <div class="faq-item bg-white border border-cream rounded-xl overflow-hidden transition-all">
+                    <button class="faq-btn w-full px-6 py-4 text-left font-bold text-dark flex justify-between items-center focus:outline-none">
+                        <span>Bagaimana jika ukuran tidak pas?</span>
+                        <i class="fa-solid fa-chevron-down text-sage transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-4 text-gray-600 text-sm leading-relaxed">
+                        Kami sarankan untuk melihat Size Chart Interaktif di atas. Namun jika ternyata ada kesalahan ukuran yang diterima tidak sesuai pesanan, kami memberikan garansi retur maksimal 3 hari setelah barang diterima.
+                    </div>
+                </div>
+                <!-- FAQ 3 -->
+                <div class="faq-item bg-white border border-cream rounded-xl overflow-hidden transition-all">
+                    <button class="faq-btn w-full px-6 py-4 text-left font-bold text-dark flex justify-between items-center focus:outline-none">
+                        <span>Apakah bisa beli terpisah (hanya hijab/gamis)?</span>
+                        <i class="fa-solid fa-chevron-down text-sage transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-4 text-gray-600 text-sm leading-relaxed">
+                        Tentu bisa. Anda bisa membeli Naura Premium Gamis atau jenis hijab kami secara terpisah. Namun pembelian Bundling Set akan lebih hemat.
+                    </div>
+                </div>
+                 <!-- FAQ 4 -->
+                 <div class="faq-item bg-white border border-cream rounded-xl overflow-hidden transition-all">
+                    <button class="faq-btn w-full px-6 py-4 text-left font-bold text-dark flex justify-between items-center focus:outline-none">
+                        <span>Berapa lama proses pengiriman?</span>
+                        <i class="fa-solid fa-chevron-down text-sage transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-4 text-gray-600 text-sm leading-relaxed">
+                        Untuk pesanan ready stock dikirim di hari yang sama jika transfer sebelum jam 15.00 WIB. Untuk pesanan Pre-Order sesuai dengan estimasi waktu yang diinfokan admin.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-20 pb-24 md:pb-10 px-6 md:px-12 border-t border-sage/30">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+            <div class="md:col-span-2">
+                <a href="#" class="font-serif text-3xl font-bold text-white tracking-wide mb-6 block">ZAHRANI<span class="text-sage">.</span></a>
+                <p class="text-ivory/60 text-sm mb-6 max-w-sm">
+                    Koleksi pakaian muslim dan hijab syari premium. Menghadirkan desain modern minimalis yang mengutamakan kenyamanan harian dan keanggunan syariat.
+                </p>
+                <div class="flex gap-4">
+                    <a href="https://instagram.com/zahranimodest" target="_blank" class="w-10 h-10 rounded-full border border-sage/50 flex items-center justify-center hover:bg-sage transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://tiktok.com/@zahranimodest" target="_blank" class="w-10 h-10 rounded-full border border-sage/50 flex items-center justify-center hover:bg-sage transition-colors"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="https://wa.me/6281234567890" target="_blank" class="w-10 h-10 rounded-full border border-sage/50 flex items-center justify-center hover:bg-sage transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+            
+            <div>
+                <h4 class="font-bold text-lg mb-6 text-cream">Explore</h4>
+                <ul class="space-y-3 text-sm text-ivory/60">
+                    <li><a href="#koleksi" class="hover:text-sage transition-colors">Koleksi Terbaru</a></li>
+                    <li><a href="#material" class="hover:text-sage transition-colors">Detail Bahan</a></li>
+                    <li><a href="#lookbook" class="hover:text-sage transition-colors">Inspirasi Style</a></li>
+                    <li><a href="#" class="hover:text-sage transition-colors">Cek Status Pesanan</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-lg mb-6 text-cream">Contact Us</h4>
+                <ul class="space-y-3 text-sm text-ivory/60">
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-location-dot mt-1 text-sage"></i> <span>Jakarta, Indonesia</span></li>
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-phone text-sage"></i> <span>0812-3456-7890</span></li>
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-envelope text-sage"></i> <span>hello@zahranimodest.com</span></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto border-t border-white/10 pt-8 text-center text-sm text-ivory/40">
+            <p>&copy; 2026 ZAHRANI MODEST. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Sticky Floating WhatsApp -->
+    <a href="https://wa.me/6281234567890" target="_blank" class="fixed bottom-24 md:bottom-8 right-6 z-50 bg-[#25D366] text-white w-14 h-14 rounded-full flex items-center justify-center text-3xl shadow-lg shadow-green-500/30 hover:scale-110 transition-transform">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Sticky Mobile Bottom CTA (Visible only on mobile) -->
+    <div class="md:hidden fixed bottom-0 left-0 w-full bg-white border-t border-cream p-4 z-50 flex gap-3 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
+        <a href="https://wa.me/6281234567890" class="flex-1 bg-sage text-white text-center py-3 rounded-full font-bold text-sm">
+            Beli Sekarang (Diskon 20%)
+        </a>
+    </div>
+
+    <!-- JavaScript Interactions -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            /* --- 1. Loading Animation --- */
+            setTimeout(() => {
+                const loader = document.getElementById('loader');
+                loader.style.opacity = '0';
+                setTimeout(() => { loader.style.display = 'none'; }, 500);
+            }, 1000); // Tampil 1 detik
+
+            /* --- 2. Mobile Navbar Toggle --- */
+            const menuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                mobileMenu.classList.toggle('flex');
+            });
+
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenu.classList.remove('flex');
+                });
+            });
+
+            /* --- 3. Active Navbar Scroll & Glassmorphism --- */
+            const navbar = document.getElementById('navbar');
+            const navbarInner = document.getElementById('navbar-inner');
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbarInner.classList.add('glass', 'shadow-sm');
+                    navbarInner.classList.remove('bg-transparent');
+                } else {
+                    navbarInner.classList.remove('glass', 'shadow-sm');
+                    navbarInner.classList.add('bg-transparent');
+                }
+            });
+
+            /* --- 4. Scroll Reveal Animation --- */
+            const reveals = document.querySelectorAll('.reveal');
+            const revealOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
+
+            const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                });
+            }, revealOptions);
+
+            reveals.forEach(reveal => { revealOnScroll.observe(reveal); });
+
+            /* --- 5. Interactive Size Chart Tabs --- */
+            const sizeTabs = document.querySelectorAll('.size-tab');
+            const sizePanels = document.querySelectorAll('.size-panel');
+
+            sizeTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Reset all tabs
+                    sizeTabs.forEach(t => {
+                        t.classList.remove('bg-sage', 'text-white');
+                        t.classList.add('bg-ivory', 'text-dark');
+                    });
+                    // Set active tab
+                    tab.classList.remove('bg-ivory', 'text-dark');
+                    tab.classList.add('bg-sage', 'text-white');
+
+                    // Hide all panels
+                    sizePanels.forEach(panel => panel.classList.add('hidden'));
+                    
+                    // Show target panel
+                    const targetId = tab.getAttribute('data-target');
+                    document.getElementById(targetId).classList.remove('hidden');
+                });
+            });
+
+            /* --- 6. FAQ Accordion --- */
+            const faqItems = document.querySelectorAll('.faq-btn');
+            faqItems.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const content = this.nextElementSibling;
+                    const icon = this.querySelector('i');
+                    
+                    // Toggle current
+                    content.classList.toggle('hidden');
+                    icon.classList.toggle('rotate-180');
+                });
+            });
+
+            /* --- 7. Auto Sliding Testimonial --- */
+            const slider = document.getElementById('testimonial-slider');
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+            
+            // Auto scroll function
+            setInterval(() => {
+                if(!isDown) { // Dont auto scroll if user is dragging
+                    slider.scrollLeft += 2;
+                    if(slider.scrollLeft >= (slider.scrollWidth - slider.clientWidth)) {
+                        slider.scrollLeft = 0; // reset
+                    }
+                }
+            }, 30);
+
+            // Manual Drag functionality (opsional, untuk UX lebih baik)
+            slider.addEventListener('mousedown', (e) => {
+                isDown = true;
+                startX = e.pageX - slider.offsetLeft;
+                scrollLeft = slider.scrollLeft;
+            });
+            slider.addEventListener('mouseleave', () => { isDown = false; });
+            slider.addEventListener('mouseup', () => { isDown = false; });
+            slider.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - slider.offsetLeft;
+                const walk = (x - startX) * 2;
+                slider.scrollLeft = scrollLeft - walk;
+            });
+
+            /* --- 8. Countdown Timer --- */
+            // Set for 2 days from load for demo purposes
+            let countDownDate = new Date().getTime() + (2 * 24 * 60 * 60 * 1000) + (14 * 60 * 60 * 1000); 
+
+            const x = setInterval(function() {
+                let now = new Date().getTime();
+                let distance = countDownDate - now;
+
+                let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById("days").innerHTML = days.toString().padStart(2, '0');
+                document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
+                document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
+                document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
+
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("days").innerHTML = "00";
+                    // Info expired logic here
+                }
+            }, 1000);
+
+            /* --- 9. Fake Live Order Popup --- */
+            const names = ["Siti, Jakarta", "Nisa, Bandung", "Aulia, Surabaya", "Putri, Medan", "Rina, Makassar", "Dewi, Yogyakarta"];
+            const items = ["Syari Set Vol 05", "Naura Premium Gamis", "Humaira Abaya", "Bundling Set Hemat", "Qanita Khimar"];
+            const popup = document.getElementById('fake-order');
+            const nameEl = document.getElementById('fo-name');
+            const itemEl = document.getElementById('fo-item');
+
+            function showFakeOrder() {
+                const randomName = names[Math.floor(Math.random() * names.length)];
+                const randomItem = items[Math.floor(Math.random() * items.length)];
+                
+                nameEl.textContent = randomName;
+                itemEl.textContent = "Baru saja membeli " + randomItem;
+                
+                popup.classList.add('show');
+                
+                // Hide after 4 seconds
+                setTimeout(() => {
+                    popup.classList.remove('show');
+                }, 4000);
+            }
+
+            // Show first popup after 5 seconds, then repeat every 15-20 seconds
+            setTimeout(() => {
+                showFakeOrder();
+                setInterval(showFakeOrder, 18000);
+            }, 5000);
+
+        });
+    </script>
+</body>
+</html>
