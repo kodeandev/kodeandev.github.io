@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cahaya Heritage | Scented Soy Candle Nusantara</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'midnight': '#0B132B',
+                        'midnight-light': '#1C2541',
+                        'warm-gold': '#D4AF37',
+                    },
+                    fontFamily: {
+                        'serif': ['Lora', 'serif'],
+                        'sans': ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS -->
+    <style>
+        /* Sembunyikan scrollbar untuk horizontal scroll */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Glow Effect */
+        .glow-effect {
+            transition: all 0.3s ease;
+        }
+        .glow-effect:hover {
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.6);
+            transform: scale(1.05);
+        }
+
+        /* Flicker Effect untuk Api/Diskon */
+        @keyframes flicker {
+            0%, 100% { opacity: 1; text-shadow: 0 0 4px rgba(212, 175, 55, 0.8); }
+            50% { opacity: 0.6; text-shadow: 0 0 10px rgba(212, 175, 55, 1); }
+        }
+        .flicker-text {
+            animation: flicker 2s infinite alternate;
+        }
+
+        /* Cursor Trail */
+        .cursor-trail {
+            position: fixed;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: rgba(212, 175, 55, 0.5);
+            box-shadow: 0 0 15px 5px rgba(212, 175, 55, 0.4);
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            transition: top 0.05s linear, left 0.05s linear;
+        }
+    </style>
+</head>
+<body class="bg-midnight text-gray-200 font-sans antialiased overflow-x-hidden selection:bg-warm-gold selection:text-midnight">
+
+    <!-- Glowing Cursor Trail Element -->
+    <div class="cursor-trail hidden md:block" id="cursor"></div>
+
+    <!-- 1. HERO SECTION -->
+    <section class="relative h-screen flex items-center justify-center text-center px-4">
+        <!-- Background Image (Dummy Candle Image) -->
+        <div class="absolute inset-0 z-0">
+            <img src="img-lilin-1.png" alt="Candle Background" class="w-full h-full object-cover opacity-30">
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-midnight"></div>
+        </div>
+        
+        <div class="relative z-10 max-w-3xl flex flex-col items-center">
+            <h2 class="text-warm-gold tracking-widest text-sm uppercase mb-4 font-semibold">Cahaya Heritage</h2>
+            <h1 class="text-4xl md:text-6xl font-serif text-white font-semibold leading-tight mb-6">
+                Kehangatan Tradisi di <br> Setiap Sudut Ruang.
+            </h1>
+            <p class="text-lg md:text-xl font-light mb-10 max-w-xl text-gray-300">
+                Menghadirkan memori ketenangan nusantara. 100% natural soy wax dengan suara gemeretak kayu yang menenangkan.
+            </p>
+            <a href="#koleksi" class="inline-block px-8 py-3 border-2 border-warm-gold text-warm-gold font-medium rounded-md hover:bg-warm-gold hover:text-midnight transition duration-300 shadow-[0_0_15px_rgba(212,175,55,0.3)] hover:shadow-[0_0_25px_rgba(212,175,55,0.6)]">
+                Jelajahi Koleksi
+            </a>
+        </div>
+    </section>
+
+    <!-- 2. SCENT NOTES -->
+    <section class="py-20 px-6 max-w-6xl mx-auto text-center">
+        <h2 class="text-3xl font-serif text-warm-gold mb-12">Simfoni Aroma Nusantara</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div class="flex flex-col items-center">
+                <div class="w-24 h-24 rounded-full border border-warm-gold flex items-center justify-center mb-4 shadow-[0_0_15px_rgba(212,175,55,0.2)]">
+                    <span class="font-serif text-xl text-white">Top</span>
+                </div>
+                <h3 class="text-lg font-semibold mb-2">Sentuhan Pertama</h3>
+                <p class="font-light text-sm text-gray-400">Aroma segar yang menyambut Anda saat pertama kali lilin dinyalakan.</p>
+            </div>
+            <div class="flex flex-col items-center">
+                <div class="w-24 h-24 rounded-full border border-warm-gold flex items-center justify-center mb-4 shadow-[0_0_15px_rgba(212,175,55,0.2)]">
+                    <span class="font-serif text-xl text-white">Heart</span>
+                </div>
+                <h3 class="text-lg font-semibold mb-2">Karakter Utama</h3>
+                <p class="font-light text-sm text-gray-400">Inti dari perpaduan bunga dan rempah tradisional yang kaya.</p>
+            </div>
+            <div class="flex flex-col items-center">
+                <div class="w-24 h-24 rounded-full border border-warm-gold flex items-center justify-center mb-4 shadow-[0_0_15px_rgba(212,175,55,0.2)]">
+                    <span class="font-serif text-xl text-white">Base</span>
+                </div>
+                <h3 class="text-lg font-semibold mb-2">Jejak Kehangatan</h3>
+                <p class="font-light text-sm text-gray-400">Ketahanan aroma manis dan woody yang bertahan lama di ruangan.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. KOLEKSI LILIN (Drag/Swipe Scroll) -->
+    <section id="koleksi" class="py-20 bg-midnight-light pl-6 md:pl-12">
+        <div class="mb-10 pr-6 md:pr-12">
+            <h2 class="text-3xl font-serif text-warm-gold">Koleksi Signature</h2>
+            <p class="font-light text-gray-400 mt-2">Geser untuk melihat lebih banyak</p>
+        </div>
+        
+        <!-- Scrollable Container -->
+        <div id="product-slider" class="flex gap-6 overflow-x-auto hide-scrollbar pb-10 cursor-grab active:cursor-grabbing">
+            
+            <!-- Card 1 -->
+            <div class="min-w-[280px] md:min-w-[320px] bg-midnight rounded-md p-5 border border-gray-800 glow-effect">
+                <div class="h-64 bg-gray-700 rounded-md mb-4 overflow-hidden">
+                    <img src="img-lilin-2.png" alt="Melati Keraton" class="w-full h-full object-cover">
+                </div>
+                <h3 class="text-xl font-serif text-white mb-1">Melati Keraton</h3>
+                <p class="text-xs text-warm-gold mb-3">Romantis & Menenangkan</p>
+                <p class="text-sm font-light text-gray-400 mb-4 line-clamp-2">Aroma Jasmine murni yang membawa nuansa romantis dan ketenangan ala keraton Jawa.</p>
+                <div class="flex justify-between items-center">
+                    <span class="font-medium text-lg">Rp 150.000</span>
+                    <a href="https://wa.me/6281234567890?text=Halo%20Cahaya%20Heritage,%20saya%20ingin%20memesan%20varian%20Melati%20Keraton" target="_blank" class="text-xs bg-warm-gold text-midnight px-3 py-2 rounded-md font-semibold hover:bg-yellow-400 transition">Beli Sekarang</a>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="min-w-[280px] md:min-w-[320px] bg-midnight rounded-md p-5 border border-gray-800 glow-effect">
+                <div class="h-64 bg-gray-700 rounded-md mb-4 overflow-hidden">
+                    <img src="img-lilin-3.png" alt="Pandan Wangi" class="w-full h-full object-cover">
+                </div>
+                <h3 class="text-xl font-serif text-white mb-1">Pandan Wangi</h3>
+                <p class="text-xs text-warm-gold mb-3">Manis, Nostalgia, Homy</p>
+                <p class="text-sm font-light text-gray-400 mb-4 line-clamp-2">Keharuman manis pandan yang mengingatkan pada rumah dan masakan ibu. Sangat homy.</p>
+                <div class="flex justify-between items-center">
+                    <span class="font-medium text-lg">Rp 150.000</span>
+                    <a href="https://wa.me/6281234567890?text=Halo%20Cahaya%20Heritage,%20saya%20ingin%20memesan%20varian%20Pandan%20Wangi" target="_blank" class="text-xs bg-warm-gold text-midnight px-3 py-2 rounded-md font-semibold hover:bg-yellow-400 transition">Beli Sekarang</a>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="min-w-[280px] md:min-w-[320px] bg-midnight rounded-md p-5 border border-gray-800 glow-effect">
+                <div class="h-64 bg-gray-700 rounded-md mb-4 overflow-hidden">
+                    <img src="img-lilin-4.png" alt="Sereh Segar" class="w-full h-full object-cover">
+                </div>
+                <h3 class="text-xl font-serif text-white mb-1">Sereh Segar</h3>
+                <p class="text-xs text-warm-gold mb-3">Fresh & Energizing</p>
+                <p class="text-sm font-light text-gray-400 mb-4 line-clamp-2">Aroma lemongrass yang menyegarkan pikiran, mengembalikan energi, sekaligus pengusir nyamuk alami.</p>
+                <div class="flex justify-between items-center">
+                    <span class="font-medium text-lg">Rp 150.000</span>
+                    <a href="https://wa.me/6281234567890?text=Halo%20Cahaya%20Heritage,%20saya%20ingin%20memesan%20varian%20Sereh%20Segar" target="_blank" class="text-xs bg-warm-gold text-midnight px-3 py-2 rounded-md font-semibold hover:bg-yellow-400 transition">Beli Sekarang</a>
+                </div>
+            </div>
+            
+            <!-- Spacer for end of scroll -->
+            <div class="min-w-[20px]"></div>
+        </div>
+    </section>
+
+    <!-- 4. THE EXPERIENCE -->
+    <section class="py-24 px-6 max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
+        <div class="lg:w-1/2">
+            <h2 class="text-3xl md:text-4xl font-serif text-white mb-6">Lebih dari Sekadar Aroma</h2>
+            <ul class="space-y-6">
+                <li class="flex items-start">
+                    <div class="mt-1 flex-shrink-0 w-6 h-6 rounded-full bg-warm-gold text-midnight flex items-center justify-center font-bold text-sm">1</div>
+                    <div class="ml-4">
+                        <h4 class="text-lg font-semibold text-warm-gold">100% Natural Soy Wax</h4>
+                        <p class="text-gray-400 font-light mt-1">Ramah lingkungan, non-toxic, dan menyala lebih bersih tanpa asap hitam mengganggu.</p>
+                    </div>
+                </li>
+                <li class="flex items-start">
+                    <div class="mt-1 flex-shrink-0 w-6 h-6 rounded-full bg-warm-gold text-midnight flex items-center justify-center font-bold text-sm">2</div>
+                    <div class="ml-4">
+                        <h4 class="text-lg font-semibold text-warm-gold">Wooden Wick Magic</h4>
+                        <p class="text-gray-400 font-light mt-1">Sumbu kayu asli yang menghasilkan suara gemeretak halus, menciptakan suasana layaknya perapian kecil.</p>
+                    </div>
+                </li>
+                <li class="flex items-start">
+                    <div class="mt-1 flex-shrink-0 w-6 h-6 rounded-full bg-warm-gold text-midnight flex items-center justify-center font-bold text-sm">3</div>
+                    <div class="ml-4">
+                        <h4 class="text-lg font-semibold text-warm-gold">Long-lasting Burn</h4>
+                        <p class="text-gray-400 font-light mt-1">Dirancang khusus untuk bertahan hingga 45 jam pembakaran, menemani setiap malam Anda.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="lg:w-1/2 w-full relative">
+            <!-- Dummy Video/GIF Container -->
+            <div class="aspect-video bg-midnight-light rounded-md overflow-hidden relative border border-warm-gold shadow-[0_0_20px_rgba(212,175,55,0.2)]">
+                <img src="img-lilin-5.png" alt="Candle Burning Experience" class="w-full h-full object-cover">
+                <!-- Play button icon dummy -->
+                <div class="absolute inset-0 flex items-center justify-center bg-black/30">
+                    <div class="w-16 h-16 rounded-full bg-warm-gold/80 flex items-center justify-center pl-2">
+                        <svg class="w-8 h-8 text-midnight" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. PROMO BANNER -->
+    <section class="w-full bg-gradient-to-r from-black via-midnight to-black py-12 border-y border-warm-gold relative overflow-hidden">
+        <!-- Badge -->
+        <div class="absolute top-0 right-10 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-b-md flicker-text">
+            TERBATAS!
+        </div>
+        
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-2xl md:text-3xl font-serif text-warm-gold mb-3">Midnight Sale!</h2>
+            <p class="text-lg text-white mb-6">Gratis <span class="font-semibold text-warm-gold">Wick Trimmer</span> (Pemotong Sumbu) untuk pembelian minimal 2 lilin.</p>
+            
+            <!-- Countdown Timer -->
+            <div class="flex justify-center gap-4 mb-8">
+                <div class="bg-midnight-light p-3 rounded-md min-w-[70px] border border-gray-700">
+                    <span id="hours" class="text-2xl font-bold text-white block">00</span>
+                    <span class="text-xs text-gray-400 uppercase">Jam</span>
+                </div>
+                <div class="text-2xl font-bold text-warm-gold self-center">:</div>
+                <div class="bg-midnight-light p-3 rounded-md min-w-[70px] border border-gray-700">
+                    <span id="minutes" class="text-2xl font-bold text-white block">00</span>
+                    <span class="text-xs text-gray-400 uppercase">Menit</span>
+                </div>
+                <div class="text-2xl font-bold text-warm-gold self-center">:</div>
+                <div class="bg-midnight-light p-3 rounded-md min-w-[70px] border border-gray-700">
+                    <span id="seconds" class="text-2xl font-bold text-white block">00</span>
+                    <span class="text-xs text-gray-400 uppercase">Detik</span>
+                </div>
+            </div>
+
+            <a href="https://wa.me/6281234567890?text=Halo%20Cahaya%20Heritage,%20saya%20ingin%20klaim%20promo%20Midnight%20Sale!" target="_blank" class="inline-block bg-warm-gold text-midnight font-bold px-8 py-3 rounded-md hover:bg-yellow-400 transition transform hover:scale-105">
+                Klaim Promo Sekarang
+            </a>
+        </div>
+    </section>
+
+    <!-- 6. TESTIMONI -->
+    <section class="py-24 px-6 max-w-4xl mx-auto text-center">
+        <div class="mb-10 text-warm-gold text-5xl font-serif opacity-50">"</div>
+        <p class="text-xl md:text-2xl font-serif font-light text-gray-200 italic leading-relaxed mb-8">
+            Saya selalu menyalakan varian Melati Keraton setelah seharian bekerja di depan laptop. Suara kayu terbakarnya sangat menenangkan, dan aromanya sukses mengubah kamar saya terasa seperti spa mewah.
+        </p>
+        <div class="flex flex-col items-center">
+            <h4 class="font-bold text-white">Anisa R.</h4>
+            <span class="text-sm text-gray-400">Pekerja Kreatif & Pecinta Home-Decor</span>
+        </div>
+    </section>
+
+    <!-- 7. FOOTER CTA & FOOTER -->
+    <footer class="bg-midnight-light pt-20 pb-10 border-t border-gray-800">
+        <div class="max-w-3xl mx-auto px-6 text-center">
+            <h2 class="text-3xl font-serif text-white mb-4">Bawa Pulang Kehangatan Ini</h2>
+            <p class="text-gray-400 mb-10 font-light">Hubungi kami melalui WhatsApp untuk pemesanan atau konsultasi aroma yang paling cocok untuk ruanganmu.</p>
+            
+            <a href="https://wa.me/6281234567890" target="_blank" class="block w-full md:w-auto bg-[#25D366] text-white text-lg font-medium px-8 py-4 rounded-md hover:bg-[#20b958] transition shadow-lg flex items-center justify-center gap-3">
+                <!-- WhatsApp Icon SVG -->
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564c.173.087.289.129.332.202.043.073.043.423-.101.827z"/></svg>
+                Pesan via WhatsApp
+            </a>
+        </div>
+        <div class="mt-20 text-center text-gray-600 text-sm">
+            &copy; 2026 Cahaya Heritage. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // 1. DRAG TO SCROLL (Koleksi Produk)
+        const slider = document.getElementById('product-slider');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        slider.addEventListener('mousedown', (e) => {
+            isDown = true;
+            slider.classList.add('active');
+            startX = e.pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+        });
+        slider.addEventListener('mouseleave', () => {
+            isDown = false;
+            slider.classList.remove('active');
+        });
+        slider.addEventListener('mouseup', () => {
+            isDown = false;
+            slider.classList.remove('active');
+        });
+        slider.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - slider.offsetLeft;
+            const walk = (x - startX) * 2; // Kecepatan scroll (dikali 2)
+            slider.scrollLeft = scrollLeft - walk;
+        });
+
+        // 2. COUNTDOWN TIMER (Dummy 24 Hours)
+        // Kita atur target waktu 24 jam dari sekarang untuk keperluan demo promo
+        let countDownDate = new Date().getTime() + (24 * 60 * 60 * 1000); 
+
+        const x = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+
+            // Perhitungan waktu
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Tampilkan ke dalam elemen HTML, gunakan padStart agar selalu 2 digit (contoh: 09)
+            document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
+
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("hours").innerHTML = "00";
+                document.getElementById("minutes").innerHTML = "00";
+                document.getElementById("seconds").innerHTML = "00";
+            }
+        }, 1000);
+
+        // 3. GLOWING CURSOR TRAIL (Opsional/Magic Feel)
+        const cursor = document.getElementById('cursor');
+        
+        document.addEventListener('mousemove', (e) => {
+            // Posisi kursor
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Efek kursor membesar saat hover pada link/button
+        const interactables = document.querySelectorAll('a, button');
+        interactables.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(2)';
+                cursor.style.backgroundColor = 'rgba(212, 175, 55, 0.8)';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                cursor.style.backgroundColor = 'rgba(212, 175, 55, 0.5)';
+            });
+        });
+    </script>
+</body>
+</html>
