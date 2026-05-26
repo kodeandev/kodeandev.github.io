@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sambal Selaras - Pikat Selera, Selaras di Lidah</title>
+    
+    <!-- Google Fonts: Playfair Display (Serif/Elegant) & Inter (Modern Sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Tailwind Config & Custom Styles -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#110909',
+                            maroon: '#4A0E17',
+                            maroonDark: '#2D060C',
+                            gold: '#D4AF37',
+                            goldLight: '#FDFBF7',
+                            soft: '#FFE4E8'
+                        }
+                    },
+                    animation: {
+                        'float': 'float 4s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'bounce-cute': 'bounceCute 2s infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-15px)' },
+                        },
+                        bounceCute: {
+                            '0%, 100%': { transform: 'translateY(0) scale(1)' },
+                            '50%': { transform: 'translateY(-5px) scale(1.02)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Utilities */
+        body { background-color: #110909; color: #FDFBF7; overflow-x: hidden; }
+        
+        /* Glassmorphism */
+        .glass-dark { background: rgba(45, 6, 12, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(212, 175, 55, 0.1); }
+        .glass-cute { background: rgba(255, 228, 232, 0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255, 228, 232, 0.2); border-radius: 2rem; }
+        
+        /* Scroll Reveal Animation */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        
+        /* Split Screen Hover */
+        .split-hover:hover img { transform: scale(1.05); }
+        
+        /* Parallax Background */
+        .bg-parallax { background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #110909; }
+        ::-webkit-scrollbar-thumb { background: #4A0E17; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #D4AF37; }
+    </style>
+</head>
+<body class="antialiased font-sans">
+
+    <!-- Progress Bar -->
+    <div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-brand-gold z-50 transition-all duration-300" style="width: 0%;"></div>
+
+    <!-- 1. NAVIGATION (Floating Transparent) -->
+    <nav id="navbar" class="fixed w-full z-40 transition-all duration-500 py-4 px-6 md:px-12">
+        <div class="max-w-7xl mx-auto flex justify-between items-center glass-cute px-6 py-3">
+            <a href="#" class="font-serif italic font-bold text-xl md:text-2xl text-brand-gold">Sambal Selaras.</a>
+            
+            <div class="hidden md:flex gap-8 items-center text-sm font-medium">
+                <a href="#story" class="hover:text-brand-gold transition">Cerita</a>
+                <a href="#menu" class="hover:text-brand-gold transition">Varian</a>
+                <a href="#promo" class="hover:text-brand-gold transition">Langganan</a>
+                <a href="#order" class="bg-brand-gold text-brand-dark px-6 py-2 rounded-full font-bold hover:animate-bounce-cute transition shadow-[0_0_15px_rgba(212,175,55,0.4)]">Pesan Sekarang</a>
+            </div>
+            
+            <button id="mobile-menu-btn" class="md:hidden text-brand-gold">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full glass-dark p-6 flex-col gap-4 text-center border-t border-brand-gold/20 mt-2 rounded-b-3xl">
+            <a href="#story" class="block py-2">Cerita</a>
+            <a href="#menu" class="block py-2">Varian</a>
+            <a href="#promo" class="block py-2">Langganan</a>
+            <a href="#order" class="block py-3 bg-brand-gold text-brand-dark rounded-full font-bold mt-2">Pesan Sekarang</a>
+        </div>
+    </nav>
+
+    <!-- 2. IMMERSIVE HERO (Split Screen Style) -->
+    <section class="relative min-h-screen flex items-center pt-20">
+        <div class="absolute inset-0 z-0 flex flex-col md:flex-row">
+            <div class="w-full md:w-1/2 h-1/2 md:h-full bg-brand-maroonDark relative">
+                <!-- Decorative Elements -->
+                <div class="absolute top-20 left-10 w-32 h-32 bg-brand-maroon rounded-full blur-3xl opacity-50"></div>
+            </div>
+            <div class="w-full md:w-1/2 h-1/2 md:h-full">
+                <img src="img-sambal-hero-section.png" alt="Sambal Selaras Artisan" class="w-full h-full object-cover object-center opacity-80 mix-blend-overlay md:mix-blend-normal md:opacity-100">
+            </div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto w-full px-6 md:px-12 relative z-10 grid md:grid-cols-2 gap-12 items-center">
+            <div class="reveal">
+                <div class="inline-flex items-center gap-2 bg-brand-soft/10 text-brand-gold border border-brand-gold/30 px-4 py-1.5 rounded-full text-xs font-bold mb-6 backdrop-blur-sm">
+                    <span class="animate-pulse">🌶️</span> Artisan Nusantara 2026
+                </div>
+                <h1 class="font-serif text-5xl md:text-7xl font-bold leading-tight mb-6">
+                    Pikat Selera, <br>
+                    <span class="text-brand-gold italic">Selaras</span> di Lidah.
+                </h1>
+                <p class="text-lg md:text-xl text-gray-300 mb-8 max-w-md font-light leading-relaxed">
+                    Sensasi pedas premium dari bahan lokal pilihan. Diramu dengan minyak kelapa murni untuk menemani hari-harimu.
+                </p>
+                <div class="flex flex-wrap gap-4 items-center">
+                    <a href="#promo" class="bg-brand-gold text-brand-dark px-8 py-4 rounded-[2rem] font-bold text-lg hover:animate-bounce-cute transition flex items-center gap-2 shadow-[0_0_20px_rgba(212,175,55,0.3)]">
+                        Mulai Langganan <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#menu" class="px-8 py-4 rounded-[2rem] font-bold text-lg border border-brand-gold/50 hover:bg-brand-gold/10 transition">
+                        Lihat Menu
+                    </a>
+                </div>
+                
+                <div class="mt-12 flex items-center gap-4">
+                    <div class="flex -space-x-3">
+                        <img src="https://i.pravatar.cc/100?img=1" class="w-10 h-10 rounded-full border-2 border-brand-dark">
+                        <img src="https://i.pravatar.cc/100?img=2" class="w-10 h-10 rounded-full border-2 border-brand-dark">
+                        <img src="https://i.pravatar.cc/100?img=3" class="w-10 h-10 rounded-full border-2 border-brand-dark">
+                    </div>
+                    <div class="text-sm">
+                        <p class="font-bold text-brand-gold">10,000+ Pecinta Pedas</p>
+                        <p class="text-gray-400 text-xs">Telah berlangganan bulanan</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Floating Elements for Cute + Luxury feel -->
+            <div class="hidden md:block relative h-full">
+                <div class="absolute right-10 top-20 bg-brand-maroonDark/80 backdrop-blur-md border border-brand-gold/20 p-4 rounded-3xl animate-float shadow-xl">
+                    <p class="font-serif text-brand-gold mb-1">Terlaris 🥇</p>
+                    <p class="text-sm">Trio Nusantara Bundling</p>
+                </div>
+                <div class="absolute left-0 bottom-20 bg-brand-soft/10 backdrop-blur-md border border-brand-soft/20 p-4 rounded-3xl animate-float shadow-xl" style="animation-delay: 2s;">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-brand-gold rounded-full flex items-center justify-center text-brand-dark text-xl">🔥</div>
+                        <div>
+                            <p class="font-bold text-sm text-brand-goldLight">100% Alami</p>
+                            <p class="text-xs text-gray-400">Tanpa Pengawet</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. BRAND STORY & INGREDIENTS (Asymmetrical Layout) -->
+    <section id="story" class="py-24 bg-brand-dark relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 grid md:grid-cols-12 gap-12 items-center">
+            <div class="md:col-span-5 reveal relative">
+                <div class="absolute -inset-4 bg-brand-maroon/20 rounded-[3rem] blur-xl"></div>
+                <img src="img-sambal-brand-story.png" alt="Bahan Segar" class="relative z-10 w-full h-[500px] object-cover rounded-[3rem] border border-brand-gold/20">
+                
+                <!-- Cute interaction badge -->
+                <div class="absolute -bottom-6 -right-6 glass-cute p-4 flex items-center gap-3 shadow-2xl z-20">
+                    <span class="text-3xl">🥥</span>
+                    <div>
+                        <p class="font-bold text-sm">Minyak Kelapa</p>
+                        <p class="text-xs text-gray-300">Gurih maksimal!</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="md:col-span-6 md:col-start-7 reveal">
+                <h2 class="font-serif text-4xl md:text-5xl font-bold mb-6 leading-tight">Bukan Sekadar Pedas,<br>Ini <span class="text-brand-gold italic">Karya Seni.</span></h2>
+                <p class="text-gray-300 mb-6 leading-relaxed">
+                    Kami percaya bahwa sambal adalah jiwa dari hidangan Nusantara. Sambal Selaras dibuat secara artisan dengan bahan pilihan yang dipetik langsung dari petani lokal.
+                </p>
+                <p class="text-gray-300 mb-8 leading-relaxed">
+                    Dikemas apik dalam jar kaca premium untuk menjaga kemurnian rasa. Solusi cerdas untuk kamu yang sibuk namun tetap mendambakan sentuhan hangat masakan rumah tangga setiap hari.
+                </p>
+                
+                <!-- Features Grid -->
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="flex gap-4 items-start">
+                        <i data-lucide="leaf" class="text-brand-gold w-6 h-6 mt-1"></i>
+                        <div>
+                            <h4 class="font-bold mb-1">100% Segar</h4>
+                            <p class="text-xs text-gray-400">Tanpa perisa atau pewarna buatan.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 items-start">
+                        <i data-lucide="shield-check" class="text-brand-gold w-6 h-6 mt-1"></i>
+                        <div>
+                            <h4 class="font-bold mb-1">Higienis</h4>
+                            <p class="text-xs text-gray-400">Seal segel anti bocor premium.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. VISUAL PRODUCT SHOWCASE (Bento Grid) -->
+    <section class="py-12 bg-brand-dark">
+        <div class="max-w-7xl mx-auto px-4 md:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:h-[600px]">
+                <div class="md:col-span-2 relative rounded-[2rem] overflow-hidden group split-hover reveal">
+                    <img src="img-sambal-matah-bawang.png" class="w-full h-full object-cover transition duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-maroonDark/90 to-transparent flex flex-col justify-end p-8">
+                        <span class="bg-brand-gold text-brand-dark text-xs font-bold px-3 py-1 rounded-full w-max mb-3">Best Seller</span>
+                        <h3 class="font-serif text-3xl font-bold mb-2">Sambal Roa Manado</h3>
+                        <p class="text-gray-300 text-sm">Suwiran daging ikan roa asap berlimpah. Asli Manado.</p>
+                    </div>
+                </div>
+                <div class="grid grid-rows-2 gap-4">
+                    <div class="relative rounded-[2rem] overflow-hidden group split-hover reveal delay-100">
+                        <img src="img-sambal-roa.png" class="w-full h-full object-cover transition duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
+                            <h3 class="font-serif text-xl font-bold mb-1">Matah Bali</h3>
+                            <p class="text-gray-300 text-xs">Segar, wangi daun jeruk & serai.</p>
+                        </div>
+                    </div>
+                    <div class="relative rounded-[2rem] overflow-hidden group split-hover reveal delay-200">
+                        <img src="img-sambal-matah-bawang.png" class="w-full h-full object-cover transition duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
+                            <h3 class="font-serif text-xl font-bold mb-1">Bawang Klasik</h3>
+                            <p class="text-gray-300 text-xs">Gurih pedas nendang, lauk sejuta umat.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. MENU EXPERIENCE & SUBSCRIPTION FOCUS -->
+    <section id="menu" class="py-24 bg-brand-maroonDark relative">
+        <div class="absolute top-0 w-full h-px bg-gradient-to-r from-transparent via-brand-gold to-transparent opacity-30"></div>
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-serif text-4xl md:text-5xl font-bold mb-4">Pilih Seleramu</h2>
+                <p class="text-gray-300 max-w-xl mx-auto">Tersedia untuk pembelian satuan atau berlangganan hemat bulanan agar stok pedasmu tidak pernah putus.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="glass-cute p-6 md:p-8 flex flex-col reveal">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="font-serif text-2xl font-bold">Bawang Klasik</h3>
+                        <span class="text-brand-gold font-bold">Rp 28k</span>
+                    </div>
+                    
+                    <!-- Spicy Meter Feature -->
+                    <div class="mb-4">
+                        <p class="text-xs text-gray-400 mb-1 flex justify-between">Level Pedas <span>🌶️🌶️🌶️🌶️</span></p>
+                        <div class="w-full bg-brand-dark rounded-full h-1.5"><div class="bg-red-500 h-1.5 rounded-full w-4/5"></div></div>
+                    </div>
+                    
+                    <p class="text-sm text-gray-300 mb-6 flex-grow">Gurih gurih asin, juara disandingkan dengan lauk apa saja. Isian bawang dan cabai sangat melimpah.</p>
+                    
+                    <div class="bg-brand-dark/50 p-3 rounded-2xl mb-6 text-xs flex items-center gap-2">
+                        <i data-lucide="utensils" class="w-4 h-4 text-brand-gold"></i> Cocok dgn: Nasi Hangat, Telur Dadar
+                    </div>
+                    
+                    <button class="w-full py-3 rounded-full border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-brand-dark transition font-bold text-sm">Tambah ke Keranjang</button>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-cute p-6 md:p-8 flex flex-col relative transform md:-translate-y-4 border-brand-gold shadow-[0_10px_30px_rgba(212,175,55,0.1)] reveal delay-100">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-brand-gold text-brand-dark text-xs font-bold px-4 py-1 rounded-full w-max">
+                        Paling Cepat Habis 🏃💨
+                    </div>
+                    <div class="flex justify-between items-start mb-4 mt-2">
+                        <h3 class="font-serif text-2xl font-bold">Roa Manado</h3>
+                        <span class="text-brand-gold font-bold">Rp 38k</span>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <p class="text-xs text-gray-400 mb-1 flex justify-between">Level Pedas <span>🌶️🌶️🌶️</span></p>
+                        <div class="w-full bg-brand-dark rounded-full h-1.5"><div class="bg-orange-500 h-1.5 rounded-full w-3/5"></div></div>
+                    </div>
+                    
+                    <p class="text-sm text-gray-300 mb-6 flex-grow">Otentik dengan suwiran daging ikan roa asap asli. Bukan sekadar perisa, tapi daging ikan melimpah!</p>
+                    
+                    <div class="bg-brand-dark/50 p-3 rounded-2xl mb-6 text-xs flex items-center gap-2">
+                        <i data-lucide="utensils" class="w-4 h-4 text-brand-gold"></i> Cocok dgn: Nasi Kuning, Pisang Goreng
+                    </div>
+                    
+                    <button class="w-full py-3 rounded-full bg-brand-gold text-brand-dark hover:scale-105 transition font-bold text-sm">Tambah ke Keranjang</button>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-cute p-6 md:p-8 flex flex-col reveal delay-200">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="font-serif text-2xl font-bold">Matah Bali</h3>
+                        <span class="text-brand-gold font-bold">Rp 30k</span>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <p class="text-xs text-gray-400 mb-1 flex justify-between">Level Pedas <span>🌶️🌶️</span></p>
+                        <div class="w-full bg-brand-dark rounded-full h-1.5"><div class="bg-yellow-500 h-1.5 rounded-full w-2/5"></div></div>
+                    </div>
+                    
+                    <p class="text-sm text-gray-300 mb-6 flex-grow">Segar memanjakan, wangi daun jeruk dan serai berpadu sempurna dengan minyak kelapa murni.</p>
+                    
+                    <div class="bg-brand-dark/50 p-3 rounded-2xl mb-6 text-xs flex items-center gap-2">
+                        <i data-lucide="utensils" class="w-4 h-4 text-brand-gold"></i> Cocok dgn: Ayam Betutu, Ikan Bakar
+                    </div>
+                    
+                    <button class="w-full py-3 rounded-full border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-brand-dark transition font-bold text-sm">Tambah ke Keranjang</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. VIDEO / TIKTOK STYLE EXPERIENCE -->
+    <section class="py-12 bg-brand-dark">
+        <div class="max-w-7xl mx-auto px-4 md:px-12 grid md:grid-cols-2 gap-12 items-center">
+            <div class="order-2 md:order-1 reveal">
+                <h2 class="font-serif text-4xl font-bold mb-4">Momen Selaras</h2>
+                <p class="text-gray-300 mb-8">Lihat bagaimana para foodies menikmati setiap gigitan bersama Sambal Selaras. Hati-hati, video ini bisa bikin perutmu mendadak lapar! 🤤</p>
+                <div class="flex gap-4">
+                    <a href="#" class="flex items-center gap-2 text-sm bg-brand-maroon px-4 py-2 rounded-full hover:bg-brand-maroonDark transition">
+                        <i data-lucide="instagram" class="w-4 h-4"></i> @sambal.selaras
+                    </a>
+                    <a href="#" class="flex items-center gap-2 text-sm bg-brand-maroon px-4 py-2 rounded-full hover:bg-brand-maroonDark transition">
+                        <i data-lucide="video" class="w-4 h-4"></i> @sambalselaras.official
+                    </a>
+                </div>
+            </div>
+            
+            <div class="order-1 md:order-2 flex justify-center gap-4 reveal">
+                <!-- Dummy Video Mobile Layout -->
+                <div class="w-48 h-80 bg-brand-maroonDark rounded-3xl overflow-hidden relative shadow-2xl border-4 border-brand-dark">
+                    <img src="img-sambal-thumbnail-video-1.png" class="w-full h-full object-cover opacity-70">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-12 h-12 bg-black/50 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/20">
+                            <i data-lucide="play" class="w-5 h-5 text-white ml-1"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-48 h-80 bg-brand-maroonDark rounded-3xl overflow-hidden relative shadow-2xl border-4 border-brand-dark transform translate-y-8">
+                    <img src="img-sambal-thumbnail-video-2.png" class="w-full h-full object-cover opacity-70">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-12 h-12 bg-black/50 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/20">
+                            <i data-lucide="play" class="w-5 h-5 text-white ml-1"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. PROMO CAMPAIGN & BUNDLING (Subscription Feel) -->
+    <section id="promo" class="py-24 bg-brand-maroon relative bg-parallax" style="background-image: linear-gradient(rgba(74, 14, 23, 0.9), rgba(45, 6, 12, 0.95)), url('img-sambal-background-parallax.png');">
+        <div class="max-w-4xl mx-auto px-6 md:px-12 text-center reveal">
+            <div class="inline-block bg-brand-gold text-brand-dark font-bold px-6 py-2 rounded-full mb-6 text-sm animate-pulse-slow">
+                ⚡ PROMO LAUNCHING 2026
+            </div>
+            
+            <h2 class="font-serif text-4xl md:text-6xl font-bold mb-6">Paket "Trio Nusantara"</h2>
+            <p class="text-xl mb-8 font-light text-brand-goldLight">
+                Berlangganan rasa otentik untuk meja makanmu. <br class="hidden md:block"> Beli bundle isi 3 (Bawang, Matah, Roa) jauh lebih hemat!
+            </p>
+            
+            <div class="glass-dark p-8 md:p-12 rounded-[3rem] mb-12 border-2 border-brand-gold/40 relative">
+                <div class="absolute -top-6 -right-6 md:right-10 bg-brand-maroonDark text-white w-24 h-24 rounded-full flex flex-col items-center justify-center border border-brand-gold rotate-12 shadow-2xl">
+                    <span class="text-xs">Hemat</span>
+                    <span class="font-bold text-xl text-brand-gold">11 Ribu!</span>
+                </div>
+                
+                <div class="flex flex-col md:flex-row items-center justify-center gap-8 mb-8">
+                    <div class="text-left">
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="text-brand-gold w-5 h-5"></i> 1x Sambal Bawang</li>
+                            <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="text-brand-gold w-5 h-5"></i> 1x Sambal Matah</li>
+                            <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="text-brand-gold w-5 h-5"></i> 1x Sambal Roa</li>
+                        </ul>
+                        <div class="bg-brand-maroon/50 p-4 rounded-2xl border border-brand-gold/20">
+                            <p class="text-sm font-bold text-brand-gold mb-1">🎁 Bonus Spesial</p>
+                            <p class="text-xs">Gratis Pouch Canvas Estetik (Sisa 12 kuota!)</p>
+                            <p class="text-xs mt-1">Free Ongkir Jabodetabek (Min. 2 Paket)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center md:text-right border-t md:border-t-0 md:border-l border-brand-gold/20 pt-6 md:pt-0 md:pl-8">
+                        <p class="line-through text-gray-400 text-lg mb-1">Rp 96.000</p>
+                        <p class="font-serif text-5xl font-bold text-brand-gold mb-4">Rp 85.000</p>
+                        <p class="text-xs text-gray-300 mb-4">*Atau Rp 80.000/bulan jika berlangganan</p>
+                        
+                        <div class="flex flex-col gap-3">
+                            <button class="bg-brand-gold text-brand-dark px-8 py-3 rounded-full font-bold hover:scale-105 transition shadow-lg w-full">
+                                Beli Sekali
+                            </button>
+                            <button class="border border-brand-gold text-brand-gold px-8 py-3 rounded-full font-bold hover:bg-brand-gold/10 transition w-full flex items-center justify-center gap-2">
+                                <i data-lucide="repeat" class="w-4 h-4"></i> Langganan Bulanan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Countdown Timer -->
+                <div class="border-t border-brand-gold/20 pt-6 mt-6">
+                    <p class="text-sm mb-3 text-gray-300">Promo Launching berakhir dalam:</p>
+                    <div class="flex justify-center gap-4 text-center" id="countdown">
+                        <div>
+                            <div class="w-16 h-16 glass-cute flex items-center justify-center text-2xl font-bold font-serif">02</div>
+                            <span class="text-[10px] uppercase tracking-wider mt-1 block">Hari</span>
+                        </div>
+                        <div>
+                            <div class="w-16 h-16 glass-cute flex items-center justify-center text-2xl font-bold font-serif" id="hours">14</div>
+                            <span class="text-[10px] uppercase tracking-wider mt-1 block">Jam</span>
+                        </div>
+                        <div>
+                            <div class="w-16 h-16 glass-cute flex items-center justify-center text-2xl font-bold font-serif" id="minutes">45</div>
+                            <span class="text-[10px] uppercase tracking-wider mt-1 block">Menit</span>
+                        </div>
+                        <div>
+                            <div class="w-16 h-16 glass-cute flex items-center justify-center text-2xl font-bold font-serif text-brand-gold" id="seconds">30</div>
+                            <span class="text-[10px] uppercase tracking-wider mt-1 block">Detik</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. TESTIMONIAL EXPERIENCE -->
+    <section class="py-24 bg-brand-dark overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 text-center mb-16 reveal">
+            <h2 class="font-serif text-4xl font-bold mb-4">Kata Mereka</h2>
+            <div class="flex justify-center gap-1 text-brand-gold mb-2">
+                <i data-lucide="star" class="fill-current w-5 h-5"></i>
+                <i data-lucide="star" class="fill-current w-5 h-5"></i>
+                <i data-lucide="star" class="fill-current w-5 h-5"></i>
+                <i data-lucide="star" class="fill-current w-5 h-5"></i>
+                <i data-lucide="star" class="fill-current w-5 h-5"></i>
+            </div>
+            <p class="text-sm text-gray-400">4.9/5 Berdasarkan 2,000+ Ulasan</p>
+        </div>
+
+        <div class="flex overflow-hidden relative max-w-6xl mx-auto pb-10">
+            <!-- Sliding Track (Simplified via Flex & overflow auto for dummy) -->
+            <div class="flex gap-6 overflow-x-auto snap-x snap-mandatory hide-scrollbar pb-8 px-6 w-full" id="testimonial-track">
+                <!-- Item 1 -->
+                <div class="snap-center shrink-0 w-80 glass-cute p-8 reveal">
+                    <p class="text-sm italic text-gray-300 mb-6">"Gila sih sambal roanya! Daging ikannya beneran banyak banget, bukan cuma minyak doang. Jadi lauk dadakan kalau pulang ngantor malam."</p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://i.pravatar.cc/100?img=5" class="w-12 h-12 rounded-full border-2 border-brand-gold">
+                        <div class="text-left">
+                            <p class="font-bold text-sm">Andini R.</p>
+                            <p class="text-xs text-gray-500">Pekerja Kantoran, JKT</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Item 2 -->
+                <div class="snap-center shrink-0 w-80 glass-cute p-8 reveal delay-100">
+                    <p class="text-sm italic text-gray-300 mb-6">"Suka banget sama packaging-nya yang premium pakai botol kaca, elegan banget buat di meja makan. Matahnya seger banget!"</p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://i.pravatar.cc/100?img=9" class="w-12 h-12 rounded-full border-2 border-brand-gold">
+                        <div class="text-left">
+                            <p class="font-bold text-sm">Bunda Sari</p>
+                            <p class="text-xs text-gray-500">Ibu Rumah Tangga</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Item 3 -->
+                <div class="snap-center shrink-0 w-80 glass-cute p-8 reveal delay-200">
+                    <p class="text-sm italic text-gray-300 mb-6">"Aku langsung subscribe yang paket Trio buat dikirim bulanan ke kosan. Hemat dan jujur rasanya selaras banget di lidah."</p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://i.pravatar.cc/100?img=12" class="w-12 h-12 rounded-full border-2 border-brand-gold">
+                        <div class="text-left">
+                            <p class="font-bold text-sm">Kevin Aditya</p>
+                            <p class="text-xs text-gray-500">Mahasiswa</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11. FAQ -->
+    <section class="py-24 bg-brand-maroonDark relative">
+        <div class="max-w-3xl mx-auto px-6 md:px-12 reveal">
+            <h2 class="font-serif text-3xl md:text-4xl font-bold mb-10 text-center">Pertanyaan Populer</h2>
+            
+            <div class="space-y-4">
+                <!-- Accordion Item -->
+                <div class="glass-dark border border-brand-gold/20 rounded-2xl overflow-hidden faq-item">
+                    <button class="w-full px-6 py-5 text-left flex justify-between items-center font-bold faq-btn">
+                        Berapa lama sambal ini tahan?
+                        <i data-lucide="chevron-down" class="w-5 h-5 transition-transform duration-300"></i>
+                    </button>
+                    <div class="px-6 pb-5 text-sm text-gray-300 hidden faq-content">
+                        Dalam suhu ruang tahan hingga 1 bulan sebelum segel dibuka. Setelah dibuka, wajib masuk kulkas dan tahan hingga 2-3 bulan. Ingat selalu gunakan sendok bersih!
+                    </div>
+                </div>
+                <!-- Accordion Item -->
+                <div class="glass-dark border border-brand-gold/20 rounded-2xl overflow-hidden faq-item">
+                    <button class="w-full px-6 py-5 text-left flex justify-between items-center font-bold faq-btn">
+                        Apakah bisa dikirim ke luar pulau Jawa?
+                        <i data-lucide="chevron-down" class="w-5 h-5 transition-transform duration-300"></i>
+                    </button>
+                    <div class="px-6 pb-5 text-sm text-gray-300 hidden faq-content">
+                        Sangat bisa! Kami menggunakan packaging jar kaca premium dengan segel anti bocor, ditambah perlindungan bubble wrap tebal dan dus khusus, aman sampai ke seluruh Indonesia.
+                    </div>
+                </div>
+                <!-- Accordion Item -->
+                <div class="glass-dark border border-brand-gold/20 rounded-2xl overflow-hidden faq-item">
+                    <button class="w-full px-6 py-5 text-left flex justify-between items-center font-bold faq-btn">
+                        Bagaimana sistem berlangganannya?
+                        <i data-lucide="chevron-down" class="w-5 h-5 transition-transform duration-300"></i>
+                    </button>
+                    <div class="px-6 pb-5 text-sm text-gray-300 hidden faq-content">
+                        Kamu cukup memilih opsi "Langganan Bulanan", kami akan mengirimkan paket sambal segar setiap bulan di tanggal yang sama, tentunya dengan harga khusus yang lebih hemat!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 12. FINAL CONVERSION -->
+    <section id="order" class="py-24 bg-brand-dark">
+        <div class="max-w-5xl mx-auto px-6 md:px-12 bg-gradient-to-br from-brand-maroonDark to-brand-maroon p-10 md:p-16 rounded-[3rem] border border-brand-gold/30 text-center reveal shadow-2xl relative overflow-hidden">
+            <!-- Decorative circle -->
+            <div class="absolute -top-24 -left-24 w-64 h-64 border border-brand-gold/20 rounded-full"></div>
+            <div class="absolute -bottom-24 -right-24 w-64 h-64 border border-brand-gold/20 rounded-full"></div>
+            
+            <h2 class="font-serif text-4xl md:text-5xl font-bold mb-6 relative z-10">Siap Manjakan Lidahmu?</h2>
+            <p class="text-gray-300 mb-10 max-w-xl mx-auto relative z-10">Jangan biarkan nasi hangatmu kesepian. Pesan sekarang melalui WhatsApp untuk respon secepat kilat. Stok artisan hari ini sisa sedikit!</p>
+            
+            <a href="https://wa.me/6281234567890" target="_blank" class="inline-flex items-center justify-center gap-3 bg-brand-gold text-brand-dark px-10 py-5 rounded-full font-bold text-lg hover:scale-105 transition shadow-[0_0_30px_rgba(212,175,55,0.4)] relative z-10 w-full md:w-auto">
+                <i data-lucide="message-circle" class="w-6 h-6"></i> Pesan via WhatsApp
+            </a>
+            <p class="mt-4 text-xs text-brand-goldLight relative z-10 opacity-70">Admin responsif (08:00 - 20:00 WIB)</p>
+        </div>
+    </section>
+
+    <!-- 13. FOOTER -->
+    <footer class="bg-[#0A0505] py-12 border-t border-brand-gold/10">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 grid md:grid-cols-3 gap-8 items-center text-center md:text-left">
+            <div>
+                <a href="#" class="font-serif italic font-bold text-2xl text-brand-gold mb-2 block">Sambal Selaras.</a>
+                <p class="text-xs text-gray-500">Pikat Selera, Selaras di Lidah.</p>
+            </div>
+            <div class="flex justify-center gap-6">
+                <a href="#" class="text-gray-400 hover:text-brand-gold transition"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                <a href="#" class="text-gray-400 hover:text-brand-gold transition"><i data-lucide="video" class="w-5 h-5"></i></a>
+                <a href="#" class="text-gray-400 hover:text-brand-gold transition"><i data-lucide="message-circle" class="w-5 h-5"></i></a>
+            </div>
+            <div class="md:text-right text-xs text-gray-500">
+                &copy; 2026 Sambal Selaras. All rights reserved.<br>
+                Crafted with ❤️ in Nusantara.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Fake Live Order Popup (Modern 2026 Feature) -->
+    <div id="live-order-popup" class="fixed bottom-6 left-6 glass-dark border border-brand-gold/30 rounded-2xl p-4 flex items-center gap-4 transform translate-y-32 opacity-0 transition-all duration-500 z-50">
+        <img src="https://i.pravatar.cc/100?img=15" class="w-10 h-10 rounded-full">
+        <div>
+            <p class="text-xs text-gray-400 mb-0.5">Baru saja berlangganan</p>
+            <p class="text-sm font-bold text-brand-gold">Dinda dari Jakarta</p>
+            <p class="text-xs">Membeli Paket Trio Nusantara</p>
+        </div>
+    </div>
+
+    <!-- Floating WhatsApp CTA -->
+    <a href="https://wa.me/6281234567890" target="_blank" class="fixed bottom-6 right-6 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform z-40 animate-bounce-cute group">
+        <i data-lucide="message-circle" class="w-7 h-7"></i>
+        <span class="absolute right-full mr-4 top-1/2 -translate-y-1/2 bg-white text-brand-dark text-xs font-bold px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition whitespace-nowrap shadow-lg">Chat Kami!</span>
+    </a>
+
+    <!-- Initialize JavaScript -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // 1. Mobile Menu Toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex');
+        });
+
+        // 2. Scroll Active State, Navbar & Progress Bar
+        const navbar = document.getElementById('navbar');
+        const progressBar = document.getElementById('scroll-progress');
+        
+        window.addEventListener('scroll', () => {
+            // Navbar transparent to solid
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-brand-dark/90', 'backdrop-blur-md', 'shadow-md');
+                navbar.classList.remove('py-4');
+                navbar.classList.add('py-2');
+            } else {
+                navbar.classList.remove('bg-brand-dark/90', 'backdrop-blur-md', 'shadow-md');
+                navbar.classList.add('py-4');
+                navbar.classList.remove('py-2');
+            }
+
+            // Scroll Progress Indicator
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            progressBar.style.width = scrolled + "%";
+        });
+
+        // 3. Reveal Animation on Scroll
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); // Trigger once on load
+
+        // 4. FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const btn = item.querySelector('.faq-btn');
+            const content = item.querySelector('.faq-content');
+            const icon = item.querySelector('i');
+            
+            btn.addEventListener('click', () => {
+                const isOpen = !content.classList.contains('hidden');
+                
+                // Close all
+                document.querySelectorAll('.faq-content').forEach(c => c.classList.add('hidden'));
+                document.querySelectorAll('.faq-item i').forEach(i => i.style.transform = 'rotate(0deg)');
+                
+                // Open clicked if it was closed
+                if (!isOpen) {
+                    content.classList.remove('hidden');
+                    icon.style.transform = 'rotate(180deg)';
+                }
+            });
+        });
+
+        // 5. Dummy Countdown Timer (Looping 2 Days)
+        function startCountdown() {
+            let s = 30; let m = 45; let h = 14;
+            setInterval(() => {
+                s--;
+                if(s < 0) { s = 59; m--; }
+                if(m < 0) { m = 59; h--; }
+                
+                document.getElementById('seconds').innerText = s.toString().padStart(2, '0');
+                document.getElementById('minutes').innerText = m.toString().padStart(2, '0');
+                document.getElementById('hours').innerText = h.toString().padStart(2, '0');
+            }, 1000);
+        }
+        startCountdown();
+
+        // 6. Fake Live Order Popup (Tampil acak setiap 15-30 detik)
+        const popup = document.getElementById('live-order-popup');
+        function showFakeOrder() {
+            setTimeout(() => {
+                popup.classList.remove('translate-y-32', 'opacity-0');
+                
+                // Sembunyikan setelah 5 detik
+                setTimeout(() => {
+                    popup.classList.add('translate-y-32', 'opacity-0');
+                    showFakeOrder(); // Panggil lagi untuk iterasi berikutnya
+                }, 5000);
+                
+            }, Math.random() * (30000 - 15000) + 15000);
+        }
+        showFakeOrder();
+    </script>
+</body>
+</html>
