@@ -3,70 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Senjana Coffee Roasters | Jelajah Cita Rasa Nusantara</title>
+    <title>Senjana Coffee Roasters | Specialty Roasted Beans</title>
+    <meta name="description" content="Jelajah Cita Rasa Nusantara dalam Setiap Seduhan. Biji kopi pilihan terbaik dari single origin Nusantara.">
     
-    <!-- Google Fonts: Playfair Display untuk Heading (Elegan) & Inter untuk Body (Modern Clean) -->
+    <!-- Google Fonts: Plus Jakarta Sans for a modern clean look -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome CDN -->
+    <!-- Font Awesome untuk Ikon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Tailwind CSS -->
+    <!-- Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Custom Configuration -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
                     colors: {
                         coffee: {
-                            50: '#fdf8f5',
-                            100: '#f8ece5',
-                            200: '#eed6c8',
-                            300: '#e2b8a2',
-                            400: '#d19273',
-                            500: '#c37550',
-                            600: '#b75c3d',
-                            700: '#994731',
-                            800: '#7e3a2a',
-                            900: '#3e2723', // Dark Brown Primary
-                        },
-                        accent: '#D4AF37', // Gold for premium feel
-                        cream: '#F5F5DC'
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        serif: ['Playfair Display', 'serif'],
+                            50: '#fcfaf9',
+                            100: '#f5efeb',
+                            200: '#e5d5cc',
+                            300: '#d0b3a4',
+                            400: '#b78b76',
+                            500: '#a36d53',
+                            600: '#8b533c',
+                            700: '#754231',
+                            800: '#60382b',
+                            900: '#4e2f25',
+                        }
                     },
                     animation: {
-                        'float': 'float 3s ease-in-out infinite',
-                        'slide-up': 'slideUp 0.5s ease-out forwards',
-                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' },
-                        },
-                        slideUp: {
-                            '0%': { opacity: '0', transform: 'translateY(20px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
-                        }
+                        'spin-slow': 'spin 3s linear infinite',
+                        'bounce-slight': 'bounce 2s infinite',
                     }
                 }
             }
         }
     </script>
 
+    <!-- Custom CSS untuk Animasi & Utilities Tambahan -->
     <style>
-        /* Custom CSS tambahan untuk hal yang tidak tercover Tailwind murni */
+        /* Glassmorphism utility */
         .glass {
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
+        
+        /* Scroll Reveal Base Classes */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -76,13 +68,8 @@
             opacity: 1;
             transform: translateY(0);
         }
-        
-        /* Loading Screen */
-        #loader {
-            transition: opacity 0.5s ease-out;
-        }
 
-        /* Hide scrollbar for slider */
+        /* Hide scrollbar for horizontal scrolling (Slider) */
         .hide-scrollbar::-webkit-scrollbar {
             display: none;
         }
@@ -90,329 +77,317 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
+
+        /* Loading Screen */
+        #loader {
+            transition: opacity 0.5s ease;
+        }
     </style>
 </head>
-<body class="bg-coffee-50 text-gray-800 antialiased overflow-x-hidden font-sans">
+<body class="bg-coffee-50 text-coffee-900 font-sans antialiased overflow-x-hidden">
 
-    <!-- Loading Animation -->
-    <div id="loader" class="fixed inset-0 z-[100] bg-coffee-900 flex flex-col items-center justify-center text-white">
-        <i class="fa-solid fa-mug-hot text-5xl animate-bounce text-accent mb-4"></i>
-        <p class="font-serif text-xl tracking-widest animate-pulse">SENJANA</p>
+    <!-- LOADING ANIMATION -->
+    <div id="loader" class="fixed inset-0 z-[100] bg-coffee-50 flex flex-col items-center justify-center">
+        <i class="fa-solid fa-mug-hot text-5xl text-coffee-600 animate-bounce-slight"></i>
+        <p class="mt-4 text-coffee-800 font-semibold tracking-widest animate-pulse">MENYEDUH...</p>
     </div>
 
     <!-- 1. NAVBAR -->
-    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4">
+    <nav class="fixed w-full z-50 glass transition-all duration-300" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center">
+            <div class="flex justify-between items-center h-20">
                 <!-- Logo -->
-                <a href="#" class="flex items-center gap-2 group">
-                    <i class="fa-solid fa-seedling text-coffee-600 text-2xl group-hover:rotate-12 transition"></i>
-                    <span class="font-serif font-bold text-xl text-coffee-900">Senjana.</span>
-                </a>
-
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer">
+                    <i class="fa-solid fa-seedling text-coffee-600 text-2xl"></i>
+                    <span class="font-bold text-xl text-coffee-900 tracking-tight">Senjana<span class="text-coffee-600">Coffee</span></span>
+                </div>
+                
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex space-x-8 items-center">
-                    <a href="#keunggulan" class="text-sm font-medium text-gray-600 hover:text-coffee-600 transition">Keunggulan</a>
-                    <a href="#menu" class="text-sm font-medium text-gray-600 hover:text-coffee-600 transition">Varian</a>
-                    <a href="#testimoni" class="text-sm font-medium text-gray-600 hover:text-coffee-600 transition">Testimoni</a>
-                    <a href="#faq" class="text-sm font-medium text-gray-600 hover:text-coffee-600 transition">FAQ</a>
-                    <a href="#menu" class="bg-coffee-900 text-white px-6 py-2 rounded-full text-sm font-semibold hover:bg-coffee-800 transition shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">Order Sekarang</a>
+                    <a href="#beranda" class="text-coffee-800 hover:text-coffee-600 font-medium transition">Beranda</a>
+                    <a href="#keunggulan" class="text-coffee-800 hover:text-coffee-600 font-medium transition">Keunggulan</a>
+                    <a href="#menu" class="text-coffee-800 hover:text-coffee-600 font-medium transition">Produk</a>
+                    <a href="#promo" class="text-coffee-800 hover:text-coffee-600 font-medium transition">Promo</a>
+                    <a href="#pesan" class="bg-coffee-600 hover:bg-coffee-700 text-white px-6 py-2.5 rounded-full font-semibold transition shadow-lg shadow-coffee-600/30">
+                        Order Sekarang
+                    </a>
                 </div>
 
-                <!-- Mobile Hamburger -->
-                <button id="mobile-menu-btn" class="md:hidden text-coffee-900 text-2xl focus:outline-none">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-coffee-800 hover:text-coffee-600 focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
             </div>
         </div>
 
-        <!-- Mobile Menu Dropdown -->
-        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-white shadow-xl border-t border-gray-100">
-            <div class="flex flex-col px-4 pt-2 pb-6 space-y-4">
-                <a href="#keunggulan" class="text-base font-medium text-gray-700 p-2 hover:bg-coffee-50 rounded-lg mobile-link">Keunggulan</a>
-                <a href="#menu" class="text-base font-medium text-gray-700 p-2 hover:bg-coffee-50 rounded-lg mobile-link">Varian Kopi</a>
-                <a href="#testimoni" class="text-base font-medium text-gray-700 p-2 hover:bg-coffee-50 rounded-lg mobile-link">Testimoni</a>
-                <a href="#faq" class="text-base font-medium text-gray-700 p-2 hover:bg-coffee-50 rounded-lg mobile-link">FAQ</a>
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-coffee-100 absolute w-full shadow-xl">
+            <div class="px-4 pt-2 pb-6 space-y-2 flex flex-col">
+                <a href="#beranda" class="mobile-link block px-3 py-3 text-coffee-800 font-medium hover:bg-coffee-50 rounded-lg">Beranda</a>
+                <a href="#keunggulan" class="mobile-link block px-3 py-3 text-coffee-800 font-medium hover:bg-coffee-50 rounded-lg">Keunggulan</a>
+                <a href="#menu" class="mobile-link block px-3 py-3 text-coffee-800 font-medium hover:bg-coffee-50 rounded-lg">Produk</a>
+                <a href="#promo" class="mobile-link block px-3 py-3 text-coffee-800 font-medium hover:bg-coffee-50 rounded-lg">Promo</a>
             </div>
         </div>
     </nav>
 
     <!-- 2. HERO SECTION -->
-    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
-        <!-- Background Gradient blob -->
-        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-coffee-200 opacity-50 blur-3xl -z-10"></div>
-        <div class="absolute bottom-0 left-0 -ml-20 w-72 h-72 rounded-full bg-accent opacity-20 blur-3xl -z-10"></div>
+    <section id="beranda" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <!-- Animated Gradient Background -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
+            <div class="absolute top-[-10%] right-[-5%] w-96 h-96 bg-coffee-200 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-pulse"></div>
+            <div class="absolute bottom-[10%] left-[-10%] w-72 h-72 bg-orange-100 rounded-full mix-blend-multiply filter blur-3xl opacity-50"></div>
+        </div>
 
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div class="reveal">
-                    <div class="inline-block bg-coffee-100 text-coffee-700 font-semibold px-4 py-1 rounded-full text-xs tracking-wider mb-6 border border-coffee-200">
-                        ✨ SPECIALTY ROASTED BEANS
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="text-center lg:text-left reveal">
+                    <div class="inline-block bg-coffee-100 text-coffee-700 px-4 py-1.5 rounded-full text-sm font-semibold mb-6 shadow-sm border border-coffee-200">
+                        <i class="fa-solid fa-star text-yellow-500 mr-1"></i> Terjual 10,000+ Pouch
                     </div>
-                    <h1 class="font-serif text-4xl lg:text-6xl font-bold text-coffee-900 leading-tight mb-6">
-                        Jelajah Cita Rasa <span class="text-transparent bg-clip-text bg-gradient-to-r from-coffee-600 to-accent">Nusantara</span> dalam Setiap Seduhan.
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-coffee-900 leading-tight mb-6">
+                        Jelajah Cita Rasa <span class="text-transparent bg-clip-text bg-gradient-to-r from-coffee-600 to-orange-500">Nusantara</span> dalam Setiap Seduhan.
                     </h1>
-                    <p class="text-gray-600 text-lg mb-8 leading-relaxed">
-                        Hanya menggunakan biji kopi Grade 1 dari Gayo, Toraja, dan Kintamani. Disangrai segar untuk mengunci notes asli masing-masing daerah. Rasakan bedanya di cangkirmu hari ini.
+                    <p class="text-lg md:text-xl text-coffee-700 mb-8 max-w-2xl mx-auto lg:mx-0">
+                        Biji kopi pilihan terbaik dari single origin Nusantara. Disangrai segar oleh roaster berpengalaman untuk menemani harimu.
                     </p>
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <a href="https://wa.me/6281234567890?text=Halo%20Admin%20Senjana,%20saya%20mau%20pesan%20kopi." target="_blank" class="bg-coffee-900 text-white text-center px-8 py-4 rounded-full font-semibold hover:bg-coffee-800 transition shadow-xl hover:shadow-2xl flex items-center justify-center gap-2">
-                            <i class="fa-brands fa-whatsapp text-xl"></i> Konsultasi & Pesan via WA
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="https://wa.me/6281234567890" target="_blank" class="bg-coffee-600 hover:bg-coffee-700 text-white px-8 py-4 rounded-full font-bold text-lg transition shadow-xl shadow-coffee-600/30 flex items-center justify-center gap-2 transform hover:-translate-y-1">
+                            <i class="fa-brands fa-whatsapp text-xl"></i> Pesan Sekarang
                         </a>
-                        <a href="#menu" class="bg-white text-coffee-900 border-2 border-coffee-900 text-center px-8 py-4 rounded-full font-semibold hover:bg-coffee-50 transition flex items-center justify-center gap-2">
-                            Lihat Menu <i class="fa-solid fa-arrow-right"></i>
+                        <a href="#menu" class="bg-white hover:bg-coffee-50 text-coffee-800 border-2 border-coffee-200 px-8 py-4 rounded-full font-bold text-lg transition flex items-center justify-center gap-2">
+                            Lihat Menu
                         </a>
                     </div>
                 </div>
-
+                
                 <div class="relative reveal delay-200">
-                    <!-- Floating Badge -->
-                    <div class="absolute top-10 -left-6 lg:-left-12 bg-white p-4 rounded-2xl shadow-xl z-10 animate-float flex items-center gap-3 glass border border-white">
-                        <div class="bg-yellow-100 text-yellow-600 p-2 rounded-full">
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                        <div>
-                            <p class="font-bold text-coffee-900">4.9/5 Rating</p>
-                            <p class="text-xs text-gray-500">Dari 1,200+ Review</p>
-                        </div>
+                    <!-- Floating Promo Badge -->
+                    <div class="absolute -top-6 -right-6 md:-top-10 md:-right-10 bg-red-500 text-white rounded-full p-4 md:p-6 shadow-xl transform rotate-12 z-10 animate-bounce-slight border-4 border-white">
+                        <p class="font-bold text-center leading-tight text-sm md:text-base">DISKON<br>ONGKIR!</p>
                     </div>
-
-                    <!-- Dummy Hero Image (Coffee Bag) -->
-                    <div class="relative rounded-[2rem] overflow-hidden shadow-2xl aspect-[4/5] lg:aspect-square">
-                        <img src="https://images.unsplash.com/photo-1559525839-b184a4d698c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Kemasan Kopi Senjana" class="w-full h-full object-cover transform hover:scale-105 transition duration-700">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-8">
-                            <div class="text-white">
-                                <span class="bg-accent text-coffee-900 text-xs font-bold px-3 py-1 rounded-full mb-2 inline-block">Best Seller</span>
-                                <h3 class="font-serif text-2xl font-bold">Aceh Gayo Specialty</h3>
-                                <p class="text-sm opacity-90">Body tebal, notes coklat & caramel</p>
-                            </div>
-                        </div>
-                    </div>
+                    <img src="https://images.unsplash.com/photo-1559525839-b184a4d698c7?auto=format&fit=crop&w=800&q=80" alt="Senjana Coffee Beans" class="rounded-3xl shadow-2xl w-full object-cover h-[400px] md:h-[500px]">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 3. SOCIAL PROOF -->
-    <section class="border-y border-coffee-200 bg-white py-10">
+    <!-- 3. SOCIAL PROOF SECTION -->
+    <section class="bg-white py-10 border-y border-coffee-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <p class="text-center text-sm font-semibold text-gray-400 mb-6 tracking-widest uppercase">Dipercaya Oleh 5000+ Penikmat Kopi</p>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-coffee-100">
-                <div class="reveal">
-                    <h4 class="text-3xl font-bold text-coffee-900 mb-1">50+</h4>
-                    <p class="text-sm text-gray-500">Coffee Shop Mitra</p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center reveal">
+                <div>
+                    <h3 class="text-3xl font-extrabold text-coffee-800 mb-1">4.9/5</h3>
+                    <p class="text-coffee-500 text-sm font-medium">Rating Pelanggan</p>
                 </div>
-                <div class="reveal delay-100">
-                    <h4 class="text-3xl font-bold text-coffee-900 mb-1">10k+</h4>
-                    <p class="text-sm text-gray-500">Pouch Terjual</p>
+                <div>
+                    <h3 class="text-3xl font-extrabold text-coffee-800 mb-1">15K+</h3>
+                    <p class="text-coffee-500 text-sm font-medium">Pesanan Selesai</p>
                 </div>
-                <div class="reveal delay-200">
-                    <h4 class="text-3xl font-bold text-coffee-900 mb-1">Grade 1</h4>
-                    <p class="text-sm text-gray-500">Kualitas Biji</p>
+                <div>
+                    <h3 class="text-3xl font-extrabold text-coffee-800 mb-1">3</h3>
+                    <p class="text-coffee-500 text-sm font-medium">Single Origin Terbaik</p>
                 </div>
-                <div class="reveal delay-300">
-                    <h4 class="text-3xl font-bold text-coffee-900 mb-1">100%</h4>
-                    <p class="text-sm text-gray-500">Garansi Fresh</p>
+                <div>
+                    <h3 class="text-3xl font-extrabold text-coffee-800 mb-1">100%</h3>
+                    <p class="text-coffee-500 text-sm font-medium">Garansi Kualitas</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- 4. KEUNGGULAN PRODUK -->
-    <section id="keunggulan" class="py-20 bg-coffee-50 relative">
+    <section id="keunggulan" class="py-20 bg-coffee-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-16 reveal">
-                <h2 class="font-serif text-3xl md:text-4xl font-bold text-coffee-900 mb-4">Kenapa Memilih Senjana?</h2>
-                <p class="text-gray-600">Kami menjaga setiap proses mulai dari biji ceri hingga masuk ke dalam kemasan untuk memastikan cangkir kopimu selalu sempurna.</p>
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <h2 class="text-coffee-600 font-bold tracking-wider uppercase text-sm mb-2">Kenapa Memilih Kami</h2>
+                <h3 class="text-3xl md:text-4xl font-extrabold text-coffee-900">Kualitas Tanpa Kompromi</h3>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Feature 1 -->
-                <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 hover:shadow-xl transition-shadow duration-300 reveal group">
-                    <div class="w-14 h-14 bg-coffee-100 rounded-2xl flex items-center justify-center text-coffee-600 text-2xl mb-6 group-hover:scale-110 group-hover:bg-coffee-900 group-hover:text-white transition duration-300">
-                        <i class="fa-solid fa-gem"></i>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-white p-8 rounded-3xl shadow-lg shadow-coffee-500/5 hover:-translate-y-2 transition duration-300 reveal">
+                    <div class="w-14 h-14 bg-coffee-100 rounded-2xl flex items-center justify-center mb-6 text-coffee-600 text-2xl">
+                        <i class="fa-solid fa-leaf"></i>
                     </div>
-                    <h3 class="font-bold text-xl text-coffee-900 mb-3">100% Specialty Grade</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed">Hanya menggunakan biji kopi pilihan (Grade 1) tanpa campuran kopi cacat. Rasa lebih clean dan nikmat.</p>
+                    <h4 class="text-xl font-bold text-coffee-900 mb-3">100% Specialty</h4>
+                    <p class="text-coffee-600 leading-relaxed">Hanya menggunakan biji kopi pilihan (Grade 1) tanpa campuran untuk rasa optimal.</p>
                 </div>
                 
-                <!-- Feature 2 -->
-                <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 hover:shadow-xl transition-shadow duration-300 reveal delay-100 group">
-                    <div class="w-14 h-14 bg-coffee-100 rounded-2xl flex items-center justify-center text-coffee-600 text-2xl mb-6 group-hover:scale-110 group-hover:bg-coffee-900 group-hover:text-white transition duration-300">
+                <!-- Card 2 -->
+                <div class="bg-white p-8 rounded-3xl shadow-lg shadow-coffee-500/5 hover:-translate-y-2 transition duration-300 reveal delay-100">
+                    <div class="w-14 h-14 bg-coffee-100 rounded-2xl flex items-center justify-center mb-6 text-coffee-600 text-2xl">
                         <i class="fa-solid fa-fire-burner"></i>
                     </div>
-                    <h3 class="font-bold text-xl text-coffee-900 mb-3">Freshly Roasted</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed">Disangrai secara berkala dalam jumlah terbatas (small batch). Kopi sampai di tanganmu pada puncak rasanya.</p>
+                    <h4 class="text-xl font-bold text-coffee-900 mb-3">Freshly Roasted</h4>
+                    <p class="text-coffee-600 leading-relaxed">Disangrai berkala dalam jumlah terbatas (small batch) untuk menjamin kesegaran.</p>
                 </div>
 
-                <!-- Feature 3 -->
-                <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 hover:shadow-xl transition-shadow duration-300 reveal delay-200 group">
-                    <div class="w-14 h-14 bg-coffee-100 rounded-2xl flex items-center justify-center text-coffee-600 text-2xl mb-6 group-hover:scale-110 group-hover:bg-coffee-900 group-hover:text-white transition duration-300">
-                        <i class="fa-solid fa-sliders"></i>
+                <!-- Card 3 -->
+                <div class="bg-white p-8 rounded-3xl shadow-lg shadow-coffee-500/5 hover:-translate-y-2 transition duration-300 reveal delay-200">
+                    <div class="w-14 h-14 bg-coffee-100 rounded-2xl flex items-center justify-center mb-6 text-coffee-600 text-2xl">
+                        <i class="fa-solid fa-blender"></i>
                     </div>
-                    <h3 class="font-bold text-xl text-coffee-900 mb-3">Custom Grind Size</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed">Pilih tingkat kehalusan gilingan gratis sesuai alat seduh di rumahmu (Espresso, V60, atau French Press).</p>
+                    <h4 class="text-xl font-bold text-coffee-900 mb-3">Custom Grind</h4>
+                    <p class="text-coffee-600 leading-relaxed">Bebas pilih tingkat kehalusan gilingan gratis sesuai dengan metode seduh favorit Anda.</p>
                 </div>
 
-                <!-- Feature 4 -->
-                <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 hover:shadow-xl transition-shadow duration-300 reveal delay-300 group">
-                    <div class="w-14 h-14 bg-coffee-100 rounded-2xl flex items-center justify-center text-coffee-600 text-2xl mb-6 group-hover:scale-110 group-hover:bg-coffee-900 group-hover:text-white transition duration-300">
+                <!-- Card 4 -->
+                <div class="bg-white p-8 rounded-3xl shadow-lg shadow-coffee-500/5 hover:-translate-y-2 transition duration-300 reveal delay-300">
+                    <div class="w-14 h-14 bg-coffee-100 rounded-2xl flex items-center justify-center mb-6 text-coffee-600 text-2xl">
                         <i class="fa-solid fa-box-open"></i>
                     </div>
-                    <h3 class="font-bold text-xl text-coffee-900 mb-3">Kemasan Premium</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed">Dilengkapi One-Way Valve dan Zipper lock agar aroma kopi tidak menguap dan awet berminggu-minggu.</p>
+                    <h4 class="text-xl font-bold text-coffee-900 mb-3">Kemasan Premium</h4>
+                    <p class="text-coffee-600 leading-relaxed">Flat bottom pouch dengan one-way valve & zipper menjaga aroma lebih lama.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 5. KANDUNGAN / INGREDIENT & NOTES (Karena Produk Minuman/Kopi) -->
+    <!-- FITUR PRODUK MINUMAN (Ingredient & Note Section) -->
     <section class="py-16 bg-coffee-900 text-white overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row items-center gap-12">
-                <div class="md:w-1/2 reveal">
-                    <h2 class="font-serif text-3xl md:text-4xl font-bold mb-6">Visualisasi Karakter Rasa</h2>
-                    <p class="text-coffee-200 mb-6">Kami mengkurasi profil sangrai (Roast Profile) spesifik untuk memunculkan keunikan origin masing-masing biji. Tanpa perasa tambahan buatan, murni dari alam Nusantara.</p>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative reveal">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl font-extrabold mb-6">Pilihan Grind Size Tersedia</h2>
                     <ul class="space-y-4">
-                        <li class="flex items-center gap-4">
-                            <div class="bg-coffee-800 p-3 rounded-full text-accent"><i class="fa-solid fa-leaf"></i></div>
+                        <li class="flex items-start gap-4">
+                            <i class="fa-solid fa-circle-check text-orange-400 mt-1"></i>
                             <div>
-                                <h4 class="font-bold">Gayo: Spicy & Earthy</h4>
-                                <p class="text-sm text-coffee-200">Asam rendah, body sangat tebal, manis karamel di akhir.</p>
+                                <strong class="block text-lg">Whole Beans (Biji Utuh)</strong>
+                                <span class="text-coffee-200 text-sm">Untuk kesegaran maksimal.</span>
                             </div>
                         </li>
-                        <li class="flex items-center gap-4">
-                            <div class="bg-coffee-800 p-3 rounded-full text-accent"><i class="fa-solid fa-lemon"></i></div>
+                        <li class="flex items-start gap-4">
+                            <i class="fa-solid fa-circle-check text-orange-400 mt-1"></i>
                             <div>
-                                <h4 class="font-bold">Kintamani: Citrusy & Fresh</h4>
-                                <p class="text-sm text-coffee-200">Karakter fruity seperti jeruk bali segar dengan body yang ringan.</p>
+                                <strong class="block text-lg">Coarse (Kasar)</strong>
+                                <span class="text-coffee-200 text-sm">Ideal untuk French Press & Cold Brew.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <i class="fa-solid fa-circle-check text-orange-400 mt-1"></i>
+                            <div>
+                                <strong class="block text-lg">Medium (Sedang)</strong>
+                                <span class="text-coffee-200 text-sm">Sempurna untuk V60, Kalita, Aeropress.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <i class="fa-solid fa-circle-check text-orange-400 mt-1"></i>
+                            <div>
+                                <strong class="block text-lg">Fine (Halus)</strong>
+                                <span class="text-coffee-200 text-sm">Khusus Espresso, Mokapot, Tubruk.</span>
                             </div>
                         </li>
                     </ul>
                 </div>
-                <div class="md:w-1/2 relative reveal delay-200">
-                    <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Kopi Seduh" class="rounded-3xl shadow-2xl border-4 border-coffee-800">
-                    <div class="absolute -bottom-6 -left-6 bg-accent text-coffee-900 font-bold px-6 py-4 rounded-xl shadow-lg transform -rotate-3">
-                        <i class="fa-solid fa-droplet"></i> 100% Natural Process
-                    </div>
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=600&q=80" alt="Coffee Pouring" class="rounded-3xl shadow-2xl opacity-80 hover:opacity-100 transition duration-500">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 6. MENU / PRODUK -->
+    <!-- 5. MENU / PRODUK -->
     <section id="menu" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-16 reveal">
-                <h2 class="font-serif text-3xl md:text-4xl font-bold text-coffee-900 mb-4">Pilih Single Origin Favoritmu</h2>
-                <p class="text-gray-600">Tersedia dalam ukuran 100gr, 250gr, dan 500gr. Bebas pilih ukuran gilingan sesuai metode seduhmu.</p>
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <h2 class="text-coffee-600 font-bold tracking-wider uppercase text-sm mb-2">Pilihan Single Origin</h2>
+                <h3 class="text-3xl md:text-4xl font-extrabold text-coffee-900">Menu Andalan Kami</h3>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="grid md:grid-cols-3 gap-8">
                 <!-- Produk 1 -->
-                <div class="bg-coffee-50 rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition duration-300 reveal group">
-                    <div class="relative overflow-hidden aspect-[4/3]">
-                        <img src="https://images.unsplash.com/photo-1587734195503-904fca47e0e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Gayo" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur text-coffee-900 text-xs font-bold px-3 py-1 rounded-full shadow">Medium Dark</div>
+                <div class="bg-white rounded-3xl overflow-hidden shadow-lg border border-coffee-100 hover:shadow-2xl hover:shadow-coffee-500/20 transition-all duration-300 group reveal">
+                    <div class="relative overflow-hidden aspect-square bg-coffee-50">
+                        <img src="https://images.unsplash.com/photo-1559525839-b184a4d698c7?auto=format&fit=crop&w=400&q=80" alt="Aceh Gayo" class="object-cover w-full h-full group-hover:scale-110 transition duration-500">
+                        <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-coffee-800">Best Seller</div>
                     </div>
                     <div class="p-6">
-                        <h3 class="font-serif text-2xl font-bold text-coffee-900 mb-2">Aceh Gayo Specialty</h3>
-                        <p class="text-sm text-gray-500 mb-4 h-16">Body tebal, aroma rempah (spicy), keasaman sangat rendah. Menghasilkan notes rasa coklat hitam & caramel manis.</p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded">V60</span>
-                            <span class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded">Espresso</span>
-                            <span class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded">Tubruk</span>
+                        <h4 class="text-2xl font-bold text-coffee-900 mb-2">Aceh Gayo Specialty</h4>
+                        <p class="text-sm text-coffee-600 mb-4 h-16">Body tebal, aroma rempah/spicy, keasaman rendah. Notes: Coklat & Caramel.</p>
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="text-sm text-coffee-500">Mulai dari</span>
+                            <span class="text-2xl font-extrabold text-coffee-700">Rp45k</span>
                         </div>
-                        <div class="flex items-center justify-between mb-4">
-                            <div>
-                                <p class="text-xs text-gray-400">Mulai dari</p>
-                                <p class="text-xl font-bold text-coffee-700">Rp45.000</p>
-                            </div>
-                        </div>
-                        <a href="#" class="block w-full text-center bg-coffee-900 text-white py-3 rounded-xl font-semibold hover:bg-coffee-800 transition">Pesan Sekarang</a>
+                        <a href="https://wa.me/6281234567890?text=Halo%20Senjana%20Coffee,%20saya%20mau%20pesan%20Aceh%20Gayo" target="_blank" class="block w-full text-center bg-coffee-100 hover:bg-coffee-600 text-coffee-800 hover:text-white py-3 rounded-xl font-bold transition">
+                            Pilih Ukuran
+                        </a>
                     </div>
                 </div>
 
                 <!-- Produk 2 -->
-                <div class="bg-coffee-50 rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition duration-300 reveal delay-100 group relative">
-                    <!-- Ribbon Best Seller -->
-                    <div class="absolute top-4 -left-8 bg-accent text-coffee-900 font-bold text-xs py-1 px-10 transform -rotate-45 z-10 shadow">Best Seller</div>
-                    
-                    <div class="relative overflow-hidden aspect-[4/3]">
-                        <img src="https://images.unsplash.com/photo-1611162458324-aae1eb4129a4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Toraja" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur text-coffee-900 text-xs font-bold px-3 py-1 rounded-full shadow">Medium Roast</div>
+                <div class="bg-white rounded-3xl overflow-hidden shadow-lg border border-coffee-100 hover:shadow-2xl hover:shadow-coffee-500/20 transition-all duration-300 group reveal delay-100">
+                    <div class="relative overflow-hidden aspect-square bg-coffee-50">
+                        <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=400&q=80" alt="Toraja Sapan" class="object-cover w-full h-full group-hover:scale-110 transition duration-500">
                     </div>
                     <div class="p-6">
-                        <h3 class="font-serif text-2xl font-bold text-coffee-900 mb-2">Toraja Sapan Specialty</h3>
-                        <p class="text-sm text-gray-500 mb-4 h-16">Aroma floral & fruity yang elegan, body sedang, clean aftertaste. Hadir dengan notes herbal dan dark chocolate.</p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded">V60</span>
-                            <span class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded">Aeropress</span>
+                        <h4 class="text-2xl font-bold text-coffee-900 mb-2">Toraja Sapan Specialty</h4>
+                        <p class="text-sm text-coffee-600 mb-4 h-16">Aroma floral & fruity, body sedang, clean aftertaste. Notes: Herbal & Dark Choco.</p>
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="text-sm text-coffee-500">Mulai dari</span>
+                            <span class="text-2xl font-extrabold text-coffee-700">Rp45k</span>
                         </div>
-                        <div class="flex items-center justify-between mb-4">
-                            <div>
-                                <p class="text-xs text-gray-400">Mulai dari</p>
-                                <p class="text-xl font-bold text-coffee-700">Rp45.000</p>
-                            </div>
-                        </div>
-                        <a href="#" class="block w-full text-center bg-coffee-900 text-white py-3 rounded-xl font-semibold hover:bg-coffee-800 transition">Pesan Sekarang</a>
+                        <a href="https://wa.me/6281234567890?text=Halo%20Senjana%20Coffee,%20saya%20mau%20pesan%20Toraja%20Sapan" target="_blank" class="block w-full text-center bg-coffee-100 hover:bg-coffee-600 text-coffee-800 hover:text-white py-3 rounded-xl font-bold transition">
+                            Pilih Ukuran
+                        </a>
                     </div>
                 </div>
 
                 <!-- Produk 3 -->
-                <div class="bg-coffee-50 rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition duration-300 reveal delay-200 group">
-                    <div class="relative overflow-hidden aspect-[4/3]">
-                        <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Kintamani" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur text-coffee-900 text-xs font-bold px-3 py-1 rounded-full shadow">Light to Medium</div>
+                <div class="bg-white rounded-3xl overflow-hidden shadow-lg border border-coffee-100 hover:shadow-2xl hover:shadow-coffee-500/20 transition-all duration-300 group reveal delay-200">
+                    <div class="relative overflow-hidden aspect-square bg-coffee-50">
+                        <img src="https://images.unsplash.com/photo-1611162458324-aae1eb4129a4?auto=format&fit=crop&w=400&q=80" alt="Bali Kintamani" class="object-cover w-full h-full group-hover:scale-110 transition duration-500">
                     </div>
                     <div class="p-6">
-                        <h3 class="font-serif text-2xl font-bold text-coffee-900 mb-2">Bali Kintamani</h3>
-                        <p class="text-sm text-gray-500 mb-4 h-16">Asam segar seperti jeruk (citrusy) yang cerah, body ringan seperti teh, ditutup dengan aroma manis caramel.</p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded">V60</span>
-                            <span class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded">Cold Brew</span>
-                            <span class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded">Japanese</span>
+                        <h4 class="text-2xl font-bold text-coffee-900 mb-2">Bali Kintamani</h4>
+                        <p class="text-sm text-coffee-600 mb-4 h-16">Keasaman segar mirip jeruk/citrusy, body ringan. Aroma manis caramel.</p>
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="text-sm text-coffee-500">Mulai dari</span>
+                            <span class="text-2xl font-extrabold text-coffee-700">Rp45k</span>
                         </div>
-                        <div class="flex items-center justify-between mb-4">
-                            <div>
-                                <p class="text-xs text-gray-400">Mulai dari</p>
-                                <p class="text-xl font-bold text-coffee-700">Rp45.000</p>
-                            </div>
-                        </div>
-                        <a href="#" class="block w-full text-center bg-coffee-900 text-white py-3 rounded-xl font-semibold hover:bg-coffee-800 transition">Pesan Sekarang</a>
+                        <a href="https://wa.me/6281234567890?text=Halo%20Senjana%20Coffee,%20saya%20mau%20pesan%20Bali%20Kintamani" target="_blank" class="block w-full text-center bg-coffee-100 hover:bg-coffee-600 text-coffee-800 hover:text-white py-3 rounded-xl font-bold transition">
+                            Pilih Ukuran
+                        </a>
                     </div>
                 </div>
             </div>
-            
-            <div class="mt-12 max-w-lg mx-auto bg-yellow-50 border border-yellow-200 rounded-2xl p-6 text-center reveal">
-                <p class="text-sm text-yellow-800 font-medium">💡 <strong>Catatan:</strong> Harga di atas adalah untuk kemasan 100gr. Tersedia juga kemasan 250gr (Rp95rb) dan 500gr (Rp180rb).</p>
+
+            <!-- Harga Panduan -->
+            <div class="mt-12 bg-coffee-50 p-6 rounded-2xl border border-coffee-200 flex flex-wrap justify-center gap-6 text-coffee-800 text-sm font-medium reveal">
+                <span class="bg-white px-4 py-2 rounded-lg shadow-sm">100gr: Rp45.000</span>
+                <span class="bg-white px-4 py-2 rounded-lg shadow-sm">250gr: Rp95.000</span>
+                <span class="bg-white px-4 py-2 rounded-lg shadow-sm">500gr: Rp180.000</span>
             </div>
         </div>
     </section>
 
-    <!-- 7. VIDEO / CONTENT SECTION (TikTok Style Preview) -->
-    <section class="py-20 bg-coffee-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col lg:flex-row items-center gap-12">
-                <div class="lg:w-1/2 reveal">
-                    <h2 class="font-serif text-3xl md:text-4xl font-bold text-coffee-900 mb-6">Dibalik Layar Senjana</h2>
-                    <p class="text-gray-600 mb-6 text-lg">Intip bagaimana roaster kami mendedikasikan waktu dan ketelitian untuk menyangrai biji kopi pilihanmu, memastikan kualitas selalu terjaga di setiap batch.</p>
-                    <a href="https://tiktok.com/@senjanacoffee" target="_blank" class="inline-flex items-center gap-2 text-coffee-700 font-bold hover:text-coffee-900 transition">
-                        <i class="fa-brands fa-tiktok text-xl"></i> Follow TikTok Kami @senjanacoffee
+    <!-- 6. VIDEO / TIKTOK STYLE SECTION -->
+    <section class="py-20 bg-coffee-900 text-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="order-2 md:order-1">
+                    <h2 class="text-3xl md:text-4xl font-extrabold mb-6">Lihat Proses Kami</h2>
+                    <p class="text-coffee-200 mb-8 text-lg">Dari biji mentah pilihan hingga secangkir kopi sempurna. Tonton keseruan di balik layar proses roasting Senjana Coffee.</p>
+                    <a href="https://tiktok.com/@senjanacoffee" target="_blank" class="inline-flex items-center gap-2 bg-white text-coffee-900 px-6 py-3 rounded-full font-bold hover:bg-coffee-100 transition">
+                        <i class="fa-brands fa-tiktok"></i> Follow TikTok Kami
                     </a>
                 </div>
-                <div class="lg:w-1/2 flex justify-center lg:justify-end reveal delay-200">
-                    <!-- Dummy Video Container Style -->
-                    <div class="relative w-64 h-[450px] bg-black rounded-[2rem] border-[8px] border-white shadow-2xl overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1511537190424-bbbab87ac5eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Video Cover" class="w-full h-full object-cover opacity-80">
+                <!-- Dummy Video Container (Vertical 9:16 aspect ratio) -->
+                <div class="order-1 md:order-2 flex justify-center">
+                    <div class="relative w-[280px] h-[500px] rounded-3xl overflow-hidden shadow-2xl border-4 border-coffee-700 bg-black">
+                        <!-- Simulate video with GIF or image, and play button -->
+                        <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=400&q=80" alt="Video Cover" class="w-full h-full object-cover opacity-70">
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <div class="w-16 h-16 bg-white/30 backdrop-blur rounded-full flex items-center justify-center cursor-pointer hover:bg-white/50 transition">
+                            <div class="w-16 h-16 bg-white/30 backdrop-blur-md rounded-full flex items-center justify-center cursor-pointer hover:bg-white/50 transition">
                                 <i class="fa-solid fa-play text-white text-2xl ml-1"></i>
                             </div>
                         </div>
-                        <div class="absolute bottom-4 left-4 right-4 text-white">
-                            <p class="text-sm font-bold">Proses Roasting Batch #241 🔥</p>
-                            <p class="text-xs opacity-80">#coffee #roastery #senjanacoffee</p>
+                        <div class="absolute bottom-4 left-4 right-4">
+                            <p class="text-sm font-semibold">@senjanacoffee</p>
+                            <p class="text-xs text-white/80 line-clamp-2">Proses roasting Aceh Gayo yang bikin wangi satu ruangan! ☕✨ #roastery #kopi</p>
                         </div>
                     </div>
                 </div>
@@ -420,357 +395,332 @@
         </div>
     </section>
 
-    <!-- 8. PROMO SECTION WITH COUNTDOWN -->
-    <section class="py-20 bg-coffee-900 text-white relative overflow-hidden">
-        <!-- Floating objects for design -->
-        <i class="fa-solid fa-star absolute top-10 right-10 text-accent/20 text-5xl animate-pulse-slow"></i>
-        <i class="fa-solid fa-mug-hot absolute bottom-10 left-10 text-accent/20 text-6xl animate-float"></i>
+    <!-- 7. PROMO SECTION (Bundle & Countdown) -->
+    <section id="promo" class="py-20 bg-orange-50 relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gradient-to-br from-coffee-800 to-coffee-600 rounded-3xl shadow-2xl overflow-hidden reveal">
+                <div class="p-8 md:p-12 text-center text-white relative">
+                    <!-- Decor -->
+                    <i class="fa-solid fa-gift text-6xl text-white/10 absolute top-8 left-8"></i>
+                    
+                    <span class="inline-block bg-red-500 text-white font-bold px-4 py-1 rounded-full text-sm mb-4 animate-pulse">PROMO TERBATAS</span>
+                    <h2 class="text-3xl md:text-5xl font-extrabold mb-4">Paket Hemat Ngopi</h2>
+                    <p class="text-lg md:text-xl text-coffee-100 mb-8 max-w-2xl mx-auto">
+                        Beli 2 Kemasan 250gr, **GRATIS 1 Premium Coffee Scoop** (Sendok Takar + Klip) dan **Diskon Ongkir up to Rp20.000** ke seluruh Indonesia!
+                    </p>
 
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <span class="bg-accent text-coffee-900 font-bold px-4 py-1 rounded-full text-sm inline-block mb-6 animate-bounce">🔥 FLASH SALE HARI INI 🔥</span>
-            <h2 class="font-serif text-3xl md:text-5xl font-bold mb-6">Beli 2 (250gr) <span class="text-accent">Gratis</span> Coffee Scoop!</h2>
-            <p class="text-coffee-200 text-lg mb-8 max-w-2xl mx-auto">Dapatkan 1 buah Premium Coffee Scoop (Sendok Takar Kopi + Klip Penjepit Kemasan) dan <strong>Diskon Ongkir hingga Rp20.000</strong> ke seluruh Indonesia!</p>
-            
-            <!-- Countdown Timer -->
-            <div class="flex justify-center gap-4 mb-10 reveal">
-                <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4 w-20 text-center">
-                    <span id="hours" class="block text-3xl font-bold text-accent">02</span>
-                    <span class="text-xs text-coffee-200">Jam</span>
-                </div>
-                <div class="text-3xl font-bold text-white mt-2">:</div>
-                <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4 w-20 text-center">
-                    <span id="minutes" class="block text-3xl font-bold text-accent">45</span>
-                    <span class="text-xs text-coffee-200">Menit</span>
-                </div>
-                <div class="text-3xl font-bold text-white mt-2">:</div>
-                <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4 w-20 text-center">
-                    <span id="seconds" class="block text-3xl font-bold text-accent">30</span>
-                    <span class="text-xs text-coffee-200">Detik</span>
-                </div>
-            </div>
+                    <!-- JavaScript Countdown -->
+                    <div class="flex justify-center gap-4 mb-8" id="countdown">
+                        <div class="bg-white/20 backdrop-blur-sm rounded-xl p-3 w-20">
+                            <span class="block text-2xl font-bold" id="cd-hours">12</span>
+                            <span class="text-xs text-coffee-100">Jam</span>
+                        </div>
+                        <div class="text-2xl font-bold mt-3">:</div>
+                        <div class="bg-white/20 backdrop-blur-sm rounded-xl p-3 w-20">
+                            <span class="block text-2xl font-bold" id="cd-minutes">45</span>
+                            <span class="text-xs text-coffee-100">Menit</span>
+                        </div>
+                        <div class="text-2xl font-bold mt-3">:</div>
+                        <div class="bg-white/20 backdrop-blur-sm rounded-xl p-3 w-20">
+                            <span class="block text-2xl font-bold" id="cd-seconds">30</span>
+                            <span class="text-xs text-coffee-100">Detik</span>
+                        </div>
+                    </div>
 
-            <div class="bg-red-500 text-white inline-block px-6 py-2 rounded-full text-sm font-bold mb-8 blink shadow-lg shadow-red-500/50">
-                Sisa Promo: 8 Paket Terakhir!
-            </div>
-
-            <div>
-                <a href="https://wa.me/6281234567890?text=Halo%20Admin,%20saya%20mau%20klaim%20Promo%20Beli%202%20Gratis%20Scoop." class="bg-accent text-coffee-900 text-lg font-bold px-10 py-4 rounded-full hover:bg-yellow-400 transition transform hover:scale-105 inline-block shadow-2xl">
-                    Klaim Promo Sekarang
-                </a>
+                    <a href="https://wa.me/6281234567890?text=Halo%20Senjana%20Coffee,%20saya%20mau%20klaim%20Promo%20Beli%202%20Gratis%20Scoop" target="_blank" class="inline-block bg-white text-coffee-800 hover:bg-coffee-50 px-8 py-4 rounded-full font-bold text-xl transition shadow-lg transform hover:scale-105">
+                        Klaim Promo Sekarang
+                    </a>
+                    <p class="mt-4 text-sm text-coffee-200">Sisa stok promo: <span class="font-bold text-white">7 paket lagi</span></p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- 9. TESTIMONI -->
-    <section id="testimoni" class="py-20 bg-coffee-50 overflow-hidden">
+    <!-- 8. TESTIMONI (Mobile Carousel) -->
+    <section class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 reveal">
-                <h2 class="font-serif text-3xl md:text-4xl font-bold text-coffee-900 mb-4">Apa Kata Penikmat Senjana?</h2>
-                <p class="text-gray-600">Ribuan cangkir telah diseduh, ini cerita jujur dari mereka.</p>
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-coffee-600 font-bold tracking-wider uppercase text-sm mb-2">Kata Mereka</h2>
+                <h3 class="text-3xl font-extrabold text-coffee-900">Review Pecinta Kopi</h3>
             </div>
 
-            <!-- Auto Sliding Carousel Mobile / Grid Desktop -->
-            <div class="flex overflow-x-auto snap-x snap-mandatory gap-6 hide-scrollbar pb-10" id="testimonial-container">
-                
-                <!-- Testimoni 1 -->
-                <div class="snap-center shrink-0 w-[85vw] md:w-[350px] bg-white p-8 rounded-3xl shadow-sm border border-gray-100 reveal">
+            <!-- Slider Container -->
+            <div class="flex overflow-x-auto gap-6 pb-8 hide-scrollbar snap-x snap-mandatory reveal delay-100">
+                <!-- Testi 1 -->
+                <div class="min-w-[300px] md:min-w-[350px] bg-coffee-50 p-8 rounded-3xl snap-center shrink-0">
                     <div class="flex text-yellow-400 mb-4 text-sm">
                         <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                     </div>
-                    <p class="text-gray-600 mb-6 italic">"Gayo-nya the best banget buat dibikin kopi susu aren di kedai saya. Body-nya dapet, nggak kalah sama kopi susu mahal. Repeat order terus!"</p>
+                    <p class="text-coffee-700 mb-6 italic">"Gayo-nya beneran kerasa notes coklatnya. Buat dibikin kopi susu atau V60 enak banget. Udah langganan botol ke-3!"</p>
                     <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-gray-200 rounded-full overflow-hidden">
-                            <img src="https://i.pravatar.cc/100?img=11" alt="Avatar" class="w-full h-full object-cover">
-                        </div>
+                        <div class="w-12 h-12 bg-coffee-200 rounded-full flex items-center justify-center font-bold text-coffee-600">AD</div>
                         <div>
-                            <h4 class="font-bold text-coffee-900">Bima A.</h4>
-                            <p class="text-xs text-gray-500">Pemilik Coffee Shop, JKT</p>
+                            <h4 class="font-bold text-coffee-900">Andi D.</h4>
+                            <p class="text-xs text-coffee-500">Pekerja WFH</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Testimoni 2 -->
-                <div class="snap-center shrink-0 w-[85vw] md:w-[350px] bg-white p-8 rounded-3xl shadow-sm border border-gray-100 reveal delay-100">
+                <!-- Testi 2 -->
+                <div class="min-w-[300px] md:min-w-[350px] bg-coffee-50 p-8 rounded-3xl snap-center shrink-0">
                     <div class="flex text-yellow-400 mb-4 text-sm">
                         <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                     </div>
-                    <p class="text-gray-600 mb-6 italic">"Beli Toraja Sapan buat nemenin WFH. Aromanya pas baru buka bungkus gila wangi banget! Minta gilingan V60 pas ukurannya."</p>
+                    <p class="text-coffee-700 mb-6 italic">"Beli Toraja Sapan buat di kedai, customer pada suka karena clean banget aftertaste-nya. Roasting-annya konsisten."</p>
                     <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-gray-200 rounded-full overflow-hidden">
-                            <img src="https://i.pravatar.cc/100?img=5" alt="Avatar" class="w-full h-full object-cover">
-                        </div>
+                        <div class="w-12 h-12 bg-coffee-200 rounded-full flex items-center justify-center font-bold text-coffee-600">BR</div>
                         <div>
-                            <h4 class="font-bold text-coffee-900">Sisca</h4>
-                            <p class="text-xs text-gray-500">Karyawan WFH, BDG</p>
+                            <h4 class="font-bold text-coffee-900">Bima R.</h4>
+                            <p class="text-xs text-coffee-500">Pemilik Kedai Kopi</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Testimoni 3 -->
-                <div class="snap-center shrink-0 w-[85vw] md:w-[350px] bg-white p-8 rounded-3xl shadow-sm border border-gray-100 reveal delay-200">
+                <!-- Testi 3 -->
+                <div class="min-w-[300px] md:min-w-[350px] bg-coffee-50 p-8 rounded-3xl snap-center shrink-0">
                     <div class="flex text-yellow-400 mb-4 text-sm">
                         <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
                     </div>
-                    <p class="text-gray-600 mb-6 italic">"Pengirimannya cepet banget. Packagingnya niat pake valve jadi kopi aman. Kintamani dibikin Japanese Iced seger parah siang-siang."</p>
+                    <p class="text-coffee-700 mb-6 italic">"Packaging aman banget, ada ziplocknya jadi praktis. Kintamani-nya fresh banget wangi citrus pas dibuka."</p>
                     <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-gray-200 rounded-full overflow-hidden">
-                            <img src="https://i.pravatar.cc/100?img=12" alt="Avatar" class="w-full h-full object-cover">
-                        </div>
+                        <div class="w-12 h-12 bg-coffee-200 rounded-full flex items-center justify-center font-bold text-coffee-600">CK</div>
                         <div>
-                            <h4 class="font-bold text-coffee-900">Dimas R.</h4>
-                            <p class="text-xs text-gray-500">Mahasiswa, SBY</p>
+                            <h4 class="font-bold text-coffee-900">Citra K.</h4>
+                            <p class="text-xs text-coffee-500">Mahasiswi</p>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- 10. FAQ SECTION -->
-    <section id="faq" class="py-20 bg-white">
-        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="font-serif text-3xl md:text-4xl font-bold text-coffee-900 mb-10 text-center reveal">Pertanyaan Sering Diajukan</h2>
+    <!-- 9. FAQ SECTION -->
+    <section class="py-20 bg-coffee-50">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+            <h2 class="text-3xl font-extrabold text-center text-coffee-900 mb-10">Tanya Jawab (FAQ)</h2>
             
-            <div class="space-y-4 reveal">
-                <!-- FAQ 1 -->
-                <div class="border border-gray-200 rounded-2xl overflow-hidden bg-white">
+            <div class="space-y-4">
+                <!-- FAQ Item 1 -->
+                <div class="bg-white rounded-2xl border border-coffee-100 overflow-hidden">
                     <button class="faq-btn w-full px-6 py-4 text-left font-bold text-coffee-900 flex justify-between items-center focus:outline-none">
-                        Apakah kopinya sudah berupa bubuk atau biji?
-                        <i class="fa-solid fa-chevron-down text-gray-400 transition-transform duration-300"></i>
+                        Berapa lama kopi tetap segar?
+                        <i class="fa-solid fa-chevron-down transition-transform duration-300"></i>
                     </button>
-                    <div class="faq-content hidden px-6 pb-4 text-gray-600 text-sm">
-                        Kamu bebas memilih! Saat memesan, beri tahu admin apakah kamu ingin dikirim dalam bentuk biji utuh (whole beans) atau sudah digiling (halus/sedang/kasar) tanpa tambahan biaya.
+                    <div class="faq-content hidden px-6 pb-4 text-coffee-600 text-sm">
+                        Kopi kami dikemas dengan one-way valve. Disarankan untuk dikonsumsi dalam 1-2 bulan setelah tanggal roasting agar mendapatkan rasa dan aroma yang optimal (golden window).
                     </div>
                 </div>
 
-                <!-- FAQ 2 -->
-                <div class="border border-gray-200 rounded-2xl overflow-hidden bg-white">
-                    <button class="faq-btn w-full px-6 py-4 text-left font-bold text-coffee-900 flex justify-between items-center focus:outline-none">
-                        Berapa lama umur simpan kopinya?
-                        <i class="fa-solid fa-chevron-down text-gray-400 transition-transform duration-300"></i>
-                    </button>
-                    <div class="faq-content hidden px-6 pb-4 text-gray-600 text-sm">
-                        Untuk rasa optimal (golden window), sebaiknya dikonsumsi 7-30 hari setelah tanggal roasting. Namun, kopi kami masih layak seduh hingga 6 bulan asalkan disimpan dalam kemasan rapat di suhu ruang.
-                    </div>
-                </div>
-
-                <!-- FAQ 3 -->
-                <div class="border border-gray-200 rounded-2xl overflow-hidden bg-white">
+                <!-- FAQ Item 2 -->
+                <div class="bg-white rounded-2xl border border-coffee-100 overflow-hidden">
                     <button class="faq-btn w-full px-6 py-4 text-left font-bold text-coffee-900 flex justify-between items-center focus:outline-none">
                         Apakah bisa dikirim ke luar pulau Jawa?
-                        <i class="fa-solid fa-chevron-down text-gray-400 transition-transform duration-300"></i>
+                        <i class="fa-solid fa-chevron-down transition-transform duration-300"></i>
                     </button>
-                    <div class="faq-content hidden px-6 pb-4 text-gray-600 text-sm">
-                        Tentu saja bisa! Kami melayani pengiriman ke seluruh Indonesia dan saat ini sedang ada promo potongan ongkir hingga Rp20.000.
+                    <div class="faq-content hidden px-6 pb-4 text-coffee-600 text-sm">
+                        Tentu bisa! Kami melayani pengiriman ke seluruh Indonesia. Manfaatkan promo diskon ongkir kami untuk pembelian minimal 2 kemasan.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="bg-white rounded-2xl border border-coffee-100 overflow-hidden">
+                    <button class="faq-btn w-full px-6 py-4 text-left font-bold text-coffee-900 flex justify-between items-center focus:outline-none">
+                        Saya pemula, sebaiknya pilih grind size apa?
+                        <i class="fa-solid fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-4 text-coffee-600 text-sm">
+                        Jika Anda biasa menyeduh dengan air panas langsung (kopi tubruk), pilih tingkat kehalusan "Fine". Jika Anda punya saringan V60, pilih "Medium".
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 11. FINAL CTA -->
-    <section class="py-24 bg-coffee-100 text-center relative overflow-hidden">
-        <div class="max-w-4xl mx-auto px-4 relative z-10 reveal">
-            <h2 class="font-serif text-4xl md:text-5xl font-bold text-coffee-900 mb-6">Siap Menikmati Kopi Terbaikmu Hari Ini?</h2>
-            <p class="text-gray-600 mb-10 text-lg max-w-2xl mx-auto">Jangan tunda ngopimu. Amankan stok beans fresh roast kami sebelum kehabisan kuota roasting minggu ini.</p>
-            <a href="https://wa.me/6281234567890?text=Halo%20Senjana,%20saya%20mau%20order." class="bg-coffee-900 text-white text-xl font-bold px-12 py-5 rounded-full hover:bg-coffee-800 transition transform hover:-translate-y-1 inline-flex items-center gap-3 shadow-xl">
-                <i class="fa-brands fa-whatsapp text-2xl text-green-400"></i> Pesan via WhatsApp
+    <!-- 10. CTA FINAL -->
+    <section class="py-24 bg-coffee-900 text-center px-4">
+        <div class="max-w-3xl mx-auto reveal">
+            <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6">Siap Menikmati Kopi Terbaik Hari Ini?</h2>
+            <p class="text-coffee-200 mb-10 text-lg">Jangan sampai kehabisan stok fresh roast minggu ini. Pesan sekarang melalui WhatsApp dan dapatkan pelayan ramah dari admin kami.</p>
+            <a href="https://wa.me/6281234567890" target="_blank" class="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white px-10 py-5 rounded-full font-bold text-xl transition shadow-xl shadow-green-500/30 transform hover:-translate-y-1">
+                <i class="fa-brands fa-whatsapp text-2xl"></i> Pesan via WhatsApp
             </a>
-            <p class="text-sm text-gray-500 mt-6">Respon Cepat ⚡ Pembayaran via Transfer Bank & E-Wallet</p>
+            <p class="mt-6 text-coffee-300 text-sm">*Admin fast respon di jam kerja 08:00 - 20:00</p>
         </div>
     </section>
 
-    <!-- 12. FOOTER -->
-    <footer class="bg-coffee-900 text-coffee-200 py-12 border-t border-coffee-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div>
-                    <a href="#" class="flex items-center gap-2 mb-4 group">
-                        <i class="fa-solid fa-seedling text-accent text-2xl"></i>
-                        <span class="font-serif font-bold text-xl text-white">Senjana.</span>
+    <!-- 11. FOOTER -->
+    <footer class="bg-coffee-950 text-coffee-300 py-12 border-t border-coffee-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-3 gap-8">
+            <div>
+                <div class="flex items-center gap-2 mb-4">
+                    <i class="fa-solid fa-seedling text-coffee-500 text-2xl"></i>
+                    <span class="font-bold text-xl text-white">SenjanaCoffee</span>
+                </div>
+                <p class="text-sm mb-4">Jelajah Cita Rasa Nusantara dalam Setiap Seduhan. Roastery spesialis single origin Indonesia berkualitas tinggi.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4">Quick Links</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#menu" class="hover:text-white transition">Menu Kopi</a></li>
+                    <li><a href="#promo" class="hover:text-white transition">Promo Saat Ini</a></li>
+                    <li><a href="#keunggulan" class="hover:text-white transition">Tentang Kami</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4">Social Media</h4>
+                <div class="flex gap-4">
+                    <a href="https://instagram.com/senjanacoffee" target="_blank" class="w-10 h-10 bg-coffee-800 rounded-full flex items-center justify-center hover:bg-coffee-600 hover:text-white transition">
+                        <i class="fa-brands fa-instagram"></i>
                     </a>
-                    <p class="text-sm mb-4">Jelajah Cita Rasa Nusantara dalam Setiap Seduhan. Roastery spesialis single origin Indonesia.</p>
-                </div>
-                <div>
-                    <h4 class="text-white font-bold mb-4">Navigasi</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="#keunggulan" class="hover:text-white transition">Keunggulan</a></li>
-                        <li><a href="#menu" class="hover:text-white transition">Menu & Harga</a></li>
-                        <li><a href="#testimoni" class="hover:text-white transition">Testimoni</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-white font-bold mb-4">Hubungi Kami</h4>
-                    <ul class="space-y-2 text-sm mb-6">
-                        <li><i class="fa-solid fa-phone w-5"></i> 0812-3456-7890</li>
-                        <li><i class="fa-solid fa-location-dot w-5"></i> Jakarta Selatan, Indonesia</li>
-                    </ul>
-                    <div class="flex gap-4">
-                        <a href="https://instagram.com/senjanacoffee" target="_blank" class="w-10 h-10 rounded-full bg-coffee-800 flex items-center justify-center hover:bg-accent hover:text-coffee-900 transition"><i class="fa-brands fa-instagram text-xl"></i></a>
-                        <a href="https://tiktok.com/@senjanacoffee" target="_blank" class="w-10 h-10 rounded-full bg-coffee-800 flex items-center justify-center hover:bg-accent hover:text-coffee-900 transition"><i class="fa-brands fa-tiktok text-xl"></i></a>
-                    </div>
+                    <a href="https://tiktok.com/@senjanacoffee" target="_blank" class="w-10 h-10 bg-coffee-800 rounded-full flex items-center justify-center hover:bg-coffee-600 hover:text-white transition">
+                        <i class="fa-brands fa-tiktok"></i>
+                    </a>
                 </div>
             </div>
-            <div class="border-t border-coffee-800 mt-12 pt-8 text-center text-sm">
-                <p>&copy; 2026 Senjana Coffee Roasters. All rights reserved.</p>
-            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-coffee-800 text-center text-sm">
+            &copy; 2026 Senjana Coffee Roasters. All rights reserved.
         </div>
     </footer>
 
-    <!-- STICKY FLOATING ELEMENTS -->
-
-    <!-- Floating WhatsApp Button (Desktop & Mobile) -->
-    <a href="https://wa.me/6281234567890" class="fixed bottom-6 right-6 lg:bottom-10 lg:right-10 bg-green-500 text-white w-14 h-14 rounded-full flex items-center justify-center text-3xl shadow-2xl hover:bg-green-600 transition z-40 animate-bounce">
+    <!-- STICKY FLOATING WHATSAPP BUTTON (Modern 2026 feature) -->
+    <a href="https://wa.me/6281234567890" target="_blank" class="fixed bottom-24 md:bottom-8 right-6 bg-green-500 text-white w-14 h-14 rounded-full flex items-center justify-center text-3xl shadow-2xl hover:bg-green-600 hover:scale-110 transition-transform duration-300 z-40 animate-bounce-slight">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
-    <!-- Sticky Mobile Bottom CTA (Only on Mobile) -->
-    <div class="md:hidden fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 p-3 z-30 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
-        <a href="#menu" class="w-full block text-center bg-coffee-900 text-white py-3 rounded-xl font-bold text-sm shadow-lg">
-            Order Kopi Sekarang
+    <!-- STICKY MOBILE BOTTOM CTA -->
+    <div class="md:hidden fixed bottom-0 left-0 w-full bg-white border-t border-coffee-100 p-3 flex justify-between items-center z-40 shadow-[0_-10px_15px_-3px_rgba(0,0,0,0.05)]">
+        <div>
+            <p class="text-xs text-coffee-500">Mulai dari</p>
+            <p class="text-lg font-bold text-coffee-900">Rp45.000</p>
+        </div>
+        <a href="https://wa.me/6281234567890" class="bg-coffee-600 text-white px-6 py-2 rounded-full font-bold text-sm">
+            Order Sekarang
         </a>
     </div>
 
-    <!-- Fake Live Order Popup -->
-    <div id="fake-order-popup" class="fixed bottom-24 left-4 lg:bottom-10 lg:left-10 bg-white rounded-xl shadow-2xl border border-gray-100 p-3 flex items-center gap-3 z-40 transform translate-y-32 opacity-0 transition-all duration-500 w-64 glass">
-        <img src="https://images.unsplash.com/photo-1559525839-b184a4d698c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" class="w-12 h-12 rounded-lg object-cover" alt="Produk">
+    <!-- FAKE LIVE ORDER POPUP -->
+    <div id="live-order-popup" class="fixed bottom-8 left-6 bg-white p-3 rounded-xl shadow-2xl border border-coffee-100 flex items-center gap-3 z-40 transform translate-y-20 opacity-0 transition-all duration-500 hidden md:flex">
+        <img src="https://images.unsplash.com/photo-1559525839-b184a4d698c7?auto=format&fit=crop&w=100&q=80" alt="Kopi" class="w-12 h-12 rounded-lg object-cover">
         <div>
-            <p class="text-xs text-gray-500">Seseorang di <span id="fo-city" class="font-bold text-coffee-900">Jakarta</span></p>
-            <p class="text-xs font-bold mt-0.5">Baru saja membeli <span id="fo-product" class="text-coffee-600">Aceh Gayo 250gr</span></p>
-            <p class="text-[10px] text-gray-400 mt-1">Beberapa saat lalu</p>
+            <p class="text-xs text-coffee-500 mb-0.5">Baru saja membeli</p>
+            <p class="text-sm font-bold text-coffee-900" id="popup-name">Seseorang di Jakarta</p>
+            <p class="text-xs text-coffee-600">Aceh Gayo Specialty</p>
         </div>
     </div>
 
-    <!-- JAVASCRIPT -->
+
+    <!-- ==========================================
+         JAVASCRIPT SECTION
+    =========================================== -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-
-            // 1. Loader & Initialization
+        // 1. Hilangkan Loading Screen setelah halaman dimuat
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
             setTimeout(() => {
-                const loader = document.getElementById('loader');
                 loader.style.opacity = '0';
-                setTimeout(() => loader.style.display = 'none', 500);
-            }, 1000);
+                setTimeout(() => { loader.style.display = 'none'; }, 500);
+            }, 800);
+        });
 
-            // 2. Mobile Menu Toggle
-            const btn = document.getElementById('mobile-menu-btn');
-            const menu = document.getElementById('mobile-menu');
-            const mobileLinks = document.querySelectorAll('.mobile-link');
+        // 2. Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
 
-            btn.addEventListener('click', () => {
-                menu.classList.toggle('hidden');
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Tutup menu mobile saat link di klik
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
             });
+        });
 
-            // Auto close mobile menu when link clicked
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    menu.classList.add('hidden');
-                });
-            });
-
-            // 3. Navbar Sticky Glassmorphism on Scroll
-            const navbar = document.getElementById('navbar');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    navbar.classList.add('glass', 'shadow-md');
-                    navbar.classList.replace('py-4', 'py-2');
-                } else {
-                    navbar.classList.remove('glass', 'shadow-md');
-                    navbar.classList.replace('py-2', 'py-4');
+        // 3. Scroll Reveal Animation menggunakan Intersection Observer
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // Animasi cuma 1x jalan
                 }
             });
+        }, { threshold: 0.15 });
 
-            // 4. Scroll Reveal Animation (Intersection Observer)
-            const revealElements = document.querySelectorAll('.reveal');
-            const revealObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if(entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1 });
+        revealElements.forEach(el => revealObserver.observe(el));
 
-            revealElements.forEach(el => revealObserver.observe(el));
-
-            // 5. FAQ Accordion Logic
-            const faqBtns = document.querySelectorAll('.faq-btn');
-            faqBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const content = this.nextElementSibling;
-                    const icon = this.querySelector('i');
-                    
-                    // Close all others
-                    document.querySelectorAll('.faq-content').forEach(c => {
-                        if (c !== content) {
-                            c.classList.add('hidden');
-                            c.previousElementSibling.querySelector('i').style.transform = 'rotate(0deg)';
-                        }
-                    });
-
-                    // Toggle current
-                    content.classList.toggle('hidden');
-                    if(content.classList.contains('hidden')){
-                        icon.style.transform = 'rotate(0deg)';
-                    } else {
-                        icon.style.transform = 'rotate(180deg)';
-                    }
-                });
-            });
-
-            // 6. Countdown Timer (Dummy Flash Sale)
-            // Set end time 2 hours 45 mins from page load
-            let time = (2 * 3600) + (45 * 60) + 30; 
-            const hEl = document.getElementById('hours');
-            const mEl = document.getElementById('minutes');
-            const sEl = document.getElementById('seconds');
-
-            setInterval(() => {
-                if(time > 0) time--;
-                const h = Math.floor(time / 3600);
-                const m = Math.floor((time % 3600) / 60);
-                const s = time % 60;
-
-                hEl.innerText = h < 10 ? '0'+h : h;
-                mEl.innerText = m < 10 ? '0'+m : m;
-                sEl.innerText = s < 10 ? '0'+s : s;
-            }, 1000);
-
-            // 7. Fake Live Order Popup
-            const popup = document.getElementById('fake-order-popup');
-            const cityEl = document.getElementById('fo-city');
-            const prodEl = document.getElementById('fo-product');
-            
-            const dummyData = [
-                { city: 'Jakarta', product: 'Aceh Gayo 250gr' },
-                { city: 'Bandung', product: 'Toraja Sapan 100gr' },
-                { city: 'Surabaya', product: 'Promo Buy 2 Get 1' },
-                { city: 'Yogyakarta', product: 'Bali Kintamani 500gr' },
-                { city: 'Semarang', product: 'Aceh Gayo 500gr' }
-            ];
-
-            function showFakeOrder() {
-                // Randomize data
-                const random = dummyData[Math.floor(Math.random() * dummyData.length)];
-                cityEl.innerText = random.city;
-                prodEl.innerText = random.product;
-
-                // Show popup
-                popup.classList.remove('translate-y-32', 'opacity-0');
+        // 4. FAQ Accordion Logic
+        const faqBtns = document.querySelectorAll('.faq-btn');
+        faqBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const content = btn.nextElementSibling;
+                const icon = btn.querySelector('i');
                 
-                // Hide after 4 seconds
-                setTimeout(() => {
-                    popup.classList.add('translate-y-32', 'opacity-0');
-                }, 4000);
-            }
+                // Toggle kelas hidden
+                content.classList.toggle('hidden');
+                
+                // Putar ikon panah
+                if(content.classList.contains('hidden')){
+                    icon.style.transform = 'rotate(0deg)';
+                } else {
+                    icon.style.transform = 'rotate(180deg)';
+                }
+            });
+        });
 
-            // Start showing after 5 seconds, then every 15 seconds
+        // 5. Countdown Timer (Dummy: Mengulang setiap hari)
+        function updateCountdown() {
+            // Logika sederhana: Hitung sisa waktu ke ujung hari (23:59:59)
+            const now = new Date();
+            const endOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59);
+            const diff = endOfDay - now;
+
+            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('cd-hours').innerText = h.toString().padStart(2, '0');
+            document.getElementById('cd-minutes').innerText = m.toString().padStart(2, '0');
+            document.getElementById('cd-seconds').innerText = s.toString().padStart(2, '0');
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // 6. Fake Live Order Popup
+        const popupNames = ["Budi di Jakarta", "Siti di Bandung", "Agus di Surabaya", "Rina di Medan", "Fikri di Jogja"];
+        const popupEl = document.getElementById('live-order-popup');
+        const popupNameEl = document.getElementById('popup-name');
+
+        function showPopup() {
+            // Pilih nama random
+            const randomName = popupNames[Math.floor(Math.random() * popupNames.length)];
+            popupNameEl.innerText = randomName;
+
+            // Tampilkan popup (hapus translate-y-20 dan opacity-0)
+            popupEl.classList.remove('translate-y-20', 'opacity-0');
+            
+            // Sembunyikan setelah 4 detik
             setTimeout(() => {
-                showFakeOrder();
-                setInterval(showFakeOrder, 15000);
-            }, 5000);
+                popupEl.classList.add('translate-y-20', 'opacity-0');
+            }, 4000);
+        }
 
+        // Jalankan popup setiap 12 detik
+        setInterval(showPopup, 12000);
+
+        // 7. Active Navbar Effect on Scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if(window.scrollY > 50) {
+                navbar.classList.add('shadow-md');
+                navbar.classList.remove('py-2'); // contoh membuat navbar sedikit menyusut
+            } else {
+                navbar.classList.remove('shadow-md');
+            }
         });
     </script>
 </body>
