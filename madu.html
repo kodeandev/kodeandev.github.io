@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeeNatura Honey | Manis Alami, Khasiat Teruji</title>
+    
+    <!-- Google Fonts: Nunito for a playful, rounded, and aesthetic Korean vibe -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Config for Custom Brand Colors & Fonts -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Nunito', 'sans-serif'],
+                    },
+                    colors: {
+                        royalGold: '#D4AF37',
+                        royalGoldLight: '#FDF8E7',
+                        matchaGreen: '#C6D5A8',
+                        matchaDark: '#8A9A65',
+                        coffeeBrown: '#8B5A2B',
+                        aestheticWhite: '#FAFAFA',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-15px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS for Micro-interactions & Masonry -->
+    <style>
+        body {
+            background-color: #FAFAFA;
+            color: #333;
+        }
+        /* Scroll Progress Bar */
+        #progress-bar {
+            transform-origin: 0%;
+        }
+        /* Hide scrollbar for clean aesthetic */
+        .hide-scroll::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scroll {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        /* Reveal Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* CSS Columns for Masonry Gallery */
+        .masonry-grid {
+            column-count: 2;
+            column-gap: 1rem;
+        }
+        @media (min-width: 768px) {
+            .masonry-grid {
+                column-count: 3;
+            }
+        }
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden selection:bg-matchaGreen selection:text-white">
+
+    <!-- Scroll Progress Indicator -->
+    <div id="progress-bar" class="fixed top-0 left-0 h-1 bg-royalGold w-full z-[100] scale-x-0 transition-transform duration-150"></div>
+
+    <!-- 1. NAVIGATION -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4 px-6 lg:px-12 glass">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="#" class="flex items-center gap-2 group">
+                <div class="w-10 h-10 bg-matchaGreen rounded-2xl flex items-center justify-center text-white font-bold text-xl group-hover:rotate-12 transition-transform duration-300">B</div>
+                <span class="text-xl font-bold tracking-tight text-coffeeBrown">BeeNatura</span>
+            </a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-8 font-semibold text-gray-600">
+                <a href="#story" class="hover:text-matchaDark transition-colors">Story</a>
+                <a href="#menu" class="hover:text-matchaDark transition-colors">Produk</a>
+                <a href="#reviews" class="hover:text-matchaDark transition-colors">Testimoni</a>
+                <a href="#promo" class="hover:text-matchaDark transition-colors">Promo</a>
+            </div>
+
+            <a href="#menu" class="hidden md:inline-flex bg-coffeeBrown text-white px-6 py-2.5 rounded-full font-bold shadow-lg shadow-coffeeBrown/30 hover:shadow-coffeeBrown/50 hover:-translate-y-1 active:scale-95 transition-all duration-300">
+                Pesan Sekarang
+            </a>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="mobile-menu-btn" class="md:hidden text-coffeeBrown p-2 bg-white rounded-full shadow-sm">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 bg-white/95 backdrop-blur-md z-40 flex flex-col items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
+        <a href="#story" class="mobile-link text-2xl font-bold text-coffeeBrown my-4">Brand Story</a>
+        <a href="#menu" class="mobile-link text-2xl font-bold text-coffeeBrown my-4">Koleksi Produk</a>
+        <a href="#promo" class="mobile-link text-2xl font-bold text-coffeeBrown my-4">Promo Terbatas</a>
+        <button id="close-menu-btn" class="absolute top-6 right-6 p-2 bg-gray-100 rounded-full">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+    </div>
+
+    <!-- 2. IMMERSIVE HERO SECTION -->
+    <header class="relative min-h-[95vh] flex items-center pt-20 overflow-hidden bg-gradient-to-b from-royalGoldLight to-aestheticWhite">
+        <!-- Abstract Shapes -->
+        <div class="absolute top-20 left-10 w-64 h-64 bg-matchaGreen/20 rounded-full mix-blend-multiply filter blur-3xl animate-pulse-slow"></div>
+        <div class="absolute bottom-20 right-10 w-72 h-72 bg-royalGold/20 rounded-full mix-blend-multiply filter blur-3xl animate-float"></div>
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-12 items-center relative z-10">
+            <div class="text-center lg:text-left reveal">
+                <span class="inline-block py-1.5 px-4 rounded-full bg-white text-royalGold font-bold text-sm shadow-sm mb-6 border border-royalGold/20">✨ Teruji Laboratorium & 100% Murni</span>
+                <h1 class="text-5xl lg:text-7xl font-extrabold text-gray-900 leading-[1.1] mb-6">
+                    Manis Alami,<br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-coffeeBrown to-royalGold">Khasiat Teruji.</span>
+                </h1>
+                <p class="text-lg text-gray-600 mb-8 max-w-lg mx-auto lg:mx-0 leading-relaxed">
+                    Kembalikan energi harimu dengan madu hutan murni asli Indonesia. Tanpa campuran gula, kaya antioksidan, disajikan eksklusif untuk gaya hidup sehatmu.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                    <a href="#menu" class="bg-matchaDark text-white px-8 py-4 rounded-[2rem] font-bold text-lg shadow-xl shadow-matchaDark/30 hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 text-center">
+                        Eksplorasi Produk
+                    </a>
+                    <a href="#video-experience" class="bg-white text-coffeeBrown px-8 py-4 rounded-[2rem] font-bold text-lg shadow-sm border border-gray-100 hover:bg-gray-50 transition-all duration-300 text-center flex items-center justify-center gap-2">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"></path></svg>
+                        Lihat Proses Kami
+                    </a>
+                </div>
+            </div>
+
+            <!-- Immersive Hero Image Composition -->
+            <div class="relative reveal h-[500px] hidden md:block">
+                <img src="img-madu-hero.png" alt="Madu Hutan" class="absolute top-0 right-0 w-3/4 h-[400px] object-cover rounded-[3rem] shadow-2xl z-10 animate-float" style="animation-delay: 0s;">
+                <img src="img-madu-produk-hero.png" alt="Sarang Lebah" class="absolute bottom-0 left-0 w-2/3 h-[300px] object-cover rounded-[3rem] shadow-xl z-20 border-4 border-white animate-float" style="animation-delay: 2s;">
+                
+                <!-- Floating Badge -->
+                <div class="absolute top-1/2 left-[-20px] z-30 bg-white glass p-4 rounded-3xl shadow-xl flex items-center gap-3">
+                    <div class="text-3xl">🍯</div>
+                    <div>
+                        <div class="font-bold text-gray-800">100% Organik</div>
+                        <div class="text-xs text-gray-500">Panen Hutan Liar</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 3. BRAND STORY & 4. NUTRITION TRANSPARENCY (HEALTHY FOOD SPECIFIC) -->
+    <section id="story" class="py-24 bg-aestheticWhite relative">
+        <div class="max-w-5xl mx-auto px-6 text-center reveal">
+            <h2 class="text-3xl md:text-5xl font-bold text-coffeeBrown mb-6">Bukan Sekadar Manis.</h2>
+            <p class="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto mb-16">
+                BeeNatura Honey dipanen langsung dari jantung hutan alami Indonesia. Kami percaya bahwa kesehatan keluarga dimulai dari nutrisi yang jujur. Oleh karena itu, seluruh produk kami melalui <b>uji laboratorium yang transparan</b>.
+            </p>
+
+            <!-- Healthy Food Feature: Transparency Layout -->
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-white p-8 rounded-[2.5rem] shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-16 h-16 bg-royalGoldLight rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">🚫</div>
+                    <h3 class="font-bold text-xl mb-2 text-gray-800">0% Gula Tambahan</h3>
+                    <p class="text-gray-500 text-sm">Rasa manis otentik murni dari nektar bunga alam, aman untuk konsumsi harian keluarga.</p>
+                </div>
+                <div class="bg-white p-8 rounded-[2.5rem] shadow-sm border-2 border-matchaGreen/20 hover:border-matchaGreen transition-colors relative transform md:-translate-y-4">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-matchaGreen text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">Verified Lab</div>
+                    <div class="w-16 h-16 bg-matchaGreen/10 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">🔬</div>
+                    <h3 class="font-bold text-xl mb-2 text-gray-800">Uji Lab Transparan</h3>
+                    <p class="text-gray-500 text-sm">Hasil uji kemurnian dan kadar enzim diastase dapat kamu akses langsung melalui QR code di kemasan.</p>
+                </div>
+                <div class="bg-white p-8 rounded-[2.5rem] shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-16 h-16 bg-royalGoldLight rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">🛡️</div>
+                    <h3 class="font-bold text-xl mb-2 text-gray-800">Kaya Antioksidan</h3>
+                    <p class="text-gray-500 text-sm">Memperkuat sistem imun (daya tahan tubuh) terutama bagi pekerja kantoran dan Gen Z yang aktif.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. VISUAL PRODUCT SHOWCASE (MASONRY GALLERY) -->
+    <section class="py-12 bg-white reveal">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Estetika Dalam Setiap Tetes</h2>
+            <div class="masonry-grid">
+                <!-- Aesthetic image composition -->
+                <div class="masonry-item rounded-[2rem] overflow-hidden relative group">
+                    <img src="img-madu-floating-badge.png" class="w-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Madu tuang">
+                    <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <span class="text-white font-bold tracking-widest uppercase">Pure</span>
+                    </div>
+                </div>
+                <div class="masonry-item rounded-[2rem] overflow-hidden relative group">
+                    <img src="img-madu-brand-story-1.png" class="w-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Royal Jelly">
+                </div>
+                <div class="masonry-item rounded-[2rem] overflow-hidden relative group">
+                    <img src="img-madu-brand-story-2.png" class="w-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Healthy Lifestyle">
+                </div>
+                <div class="masonry-item rounded-[2rem] overflow-hidden relative group">
+                    <img src="img-madu-produk-2.png" class="w-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Bee pollen">
+                </div>
+                <div class="masonry-item rounded-[2rem] overflow-hidden relative group">
+                    <img src="img-madu-produk-3.png" class="w-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Bee pollen">
+                </div>
+                <div class="masonry-item rounded-[2rem] overflow-hidden relative group">
+                    <img src="img-madu-produk-4.png" class="w-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Bee pollen">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. MENU EXPERIENCE SECTION -->
+    <section id="menu" class="py-24 bg-gray-50 reveal">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-extrabold text-gray-900 mb-4">Koleksi Alam Terbaik</h2>
+                <p class="text-gray-500">Pilih madu favorit yang sesuai dengan kebutuhan nutrisi harianmu.</p>
+            </div>
+
+            <!-- Modern Product Card Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="product-grid">
+                <!-- Produk di-generate via JS untuk menjaga kerapian HTML (Lihat script di bawah) -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 7 & 8. VIDEO SHORT CONTENT (TIKTOK/REELS STYLE) -->
+    <section id="video-experience" class="py-20 bg-black text-white overflow-hidden reveal">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="flex justify-between items-end mb-8">
+                <div>
+                    <h2 class="text-3xl font-bold mb-2">Cerita dari Hutan</h2>
+                    <p class="text-gray-400">Intip proses panen alami kami (@beenaturahoney)</p>
+                </div>
+                <a href="https://tiktok.com/@beenaturahoney" target="_blank" class="hidden md:block bg-white text-black px-6 py-2 rounded-full font-bold hover:scale-105 transition-transform">Follow TikTok</a>
+            </div>
+
+            <!-- Swipeable Mobile Experience -->
+            <div class="flex overflow-x-auto gap-4 pb-8 hide-scroll snap-x snap-mandatory">
+                <!-- Dummy Video Card 1 -->
+                <div class="min-w-[280px] h-[500px] bg-gray-900 rounded-[2rem] relative snap-center group overflow-hidden cursor-pointer">
+                    <img src="img-madu-video-1.png" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity" alt="Video cover">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-14 h-14 bg-white/30 backdrop-blur-md rounded-full flex items-center justify-center text-white group-hover:scale-110 transition-transform">
+                            <svg class="w-6 h-6 ml-1" fill="currentColor" viewBox="0 0 20 20"><path d="M8 5v10l7-5-7-5z"></path></svg>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-6 left-6 right-6">
+                        <p class="font-bold text-lg leading-tight">Proses Panen Hutan Liar Sumbawa 🐝</p>
+                    </div>
+                </div>
+                <!-- Dummy Video Card 2 -->
+                <div class="min-w-[280px] h-[500px] bg-gray-900 rounded-[2rem] relative snap-center group overflow-hidden cursor-pointer">
+                    <img src="img-madu-video-2.png" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity" alt="Video cover">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-14 h-14 bg-white/30 backdrop-blur-md rounded-full flex items-center justify-center text-white group-hover:scale-110 transition-transform">
+                            <svg class="w-6 h-6 ml-1" fill="currentColor" viewBox="0 0 20 20"><path d="M8 5v10l7-5-7-5z"></path></svg>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-6 left-6 right-6">
+                        <p class="font-bold text-lg leading-tight">Uji Lab: Kenapa Madu Asli Kadang Bergas? 🔬</p>
+                    </div>
+                </div>
+                <!-- Dummy Video Card 3 -->
+                <div class="min-w-[280px] h-[500px] bg-gray-900 rounded-[2rem] relative snap-center group overflow-hidden cursor-pointer">
+                    <img src="img-madu-video-1.png" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity" alt="Video cover">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-14 h-14 bg-white/30 backdrop-blur-md rounded-full flex items-center justify-center text-white group-hover:scale-110 transition-transform">
+                            <svg class="w-6 h-6 ml-1" fill="currentColor" viewBox="0 0 20 20"><path d="M8 5v10l7-5-7-5z"></path></svg>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-6 left-6 right-6">
+                        <p class="font-bold text-lg leading-tight">Resep Matcha Honey Latte 🍵🍯</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. PROMO CAMPAIGN SECTION -->
+    <section id="promo" class="py-20 relative overflow-hidden reveal">
+        <!-- Aesthetic Gradient Background -->
+        <div class="absolute inset-0 bg-gradient-to-r from-royalGoldLight to-matchaGreen/20"></div>
+        
+        <div class="max-w-4xl mx-auto px-6 relative z-10 text-center bg-white/60 glass p-10 md:p-16 rounded-[3rem] border border-white">
+            <span class="inline-block bg-red-500 text-white font-bold px-4 py-1 rounded-full text-sm mb-4 animate-bounce">🔥 Flash Promo Hari Ini</span>
+            <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mb-6">Gratis Ongkir & Sendok Kayu Premium!</h2>
+            <p class="text-gray-700 text-lg mb-8">Khusus untuk pembelian minimal Rp200.000 dan terbatas untuk <b>50 pembeli pertama</b>. Segera amankan kuotamu!</p>
+            
+            <!-- Countdown Timer -->
+            <div class="flex justify-center gap-4 mb-8">
+                <div class="bg-white p-4 rounded-2xl shadow-sm w-20">
+                    <div id="hours" class="text-3xl font-extrabold text-coffeeBrown">00</div>
+                    <div class="text-xs text-gray-500 font-bold uppercase">Jam</div>
+                </div>
+                <div class="text-3xl font-bold text-coffeeBrown mt-3">:</div>
+                <div class="bg-white p-4 rounded-2xl shadow-sm w-20">
+                    <div id="minutes" class="text-3xl font-extrabold text-coffeeBrown">00</div>
+                    <div class="text-xs text-gray-500 font-bold uppercase">Menit</div>
+                </div>
+                <div class="text-3xl font-bold text-coffeeBrown mt-3">:</div>
+                <div class="bg-white p-4 rounded-2xl shadow-sm w-20">
+                    <div id="seconds" class="text-3xl font-extrabold text-coffeeBrown">00</div>
+                    <div class="text-xs text-gray-500 font-bold uppercase">Detik</div>
+                </div>
+            </div>
+
+            <a href="https://wa.me/6281234567890" target="_blank" class="inline-block bg-coffeeBrown text-white px-10 py-4 rounded-full font-bold text-lg shadow-xl hover:scale-105 active:scale-95 transition-all duration-300 animate-pulse-slow">
+                Klaim Promo Sekarang
+            </a>
+        </div>
+    </section>
+
+    <!-- 10. TESTIMONIAL EXPERIENCE -->
+    <section id="reviews" class="py-24 bg-aestheticWhite reveal">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <h2 class="text-3xl font-bold text-center mb-16 text-gray-800">Apa Kata Mereka?</h2>
+            
+            <div class="flex overflow-x-auto gap-6 pb-12 hide-scroll snap-x">
+                <!-- Card 1 -->
+                <div class="min-w-[320px] max-w-[320px] bg-white p-8 rounded-[2rem] shadow-sm snap-center">
+                    <div class="flex text-royalGold mb-4 text-xl">★★★★★</div>
+                    <p class="text-gray-600 mb-6 italic">"Awalnya ragu beli madu online takut palsu, tapi pas cek webnya BeeNatura dan ada hasil lab, langsung yakin. Rasanya emang beda, enak banget buat campuran teh tiap pagi!"</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-gray-200 rounded-full overflow-hidden"><img src="https://i.pravatar.cc/100?img=1" alt="User"></div>
+                        <div>
+                            <div class="font-bold text-gray-800">Sarah A.</div>
+                            <div class="text-sm text-gray-500">Pekerja Kantoran</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="min-w-[320px] max-w-[320px] bg-white p-8 rounded-[2rem] shadow-sm snap-center">
+                    <div class="flex text-royalGold mb-4 text-xl">★★★★★</div>
+                    <p class="text-gray-600 mb-6 italic">"Beli Paket Hampers Exclusive buat mertua, packagingnya parah sih, mewah banget (Korean aesthetic gitu!). Mertua suka banget sama Madu Randu-nya."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-gray-200 rounded-full overflow-hidden"><img src="https://i.pravatar.cc/100?img=5" alt="User"></div>
+                        <div>
+                            <div class="font-bold text-gray-800">Rizky D.</div>
+                            <div class="text-sm text-gray-500">Gen Z / Mahasiswa</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="min-w-[320px] max-w-[320px] bg-white p-8 rounded-[2rem] shadow-sm snap-center">
+                    <div class="flex text-royalGold mb-4 text-xl">★★★★★</div>
+                    <p class="text-gray-600 mb-6 italic">"Produk Bee Pollen & Royal Jelly-nya the best. Sejak rutin konsumsi daya tahan tubuh lebih fit ga gampang tumbang padahal jadwal nge-gym lagi padat."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-gray-200 rounded-full overflow-hidden"><img src="https://i.pravatar.cc/100?img=11" alt="User"></div>
+                        <div>
+                            <div class="font-bold text-gray-800">Bima F.</div>
+                            <div class="text-sm text-gray-500">Fitness Enthusiast</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11. FAQ SECTION -->
+    <section class="py-20 bg-white reveal">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-10 text-gray-800">Pertanyaan Sering Diajukan</h2>
+            <div class="space-y-4">
+                <!-- Accordion Item 1 -->
+                <details class="group bg-gray-50 rounded-[1.5rem] p-6 cursor-pointer open:bg-royalGoldLight transition-colors">
+                    <summary class="font-bold text-lg text-gray-800 flex justify-between items-center list-none outline-none">
+                        Apakah madu ini 100% murni tanpa campuran?
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg>
+                        </span>
+                    </summary>
+                    <p class="text-gray-600 mt-4 leading-relaxed">Tentu. BeeNatura 100% dipanen langsung dari hutan tanpa proses pasteurisasi atau penambahan pemanis buatan. Hasil uji lab lengkap tertera transparan di setiap deskripsi produk.</p>
+                </details>
+                <!-- Accordion Item 2 -->
+                <details class="group bg-gray-50 rounded-[1.5rem] p-6 cursor-pointer open:bg-royalGoldLight transition-colors">
+                    <summary class="font-bold text-lg text-gray-800 flex justify-between items-center list-none outline-none">
+                        Apakah aman untuk ibu hamil dan anak-anak?
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"/></svg>
+                        </span>
+                    </summary>
+                    <p class="text-gray-600 mt-4 leading-relaxed">Madu asli sangat baik untuk ibu hamil sebagai sumber energi alami. Untuk anak-anak, aman dikonsumsi asalkan usia anak sudah di atas 1 tahun (anjuran medis umum).</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- 12. FINAL CONVERSION & FOOTER -->
+    <footer class="bg-coffeeBrown text-white pt-20 pb-10 rounded-t-[3rem] relative mt-12 reveal">
+        <div class="max-w-4xl mx-auto px-6 text-center mb-16">
+            <h2 class="text-4xl font-extrabold mb-6">Mulai Gaya Hidup Sehatmu Hari Ini</h2>
+            <p class="text-royalGoldLight mb-8 text-lg">Konsumsi madu murni, sayangi tubuhmu. Pesan sekarang dan dapatkan pengiriman cepat ke seluruh Indonesia.</p>
+            <a href="https://wa.me/6281234567890" target="_blank" class="inline-flex items-center gap-3 bg-matchaGreen text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-matchaDark hover:scale-105 transition-all shadow-lg">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+                Pesan via WhatsApp
+            </a>
+        </div>
+        
+        <div class="border-t border-white/10 pt-8 max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="text-xl font-bold tracking-tight">BeeNatura</div>
+            <div class="text-sm text-gray-400">© 2026 BeeNatura Honey. All rights reserved.</div>
+            <div class="flex gap-4">
+                <a href="https://instagram.com/beenaturahoney" class="hover:text-royalGold transition-colors">Instagram</a>
+                <a href="https://tiktok.com/@beenaturahoney" class="hover:text-royalGold transition-colors">TikTok</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Fake Live Order Popup (Social Proof) -->
+    <div id="fake-popup" class="fixed bottom-24 md:bottom-8 left-6 bg-white glass p-4 rounded-2xl shadow-xl flex items-center gap-4 z-40 transform translate-y-20 opacity-0 transition-all duration-500 pointer-events-none">
+        <div class="w-12 h-12 bg-matchaGreen/20 rounded-full flex items-center justify-center text-xl">🛍️</div>
+        <div>
+            <p class="text-sm text-gray-500"><span id="popup-name" class="font-bold text-gray-800">Seseorang</span> baru saja membeli</p>
+            <p id="popup-item" class="font-bold text-matchaDark text-sm">Madu Hutan 500ml</p>
+            <p class="text-xs text-gray-400 mt-1" id="popup-time">Beberapa detik yang lalu</p>
+        </div>
+    </div>
+
+    <!-- Sticky Mobile Bottom Bar (Modern 2026 Mobile UI) -->
+    <div class="md:hidden fixed bottom-0 left-0 w-full bg-white/90 backdrop-blur-md border-t border-gray-100 p-4 z-50 flex justify-between items-center">
+        <div>
+            <div class="text-xs text-gray-500 font-bold uppercase">Mulai dari</div>
+            <div class="font-bold text-coffeeBrown text-lg">Rp75.000</div>
+        </div>
+        <a href="https://wa.me/6281234567890" class="bg-matchaGreen text-white px-6 py-2 rounded-full font-bold shadow-md active:scale-95 transition-transform">
+            Beli Sekarang
+        </a>
+    </div>
+
+    <!-- INTERNAL JAVASCRIPT -->
+    <script>
+        // 1. Data Produk Dinamis (dirender via JS agar HTML rapi)
+        const products = [
+            { name: "Madu Hutan Asli 250ml", price: "Rp75.000", tag: "Best Seller", delay: "0" },
+            { name: "Madu Hutan Asli 500ml", price: "Rp135.000", tag: "Hemat", delay: "100" },
+            { name: "Madu Hutan Premium 1L", price: "Rp240.000", tag: "Family", delay: "200" },
+            { name: "Madu Kaliandra", price: "Rp95.000", tag: "Herbal", delay: "300" },
+            { name: "Madu Randu", price: "Rp89.000", tag: "", delay: "0" },
+            { name: "Royal Jelly Fresh", price: "Rp120.000", tag: "Premium", delay: "100" },
+            { name: "Bee Pollen Premium", price: "Rp110.000", tag: "Superfood", delay: "200" },
+            { name: "Propolis Extract", price: "Rp150.000", tag: "Immunity", delay: "300" },
+            { name: "Paket Healthy Family", price: "Rp299.000", tag: "Bundle", delay: "0" },
+            { name: "Paket Hampers Exclusive", price: "Rp399.000", tag: "Gift", delay: "100" }
+        ];
+
+        const productGrid = document.getElementById('product-grid');
+        products.forEach(product => {
+            const tagHTML = product.tag ? `<span class="absolute top-4 left-4 bg-royalGold text-white text-xs font-bold px-3 py-1 rounded-full shadow-md z-10">${product.tag}</span>` : '';
+            const card = `
+                <div class="bg-white rounded-[2rem] p-4 shadow-sm hover:shadow-xl transition-all duration-300 group relative reveal" style="transition-delay: ${product.delay}ms">
+                    ${tagHTML}
+                    <div class="h-48 bg-gray-100 rounded-3xl mb-4 overflow-hidden relative">
+                        <!-- Dummy Image Placeholders -->
+                        <div class="absolute inset-0 bg-gradient-to-tr from-matchaGreen/20 to-royalGold/20 mix-blend-multiply"></div>
+                        <img src="img-madu-produk-1.png" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80" alt="${product.name}">
+                    </div>
+                    <div class="px-2">
+                        <h3 class="font-bold text-lg text-gray-800 mb-1">${product.name}</h3>
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="font-extrabold text-coffeeBrown text-lg">${product.price}</span>
+                            <a href="https://wa.me/6281234567890?text=Halo%20Admin,%20saya%20mau%20pesan%20${encodeURIComponent(product.name)}" class="w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center text-matchaDark hover:bg-matchaGreen hover:text-white transition-colors">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+            productGrid.innerHTML += card;
+        });
+
+        // 2. Scroll Progress Bar & Navbar Glass Effect
+        const navbar = document.getElementById('navbar');
+        const progressBar = document.getElementById('progress-bar');
+        
+        window.addEventListener('scroll', () => {
+            // Scroll Progress
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            progressBar.style.transform = `scaleX(${scrolled / 100})`;
+            
+            // Navbar effect
+            if (winScroll > 50) {
+                navbar.classList.add('shadow-sm', 'bg-white/80');
+                navbar.classList.remove('py-4');
+                navbar.classList.add('py-2');
+            } else {
+                navbar.classList.remove('shadow-sm', 'bg-white/80');
+                navbar.classList.add('py-4');
+                navbar.classList.remove('py-2');
+            }
+        });
+
+        // 3. Reveal Animation on Scroll (Intersection Observer)
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    // Optional: stop observing once revealed
+                    // revealObserver.unobserve(entry.target); 
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // 4. Mobile Menu Toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function toggleMenu() {
+            const isClosed = mobileMenu.classList.contains('opacity-0');
+            if (isClosed) {
+                mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
+            } else {
+                mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+            }
+        }
+        mobileBtn.addEventListener('click', toggleMenu);
+        closeMenuBtn.addEventListener('click', toggleMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
+
+        // 5. Countdown Timer Logic (Promo Section)
+        // Set time to end of today
+        const countDownDate = new Date();
+        countDownDate.setHours(23, 59, 59, 0);
+
+        const x = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countDownDate.getTime() - now;
+
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
+
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("hours").innerHTML = "00";
+                // Optionally hide or reset the timer
+            }
+        }, 1000);
+
+        // 6. Fake Live Order Popup (Social Proof)
+        const popup = document.getElementById('fake-popup');
+        const names = ["Andi dari Jakarta", "Siska dari Bandung", "Budi dari Surabaya", "Rina dari Bali", "Dewi dari Jogja"];
+        const popupName = document.getElementById('popup-name');
+        const popupItem = document.getElementById('popup-item');
+        const popupTime = document.getElementById('popup-time');
+
+        function showFakeOrder() {
+            // Randomize data
+            const randomName = names[Math.floor(Math.random() * names.length)];
+            const randomProduct = products[Math.floor(Math.random() * products.length)].name;
+            const randomTime = Math.floor(Math.random() * 15) + 1; // 1-15 detik
+            
+            popupName.innerText = randomName;
+            popupItem.innerText = randomProduct;
+            popupTime.innerText = `${randomTime} detik yang lalu`;
+
+            // Animate In
+            popup.classList.remove('translate-y-20', 'opacity-0');
+            
+            // Animate Out after 4 seconds
+            setTimeout(() => {
+                popup.classList.add('translate-y-20', 'opacity-0');
+            }, 4000);
+        }
+
+        // Show a popup every 12 seconds
+        setInterval(showFakeOrder, 12000);
+        
+        // Initial popup trigger after 3 seconds
+        setTimeout(showFakeOrder, 3000);
+
+    </script>
+</body>
+</html>
