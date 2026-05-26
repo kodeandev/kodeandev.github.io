@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NusaThread Studio | Tradisi Elegan, Gaya Masa Kini</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400&family=Manrope:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        editorial: ['"Playfair Display"', 'serif'],
+                        sans: ['"Manrope"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            navy: '#0f172a',    // Midnight Blue Premium
+                            gold: '#fbbf24',    // Gold Royal Exclusive
+                            sage: '#84a59d',    // Sage Green Calm
+                            maroon: '#7f1d1d',  // Maroon Luxury
+                        }
+                    },
+                    animation: {
+                        'spin-slow': 'spin 8s linear infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-gold': 'pulseGold 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-15px)' },
+                        },
+                        pulseGold: {
+                            '0%, 100%': { opacity: 1 },
+                            '50%': { opacity: .7, boxShadow: '0 0 20px rgba(251, 191, 36, 0.5)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* UI Mood: Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-dark {
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        /* Motion Style: Apple-style Motion */
+        .apple-transition {
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .hover-scale:hover {
+            transform: scale(1.03);
+        }
+        
+        /* Layout Style: Asymmetrical & Bold */
+        .angled-section {
+            clip-path: polygon(0 0, 100% 5%, 100% 100%, 0 95%);
+        }
+        .text-outline {
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255,255,255,0.3);
+        }
+
+        /* Scrollbar & Utilities */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #fbbf24; border-radius: 10px; }
+        .hide-scroll::-webkit-scrollbar { display: none; }
+        .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Reveal Animation */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body class="bg-brand-navy text-white font-sans antialiased overflow-x-hidden selection:bg-brand-gold selection:text-brand-navy">
+
+    <!-- Scroll Progress Bar -->
+    <div class="fixed top-0 left-0 w-full h-1 z-50">
+        <div id="scroll-progress" class="h-full bg-brand-gold w-0 transition-all duration-300"></div>
+    </div>
+
+    <!-- 1. NAVIGATION -->
+    <nav id="navbar" class="fixed w-full z-40 transition-all duration-500 py-4">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center glass rounded-full">
+            <a href="#" class="text-2xl font-editorial font-bold tracking-wider py-3 px-6 flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-brand-gold block"></span> NusaThread.
+            </a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8 items-center px-6">
+                <a href="#collection" class="text-sm font-semibold hover:text-brand-gold transition">Collection</a>
+                <a href="#experience" class="text-sm font-semibold hover:text-brand-gold transition">Experience</a>
+                <a href="#subscription" class="text-sm font-semibold hover:text-brand-gold transition flex items-center gap-1">
+                    <i class="fa-solid fa-crown text-brand-gold text-xs"></i> VIP Club
+                </a>
+            </div>
+
+            <div class="hidden md:block pr-2">
+                <a href="#order" class="bg-brand-gold text-brand-navy px-6 py-3 rounded-full font-bold text-sm hover:bg-yellow-300 apple-transition hover-scale inline-block">
+                    Order Now
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="mobile-menu-btn" class="md:hidden text-white pr-6 py-3 focus:outline-none">
+                <i class="fa-solid fa-bars text-2xl"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Sidebar -->
+    <div id="mobile-menu" class="fixed inset-0 bg-brand-navy/95 backdrop-blur-xl z-50 transform translate-x-full transition-transform duration-500 flex flex-col justify-center items-center space-y-8 hidden">
+        <button id="close-menu-btn" class="absolute top-8 right-8 text-3xl"><i class="fa-solid fa-xmark"></i></button>
+        <a href="#collection" class="text-3xl font-editorial mobile-link">Collection</a>
+        <a href="#experience" class="text-3xl font-editorial mobile-link">Experience</a>
+        <a href="#subscription" class="text-3xl font-editorial text-brand-gold mobile-link">VIP Subscription</a>
+        <a href="#order" class="text-xl bg-brand-gold text-brand-navy px-8 py-4 rounded-full font-bold mt-4 mobile-link">Order Now</a>
+    </div>
+
+    <!-- 2. IMMERSIVE HERO -->
+    <!-- Visual Style: Bold Street Food (Big bold typography, dynamic sticker) + Editorial Layout -->
+    <section class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+        <!-- Background elements -->
+        <div class="absolute top-0 right-0 w-2/3 h-full bg-gradient-to-l from-brand-maroon/40 to-transparent z-0"></div>
+        <div class="absolute -top-40 -left-40 w-96 h-96 bg-brand-gold/20 rounded-full blur-[100px] z-0"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-8 relative z-10 items-center">
+            <!-- Asymmetrical Left: Huge Editorial Text -->
+            <div class="md:col-span-7 space-y-6">
+                <div class="inline-block glass px-4 py-2 rounded-full text-brand-gold font-bold text-sm tracking-widest uppercase mb-4">
+                    Collection 2026
+                </div>
+                <h1 class="text-6xl md:text-8xl font-editorial font-bold leading-[1.1]">
+                    Tradisi <br>
+                    <span class="italic text-brand-gold">Elegan,</span><br>
+                    Gaya Masa Kini.
+                </h1>
+                <p class="text-lg md:text-xl text-gray-300 font-light max-w-lg mt-6">
+                    Potongan slim-fit minimalis. Material premium. Cocok untuk meeting, nongkrong, hingga acara formal.
+                </p>
+                <div class="flex flex-wrap gap-4 mt-8">
+                    <a href="#order" class="bg-brand-gold text-brand-navy px-8 py-4 rounded-full font-bold text-lg hover:bg-yellow-300 apple-transition hover-scale shadow-lg shadow-brand-gold/30">
+                        Explore Collection
+                    </a>
+                    <a href="#video" class="glass px-8 py-4 rounded-full font-bold text-lg text-white apple-transition hover:bg-white/10 flex items-center gap-3">
+                        <i class="fa-solid fa-play"></i> Watch Campaign
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Asymmetrical Right: Floating Images & Bold Sticker -->
+            <div class="md:col-span-5 relative mt-16 md:mt-0 h-[500px] md:h-[700px] flex justify-center items-center">
+                <img src="img-batik-hero.png" alt="Batik Model" class="w-full h-full object-cover rounded-[2rem] object-top shadow-2xl glass p-2 apple-transition animate-float">
+                
+                <!-- Bold Street Food Style Sticker -->
+                <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-brand-maroon text-white rounded-full flex flex-col justify-center items-center text-center p-4 border-4 border-brand-gold transform -rotate-12 shadow-2xl z-20 apple-transition hover-scale">
+                    <span class="font-bold text-sm uppercase">Grand Launch</span>
+                    <span class="font-editorial text-4xl font-bold text-brand-gold">25%</span>
+                    <span class="font-bold text-sm">OFF NOW!</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce">
+            <span class="text-xs tracking-widest uppercase text-gray-400 mb-2">Scroll</span>
+            <i class="fa-solid fa-arrow-down text-brand-gold"></i>
+        </div>
+    </section>
+
+    <!-- 3. BRAND STORY / PRODUCT EXPERIENCE -->
+    <section id="experience" class="py-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+            <!-- Asymmetrical Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center reveal">
+                <!-- Image offset -->
+                <div class="md:col-span-5 md:mt-24">
+                    <div class="relative glass p-2 rounded-[2rem]">
+                        <img src="img-batik-brand-story.png" alt="Detail Tenun" class="w-full h-[500px] object-cover rounded-[1.5rem]">
+                        <div class="absolute top-6 -right-6 glass-dark px-6 py-4 rounded-xl shadow-2xl border-l-4 border-brand-gold">
+                            <p class="font-bold text-xl text-brand-gold">100%</p>
+                            <p class="text-xs text-gray-300">Premium Material</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Text block -->
+                <div class="md:col-span-7 space-y-8 pl-0 md:pl-12">
+                    <h2 class="text-5xl md:text-7xl font-editorial font-bold text-outline uppercase opacity-30">The Craft</h2>
+                    <h3 class="text-4xl font-editorial font-bold text-brand-gold leading-tight mt-[-40px]">
+                        Bukan Sekadar Pakaian, Ini Identitas Anda.
+                    </h3>
+                    <p class="text-gray-300 text-lg leading-relaxed">
+                        Kami menggabungkan pola batik dan tenun otentik dengan siluet *street-ready* modern. Dirancang untuk generasi muda yang bangga dengan budaya lokal tanpa harus mengorbankan estetika fashion kontemporer.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6 pt-6">
+                        <div class="glass p-6 rounded-2xl apple-transition hover-scale border-t-2 border-transparent hover:border-brand-gold">
+                            <i class="fa-solid fa-shirt text-3xl text-brand-gold mb-4"></i>
+                            <h4 class="font-bold text-xl mb-2">Slim-Fit Modern</h4>
+                            <p class="text-sm text-gray-400">Potongan pas badan, mudah di-mix & match.</p>
+                        </div>
+                        <div class="glass p-6 rounded-2xl apple-transition hover-scale border-t-2 border-transparent hover:border-brand-gold">
+                            <i class="fa-solid fa-leaf text-3xl text-brand-sage mb-4"></i>
+                            <h4 class="font-bold text-xl mb-2">Breathable</h4>
+                            <p class="text-sm text-gray-400">Adem dan nyaman dipakai seharian penuh.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. VISUAL PRODUCT SHOWCASE (SLIDER) & 6. MENU EXPERIENCE -->
+    <section id="collection" class="py-24 bg-gradient-to-b from-brand-navy to-[#0a0f1d] relative">
+        <div class="max-w-[100vw] overflow-hidden pl-6 md:pl-24">
+            <div class="mb-12 flex justify-between items-end pr-6 md:pr-24 reveal">
+                <div>
+                    <h2 class="text-sm font-bold tracking-widest text-brand-gold uppercase mb-2">Menu Collection</h2>
+                    <h3 class="text-4xl md:text-5xl font-editorial font-bold">Pilih Gaya Khasmu.</h3>
+                </div>
+                <div class="hidden md:flex gap-4">
+                    <button id="slide-left" class="w-12 h-12 rounded-full glass flex justify-center items-center hover:bg-white/10 apple-transition"><i class="fa-solid fa-chevron-left"></i></button>
+                    <button id="slide-right" class="w-12 h-12 rounded-full glass flex justify-center items-center hover:bg-white/10 apple-transition"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Slider Container (Bold Product Cards) -->
+            <div id="product-slider" class="flex gap-6 overflow-x-auto hide-scroll pb-12 snap-x snap-mandatory reveal">
+                <!-- Product 1 -->
+                <div class="min-w-[280px] md:min-w-[350px] snap-center relative group">
+                    <div class="glass p-3 rounded-[2rem] h-full apple-transition hover-scale flex flex-col">
+                        <div class="relative overflow-hidden rounded-[1.5rem] h-[350px]">
+                            <img src="img-batik-produk-1.png" class="w-full h-full object-cover apple-transition group-hover:scale-110" alt="Kemeja Batik">
+                            <div class="absolute top-4 left-4 glass px-3 py-1 rounded-full text-xs font-bold bg-brand-maroon/80">Best Seller</div>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div>
+                                <h4 class="font-editorial font-bold text-2xl mb-1">Kemeja Batik Slim Fit</h4>
+                                <p class="text-sm text-gray-400 mb-4">Navy Gold Edition</p>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-xl text-brand-gold">Rp189.000</span>
+                                <button class="w-10 h-10 rounded-full bg-white text-brand-navy flex justify-center items-center hover:bg-brand-gold apple-transition"><i class="fa-solid fa-cart-shopping"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="min-w-[280px] md:min-w-[350px] snap-center relative group">
+                    <div class="glass p-3 rounded-[2rem] h-full apple-transition hover-scale flex flex-col">
+                        <div class="relative overflow-hidden rounded-[1.5rem] h-[350px]">
+                            <img src="img-batik-produk-2.png" class="w-full h-full object-cover apple-transition group-hover:scale-110" alt="Outer Tenun">
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div>
+                                <h4 class="font-editorial font-bold text-2xl mb-1">Outer Tenun Modern</h4>
+                                <p class="text-sm text-gray-400 mb-4">Sage Green Calm</p>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-xl text-brand-gold">Rp249.000</span>
+                                <button class="w-10 h-10 rounded-full bg-white text-brand-navy flex justify-center items-center hover:bg-brand-gold apple-transition"><i class="fa-solid fa-cart-shopping"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="min-w-[280px] md:min-w-[350px] snap-center relative group">
+                    <div class="glass p-3 rounded-[2rem] h-full apple-transition hover-scale flex flex-col">
+                        <div class="relative overflow-hidden rounded-[1.5rem] h-[350px]">
+                            <img src="img-batik-produk-3.png" class="w-full h-full object-cover apple-transition group-hover:scale-110" alt="Batik Couple">
+                            <div class="absolute top-4 left-4 glass px-3 py-1 rounded-full text-xs font-bold bg-brand-gold text-brand-navy">Limited</div>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div>
+                                <h4 class="font-editorial font-bold text-2xl mb-1">Batik Couple Premium</h4>
+                                <p class="text-sm text-gray-400 mb-4">Exclusive Set</p>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-xl text-brand-gold">Rp379.000</span>
+                                <button class="w-10 h-10 rounded-full bg-white text-brand-navy flex justify-center items-center hover:bg-brand-gold apple-transition"><i class="fa-solid fa-cart-shopping"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="min-w-[280px] md:min-w-[350px] snap-center relative group">
+                    <div class="glass p-3 rounded-[2rem] h-full apple-transition hover-scale flex flex-col">
+                        <div class="relative overflow-hidden rounded-[1.5rem] h-[350px]">
+                            <img src="img-batik-produk-4.png" class="w-full h-full object-cover apple-transition group-hover:scale-110" alt="Dress Batik">
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div>
+                                <h4 class="font-editorial font-bold text-2xl mb-1">Dress Batik Modern</h4>
+                                <p class="text-sm text-gray-400 mb-4">Casual & Elegant</p>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-xl text-brand-gold">Rp289.000</span>
+                                <button class="w-10 h-10 rounded-full bg-white text-brand-navy flex justify-center items-center hover:bg-brand-gold apple-transition"><i class="fa-solid fa-cart-shopping"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Spacer for mobile scroll -->
+                <div class="min-w-[20px] md:min-w-[50px] snap-center"></div>
+            </div>
+            
+            <div class="text-center mt-8 pr-6 md:pr-24 reveal">
+                <a href="#order" class="text-brand-gold font-bold hover:underline">Lihat Semua 10 Koleksi Lengkap &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. PROMO CAMPAIGN & CONVERSION STYLE: SUBSCRIPTION -->
+    <section id="subscription" class="py-24 relative angled-section bg-gradient-to-br from-brand-maroon to-black">
+        <!-- Floating particles -->
+        <div class="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-brand-gold via-transparent to-transparent bg-[length:20px_20px]"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 relative z-10 text-center reveal">
+            <h2 class="text-brand-gold font-bold tracking-widest uppercase mb-4 text-sm">Exclusive Launch Promo</h2>
+            <h3 class="text-5xl md:text-7xl font-editorial font-bold mb-6 text-white shadow-sm">NusaThread VIP Club</h3>
+            <p class="text-xl text-gray-200 max-w-2xl mx-auto mb-10">
+                Berlangganan sekarang! Dapatkan rilis Batik & Tenun eksklusif setiap bulan langsung ke pintu Anda. Diskon 25% + Gratis Totebag Etnik untuk pendaftaran hari ini.
+            </p>
+            
+            <!-- Countdown -->
+            <div class="flex justify-center gap-4 mb-12">
+                <div class="glass p-4 rounded-2xl min-w-[80px]">
+                    <span id="days" class="text-3xl font-bold font-editorial text-brand-gold">02</span>
+                    <p class="text-xs text-gray-400 uppercase mt-1">Hari</p>
+                </div>
+                <div class="glass p-4 rounded-2xl min-w-[80px]">
+                    <span id="hours" class="text-3xl font-bold font-editorial text-brand-gold">14</span>
+                    <p class="text-xs text-gray-400 uppercase mt-1">Jam</p>
+                </div>
+                <div class="glass p-4 rounded-2xl min-w-[80px]">
+                    <span id="minutes" class="text-3xl font-bold font-editorial text-brand-gold">45</span>
+                    <p class="text-xs text-gray-400 uppercase mt-1">Menit</p>
+                </div>
+                <div class="glass p-4 rounded-2xl min-w-[80px]">
+                    <span id="seconds" class="text-3xl font-bold font-editorial text-brand-gold">20</span>
+                    <p class="text-xs text-gray-400 uppercase mt-1">Detik</p>
+                </div>
+            </div>
+
+            <!-- Dummy Stock Progress -->
+            <div class="max-w-md mx-auto mb-10">
+                <div class="flex justify-between text-sm mb-2 font-bold">
+                    <span class="text-brand-gold">Slot VIP Tersedia</span>
+                    <span>18 / 100</span>
+                </div>
+                <div class="h-3 w-full bg-black/50 rounded-full overflow-hidden">
+                    <div class="h-full bg-brand-gold w-[82%] rounded-full animate-pulse-gold"></div>
+                </div>
+            </div>
+
+            <a href="https://wa.me/6281277889900" target="_blank" class="bg-brand-gold text-brand-navy px-10 py-5 rounded-full font-bold text-xl hover:bg-yellow-300 apple-transition hover-scale inline-block shadow-[0_0_30px_rgba(251,191,36,0.3)] border-2 border-brand-gold">
+                Join VIP Club Now
+            </a>
+            <p class="text-sm mt-6 text-gray-300">*Promo Buy 2 Get Free Ongkir seluruh Indonesia berlaku.</p>
+        </div>
+    </section>
+
+    <!-- 8. VIDEO / SHORT CONTENT SECTION -->
+    <section id="video" class="py-24 relative overflow-hidden bg-brand-navy">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl md:text-5xl font-editorial font-bold">In Motion.</h2>
+                <p class="text-gray-400 mt-4">Lihat bagaimana koleksi kami bergerak bersama Anda.</p>
+            </div>
+
+            <!-- TikTok / Reels Style Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 justify-center max-w-4xl mx-auto reveal">
+                <!-- Short 1 -->
+                <div class="relative rounded-3xl overflow-hidden aspect-[9/16] group cursor-pointer border border-white/10 shadow-2xl">
+                    <img src="img-batik-video-1.png" alt="Video Cover" class="w-full h-full object-cover group-hover:scale-105 apple-transition">
+                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 apple-transition flex justify-center items-center">
+                        <div class="w-16 h-16 rounded-full glass flex justify-center items-center text-white backdrop-blur-md">
+                            <i class="fa-solid fa-play text-xl ml-1"></i>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-4 left-4 right-4 glass px-4 py-2 rounded-xl">
+                        <p class="text-sm font-bold truncate">@nusathreadstudio</p>
+                        <p class="text-xs text-gray-300 truncate">#BatikModern #OOTDKerja</p>
+                    </div>
+                </div>
+                
+                <!-- Short 2 -->
+                <div class="relative rounded-3xl overflow-hidden aspect-[9/16] group cursor-pointer border border-white/10 shadow-2xl md:-translate-y-8">
+                    <img src="img-batik-video-2.png" alt="Video Cover" class="w-full h-full object-cover group-hover:scale-105 apple-transition">
+                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 apple-transition flex justify-center items-center">
+                        <div class="w-16 h-16 rounded-full glass flex justify-center items-center text-white backdrop-blur-md">
+                            <i class="fa-solid fa-play text-xl ml-1"></i>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-4 left-4 right-4 glass px-4 py-2 rounded-xl">
+                        <p class="text-sm font-bold truncate">@nusathreadstudio</p>
+                        <p class="text-xs text-gray-300 truncate">Sage Green Outer Look</p>
+                    </div>
+                </div>
+
+                <!-- Short 3 -->
+                <div class="relative rounded-3xl overflow-hidden aspect-[9/16] group cursor-pointer border border-white/10 shadow-2xl">
+                    <img src="img-batik-video-1.png" alt="Video Cover" class="w-full h-full object-cover group-hover:scale-105 apple-transition">
+                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 apple-transition flex justify-center items-center">
+                        <div class="w-16 h-16 rounded-full glass flex justify-center items-center text-white backdrop-blur-md">
+                            <i class="fa-solid fa-play text-xl ml-1"></i>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-4 left-4 right-4 glass px-4 py-2 rounded-xl">
+                        <p class="text-sm font-bold truncate">@nusathreadstudio</p>
+                        <p class="text-xs text-gray-300 truncate">Office Casual Styling</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="https://tiktok.com/@nusathreadstudio" target="_blank" class="inline-flex items-center gap-2 glass px-6 py-3 rounded-full hover:bg-white/10 apple-transition">
+                    <i class="fa-brands fa-tiktok"></i> Follow for more styling tips
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. TESTIMONIAL EXPERIENCE & 7. SOCIAL PROOF -->
+    <section class="py-24 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] relative">
+        <div class="absolute inset-0 bg-brand-navy/90 backdrop-blur-sm z-0"></div>
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-16 reveal">
+                <div class="flex justify-center items-center gap-2 text-brand-gold mb-4 text-2xl">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-editorial font-bold">Dipercaya 5.000+ Pemuda Berkarya</h2>
+            </div>
+
+            <!-- Auto Slider Testimonial -->
+            <div class="relative overflow-hidden reveal" id="testimonial-container">
+                <div class="flex transition-transform duration-700 ease-in-out" id="testimonial-track">
+                    <!-- Review 1 -->
+                    <div class="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 px-4">
+                        <div class="glass p-8 rounded-[2rem] h-full flex flex-col">
+                            <p class="text-gray-300 italic mb-6 flex-grow">"Akhirnya nemu batik yang potongannya slim fit beneran. Dipakai meeting sama klien langsung dapet pujian. Bahannya adem banget!"</p>
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-full bg-brand-maroon flex justify-center items-center font-bold text-xl">R</div>
+                                <div>
+                                    <h4 class="font-bold">Reza M.</h4>
+                                    <p class="text-xs text-gray-400">Creative Director</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Review 2 -->
+                    <div class="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 px-4">
+                        <div class="glass p-8 rounded-[2rem] h-full flex flex-col">
+                            <p class="text-gray-300 italic mb-6 flex-grow">"Beli yang sage green outer, sumpah elegan parah. Packagingnya juga niat banget kayak brand luxury. Next mau coba berlangganan VIP box-nya."</p>
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-full bg-brand-gold text-brand-navy flex justify-center items-center font-bold text-xl">S</div>
+                                <div>
+                                    <h4 class="font-bold">Sarah K.</h4>
+                                    <p class="text-xs text-gray-400">Content Creator</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Review 3 -->
+                    <div class="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 px-4">
+                        <div class="glass p-8 rounded-[2rem] h-full flex flex-col">
+                            <p class="text-gray-300 italic mb-6 flex-grow">"Pesan couple set untuk acara tunangan. Dua-duanya pas di badan, jahitannya rapi banget. Customer servicenya juga ramah."</p>
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-full bg-brand-sage flex justify-center items-center font-bold text-xl">A</div>
+                                <div>
+                                    <h4 class="font-bold">Aditya & Putri</h4>
+                                    <p class="text-xs text-gray-400">Banker</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- Review 4 (Duplicate for slider loop) -->
+                     <div class="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 px-4">
+                        <div class="glass p-8 rounded-[2rem] h-full flex flex-col">
+                            <p class="text-gray-300 italic mb-6 flex-grow">"Keren banget, aseli. Gua pakai yang kemeja marun elegan buat nongkrong dan tetep masuk vibes-nya. Modern banget."</p>
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-full bg-gray-600 flex justify-center items-center font-bold text-xl">D</div>
+                                <div>
+                                    <h4 class="font-bold">Dimas</h4>
+                                    <p class="text-xs text-gray-400">Mahasiswa</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex justify-center mt-8 gap-2" id="testimonial-dots">
+                <button class="w-3 h-3 rounded-full bg-brand-gold"></button>
+                <button class="w-3 h-3 rounded-full bg-white/20"></button>
+                <button class="w-3 h-3 rounded-full bg-white/20"></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11. FAQ / INFO SECTION -->
+    <section class="py-24 max-w-4xl mx-auto px-6 reveal">
+        <h2 class="text-4xl font-editorial font-bold text-center mb-12">Frequently Asked Questions</h2>
+        
+        <div class="space-y-4">
+            <!-- FAQ 1 -->
+            <div class="glass rounded-2xl overflow-hidden apple-transition">
+                <button class="faq-btn w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none">
+                    <span class="font-bold text-lg">Apakah ukurannya standard lokal atau internasional?</span>
+                    <i class="fa-solid fa-plus text-brand-gold transition-transform duration-300"></i>
+                </button>
+                <div class="faq-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out px-6">
+                    <p class="pb-5 text-gray-300">Kami menggunakan standard ukuran lokal modern (Slim Fit). Tersedia dari ukuran S hingga XXL. Anda dapat melihat size chart detail di WhatsApp admin kami.</p>
+                </div>
+            </div>
+            
+            <!-- FAQ 2 -->
+            <div class="glass rounded-2xl overflow-hidden apple-transition">
+                <button class="faq-btn w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none">
+                    <span class="font-bold text-lg">Bagaimana cara gabung VIP Club Subscription?</span>
+                    <i class="fa-solid fa-plus text-brand-gold transition-transform duration-300"></i>
+                </button>
+                <div class="faq-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out px-6">
+                    <p class="pb-5 text-gray-300">Cukup klik tombol "Join VIP Club" yang akan mengarahkan Anda ke WhatsApp kami. Pilih paket langganan (3 bulan / 6 bulan / 12 bulan) dan Anda akan mendapatkan koleksi eksklusif setiap bulannya.</p>
+                </div>
+            </div>
+
+            <!-- FAQ 3 -->
+            <div class="glass rounded-2xl overflow-hidden apple-transition">
+                <button class="faq-btn w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none">
+                    <span class="font-bold text-lg">Apakah warnanya luntur saat dicuci?</span>
+                    <i class="fa-solid fa-plus text-brand-gold transition-transform duration-300"></i>
+                </button>
+                <div class="faq-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out px-6">
+                    <p class="pb-5 text-gray-300">Pencucian pertama disarankan dipisah untuk membuang sisa residu pewarnaan alami. Setelah itu dijamin aman dan warna tetap awet. Hindari menjemur langsung di bawah terik matahari.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 12. FINAL CONVERSION SECTION -->
+    <section id="order" class="py-32 relative text-center px-6 border-t border-white/10 overflow-hidden">
+        <div class="absolute inset-0 bg-brand-navy/50 z-0"></div>
+        <div class="absolute w-[500px] h-[500px] bg-brand-gold/10 rounded-full blur-[120px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-0"></div>
+
+        <div class="relative z-10 reveal max-w-3xl mx-auto glass p-10 md:p-16 rounded-[3rem] shadow-2xl border-brand-gold/30">
+            <h2 class="text-5xl md:text-6xl font-editorial font-bold mb-6">Siap Elevasi <br><span class="italic text-brand-gold">Gayamu?</span></h2>
+            <p class="text-xl text-gray-300 mb-8">Ambil diskon 25% untuk pesanan pertamamu. Stok edisi Midnight Blue & Sage Green hampir habis.</p>
+            
+            <a href="https://wa.me/6281277889900" target="_blank" class="w-full md:w-auto bg-[#25D366] text-white px-10 py-5 rounded-full font-bold text-xl hover:bg-[#20bd5a] apple-transition hover-scale inline-flex items-center justify-center gap-3 shadow-[0_10px_30px_rgba(37,211,102,0.3)] mb-4">
+                <i class="fa-brands fa-whatsapp text-2xl"></i> Chat Admin via WhatsApp
+            </a>
+            <p class="text-sm text-gray-400 animate-pulse">🔥 Balasan cepat! Admin online.</p>
+        </div>
+    </section>
+
+    <!-- 13. FOOTER EXPERIENCE -->
+    <footer class="bg-[#050811] pt-20 pb-10 px-6 border-t border-white/10 relative z-20">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+            <div class="col-span-1 md:col-span-2">
+                <a href="#" class="text-3xl font-editorial font-bold tracking-wider mb-6 flex items-center gap-2">
+                    <span class="w-4 h-4 rounded-full bg-brand-gold block"></span> NusaThread.
+                </a>
+                <p class="text-gray-400 max-w-sm mb-6">Tradisi Elegan, Gaya Masa Kini. Koleksi pakaian batik dan tenun modern dengan potongan slim-fit dan desain minimalis.</p>
+                <div class="flex gap-4">
+                    <a href="https://instagram.com/nusathreadstudio" target="_blank" class="w-10 h-10 rounded-full glass flex justify-center items-center hover:bg-brand-gold hover:text-brand-navy apple-transition"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://tiktok.com/@nusathreadstudio" target="_blank" class="w-10 h-10 rounded-full glass flex justify-center items-center hover:bg-brand-gold hover:text-brand-navy apple-transition"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="https://wa.me/6281277889900" target="_blank" class="w-10 h-10 rounded-full glass flex justify-center items-center hover:bg-[#25D366] hover:text-white apple-transition"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+            
+            <div>
+                <h4 class="font-bold text-xl mb-6 font-editorial">Menu</h4>
+                <ul class="space-y-3 text-gray-400">
+                    <li><a href="#collection" class="hover:text-brand-gold transition">Our Collection</a></li>
+                    <li><a href="#subscription" class="hover:text-brand-gold transition">VIP Subscription</a></li>
+                    <li><a href="#experience" class="hover:text-brand-gold transition">Brand Story</a></li>
+                    <li><a href="#" class="hover:text-brand-gold transition">Size Guide</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-xl mb-6 font-editorial">Contact</h4>
+                <ul class="space-y-3 text-gray-400">
+                    <li><i class="fa-solid fa-phone mr-2"></i> 0812-7788-9900</li>
+                    <li><i class="fa-solid fa-envelope mr-2"></i> hello@nusathread.com</li>
+                    <li><i class="fa-solid fa-location-dot mr-2"></i> Jakarta, Indonesia</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto text-center border-t border-white/10 pt-8 text-gray-500 text-sm">
+            <p>&copy; 2026 NusaThread Studio. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp CTA -->
+    <a href="https://wa.me/6281277889900" target="_blank" class="fixed bottom-6 right-6 w-16 h-16 bg-[#25D366] text-white rounded-full flex justify-center items-center text-3xl shadow-2xl hover:scale-110 apple-transition z-50 animate-bounce">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Sticky Mobile Bottom Bar (Mobile Only) -->
+    <div class="fixed bottom-0 w-full glass-dark border-t border-white/10 p-4 md:hidden z-40 flex justify-between items-center">
+        <div>
+            <p class="text-xs text-gray-300">Mulai dari</p>
+            <p class="font-bold text-brand-gold">Rp159.000</p>
+        </div>
+        <a href="https://wa.me/6281277889900" class="bg-white text-brand-navy px-6 py-2 rounded-full font-bold text-sm">Beli Sekarang</a>
+    </div>
+
+    <!-- Fake Live Order Popup -->
+    <div id="live-order-popup" class="fixed bottom-24 left-6 glass px-4 py-3 rounded-2xl flex items-center gap-4 z-50 transform translate-y-full opacity-0 transition-all duration-500">
+        <div class="w-10 h-10 rounded-full bg-brand-maroon overflow-hidden">
+            <img src="img-batik-hero.png" class="w-full h-full object-cover" alt="Product Mini">
+        </div>
+        <div>
+            <p class="text-xs text-gray-400">Seseorang di <span id="popup-city" class="font-bold text-white">Jakarta</span></p>
+            <p class="text-sm font-bold">Membeli Kemeja Batik Navy</p>
+            <p class="text-[10px] text-brand-gold mt-1">1 menit yang lalu</p>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // 1. Scroll Progress & Navbar Glass Effect
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("scroll-progress").style.width = scrolled + "%";
+
+            const navbar = document.getElementById('navbar');
+            if (winScroll > 50) {
+                navbar.classList.add('bg-brand-navy/80', 'backdrop-blur-md', 'shadow-lg');
+                navbar.classList.remove('py-4');
+                navbar.classList.add('py-2');
+            } else {
+                navbar.classList.remove('bg-brand-navy/80', 'backdrop-blur-md', 'shadow-lg');
+                navbar.classList.add('py-4');
+                navbar.classList.remove('py-2');
+            }
+        });
+
+        // 2. Mobile Menu Toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const closeBtn = document.getElementById('close-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function toggleMenu() {
+            mobileMenu.classList.toggle('hidden');
+            setTimeout(() => {
+                mobileMenu.classList.toggle('translate-x-full');
+            }, 10);
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+        closeBtn.addEventListener('click', toggleMenu);
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', toggleMenu);
+        });
+
+        // 3. Reveal Animation on Scroll
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+
+        const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('active');
+                observer.unobserve(entry.target);
+            });
+        }, revealOptions);
+
+        revealElements.forEach(el => revealOnScroll.observe(el));
+
+        // 4. Slider Interaction (Products)
+        const productSlider = document.getElementById('product-slider');
+        const btnLeft = document.getElementById('slide-left');
+        const btnRight = document.getElementById('slide-right');
+
+        btnRight.addEventListener('click', () => {
+            productSlider.scrollBy({ left: 350, behavior: 'smooth' });
+        });
+        btnLeft.addEventListener('click', () => {
+            productSlider.scrollBy({ left: -350, behavior: 'smooth' });
+        });
+
+        // 5. Auto Slider Testimonial
+        const testimonialTrack = document.getElementById('testimonial-track');
+        let slideIndex = 0;
+        
+        function moveSlide() {
+            slideIndex++;
+            if (slideIndex > 3) slideIndex = 0;
+            const translateValue = -(slideIndex * 100);
+            
+            // Adjust for mobile vs desktop viewing width roughly
+            const screenWidth = window.innerWidth;
+            let percentage = 100;
+            if(screenWidth >= 768 && screenWidth < 1024) percentage = 50;
+            if(screenWidth >= 1024) percentage = 33.333;
+
+            testimonialTrack.style.transform = `translateX(-${slideIndex * percentage}%)`;
+        }
+        setInterval(moveSlide, 4000);
+
+        // 6. FAQ Accordion
+        const faqBtns = document.querySelectorAll('.faq-btn');
+        faqBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const content = this.nextElementSibling;
+                const icon = this.querySelector('i');
+                
+                // Close all others
+                document.querySelectorAll('.faq-content').forEach(el => {
+                    if (el !== content) {
+                        el.style.maxHeight = null;
+                        el.previousElementSibling.querySelector('i').classList.remove('rotate-45');
+                    }
+                });
+
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                    icon.classList.remove('rotate-45');
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                    icon.classList.add('rotate-45');
+                }
+            });
+        });
+
+        // 7. Fake Live Order Popup
+        const popup = document.getElementById('live-order-popup');
+        const cities = ["Jakarta", "Bandung", "Surabaya", "Medan", "Bali"];
+        const cityEl = document.getElementById('popup-city');
+        
+        function showPopup() {
+            cityEl.innerText = cities[Math.floor(Math.random() * cities.length)];
+            popup.classList.remove('translate-y-full', 'opacity-0');
+            setTimeout(() => {
+                popup.classList.add('translate-y-full', 'opacity-0');
+            }, 4000);
+        }
+        
+        // Initial delay then trigger every 12 seconds
+        setTimeout(() => {
+            showPopup();
+            setInterval(showPopup, 12000);
+        }, 5000);
+
+        // 8. Countdown Timer (Dummy setup to always show 2 days ahead for scarcity)
+        // Just keeping the HTML numbers static for the visual effect as requested "dummy timer", 
+        // but if actual tick is needed, here's a lightweight script:
+        let s = 20, m = 45, h = 14, d = 2;
+        setInterval(() => {
+            s--;
+            if(s < 0) { s = 59; m--; }
+            if(m < 0) { m = 59; h--; }
+            if(h < 0) { h = 23; d--; }
+            if(d < 0) { d = 2; } // reset for demo loop
+            
+            document.getElementById('seconds').innerText = s.toString().padStart(2, '0');
+            document.getElementById('minutes').innerText = m.toString().padStart(2, '0');
+            document.getElementById('hours').innerText = h.toString().padStart(2, '0');
+            document.getElementById('days').innerText = d.toString().padStart(2, '0');
+        }, 1000);
+
+    </script>
+</body>
+</html>
