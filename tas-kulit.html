@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUXORA LEATHER - Custom Signature Leather Bag</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #FDFBF7; /* Soft Pastel Sand Base */
+            color: #2C221E;
+            overflow-x: hidden;
+        }
+        .serif-title {
+            font-family: 'Playfair Display', serif;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F4EFE6;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #C4A484;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #A07855;
+        }
+        /* Glassmorphism Styles */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+        .glass-dark {
+            background: rgba(44, 34, 30, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-nav {
+            background: rgba(253, 251, 247, 0.65);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(228, 219, 203, 0.5);
+        }
+        /* Reveal on Scroll Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Fast Snappy Keyframes for TikTok Fast Motion Style */
+        @keyframes dynamicPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(128, 0, 32, 0.4); }
+            50% { transform: scale(1.03); box-shadow: 0 0 0 12px rgba(128, 0, 32, 0); }
+        }
+        .cta-pulse {
+            animation: dynamicPulse 2s infinite ease-in-out;
+        }
+        @keyframes floatAnim {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(1deg); }
+        }
+        .floating-badge {
+            animation: floatAnim 3s infinite ease-in-out;
+        }
+        /* Custom Grid Adjustments */
+        .asymmetric-clip {
+            clip-path: polygon(0 0, 100% 4%, 100% 96%, 0 100%);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-rose-900 selection:text-white">
+
+    <div id="loading-screen" class="fixed inset-0 z-[9999] bg-[#FDFBF7] flex flex-col items-center justify-center transition-opacity duration-500">
+        <div class="relative flex items-center justify-center">
+            <div class="w-20 h-20 border-2 border-[#C4A484]/30 border-t-[#800020] rounded-full animate-spin"></div>
+            <span class="absolute serif-title text-xl font-bold text-[#2C221E]">LL</span>
+        </div>
+        <p class="mt-4 text-xs tracking-[0.3em] uppercase text-[#800020] font-semibold animate-pulse">Crafting Elegance...</p>
+    </div>
+
+    <div class="fixed top-0 left-0 h-[4px] bg-gradient-to-r from-[#800020] via-[#4A3525] to-[#D4AF37] z-[1000] transition-all duration-100" id="scroll-bar"></div>
+
+    <header class="fixed top-4 left-1/2 -translate-x-1/2 w-[92%] max-w-7xl z-50 rounded-full glass-nav px-6 py-3 transition-all duration-300 shadow-sm" id="main-nav">
+        <div class="flex items-center justify-between">
+            <a href="#" class="flex flex-col">
+                <span class="serif-title text-xl md:text-2xl font-bold tracking-wider text-[#2C221E] uppercase">Luxora<span class="text-[#800020]">.</span></span>
+                <span class="text-[7px] tracking-[0.4em] uppercase font-bold text-[#800020] -mt-1">Leather</span>
+            </a>
+
+            <nav class="hidden md:flex items-center space-x-8 text-xs font-bold tracking-widest uppercase">
+                <a href="#hero" class="nav-link text-[#800020] transition-colors duration-200 hover:text-[#800020]">Home</a>
+                <a href="#experience" class="nav-link text-[#2C221E]/70 transition-colors duration-200 hover:text-[#800020]">Story</a>
+                <a href="#showcase" class="nav-link text-[#2C221E]/70 transition-colors duration-200 hover:text-[#800020]">Showcase</a>
+                <a href="#menu" class="nav-link text-[#2C221E]/70 transition-colors duration-200 hover:text-[#800020]">Collections</a>
+                <a href="#reseller" class="nav-link text-[#2C221E]/70 transition-colors duration-200 hover:text-[#800020]">Reseller</a>
+                <a href="#faq" class="nav-link text-[#2C221E]/70 transition-colors duration-200 hover:text-[#800020]">FAQ</a>
+            </nav>
+
+            <div class="hidden lg:block">
+                <a href="https://wa.me/6281234567890?text=Halo%20Luxora%20Leather,%20saya%20ingin%20custom%20tas%20signature%20eksklusif." target="_blank" 
+                   class="bg-[#2C221E] text-white font-bold text-xs tracking-wider uppercase px-5 py-2.5 rounded-full border border-transparent hover:bg-transparent hover:text-[#2C221E] hover:border-[#2C221E] transition-all duration-300">
+                    Custom Now
+                </a>
+            </div>
+
+            <button class="md:hidden text-[#2C221E] focus:outline-none" id="mobile-menu-btn" aria-label="Toggle Menu">
+                <i class="fa-solid fa-bars-staggered text-xl"></i>
+            </button>
+        </div>
+
+        <div class="hidden id-mobile-menu-box absolute top-full left-0 right-0 mt-3 bg-[#FDFBF7]/95 backdrop-blur-xl border border-[#E4DBCB]/60 rounded-3xl p-6 shadow-xl flex flex-col space-y-4 text-center font-bold tracking-widest uppercase text-xs">
+            <a href="#hero" class="mobile-nav-link py-2 text-[#800020]">Home</a>
+            <a href="#experience" class="mobile-nav-link py-2 text-[#2C221E]/70">Story</a>
+            <a href="#showcase" class="mobile-nav-link py-2 text-[#2C221E]/70">Showcase</a>
+            <a href="#menu" class="mobile-nav-link py-2 text-[#2C221E]/70">Collections</a>
+            <a href="#reseller" class="mobile-nav-link py-2 text-[#2C221E]/70">Reseller Program</a>
+            <a href="#faq" class="mobile-nav-link py-2 text-[#2C221E]/70">FAQ</a>
+            <a href="https://wa.me/6281234567890?text=Halo%20Luxora%20Leather,%20saya%20ingin%20custom%20tas%20signature%20eksklusif." target="_blank" class="bg-[#800020] text-white py-3 rounded-full uppercase text-xs tracking-wider">
+                <i class="fa-brands fa-whatsapp mr-2"></i> Hubungi Kami
+            </a>
+        </div>
+    </header>
+
+    <section id="hero" class="relative min-h-screen pt-28 pb-16 flex items-center justify-center px-4 md:px-8 overflow-hidden bg-gradient-to-b from-[#F9F5EE] via-[#FDFBF7] to-[#F5EFE6]">
+        
+        <div class="absolute top-1/4 -left-20 w-80 h-80 bg-[#E8DCC4] opacity-40 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-10 -right-20 w-96 h-96 bg-[#F3E5E8] opacity-60 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+            
+            <div class="lg:col-span-6 flex flex-col space-y-6 md:space-y-8 text-center lg:text-left">
+                
+                <div class="inline-flex items-center justify-center lg:justify-start">
+                    <span class="floating-badge inline-flex items-center space-x-2 bg-gradient-to-r from-[#800020] to-[#4A3525] text-white text-[11px] font-extrabold uppercase tracking-widest px-4 py-1.5 rounded-full shadow-md">
+                        <i class="fa-solid fa-crown text-amber-400 animate-pulse"></i>
+                        <span>Grand Opening Offer: Save 25%</span>
+                    </span>
+                </div>
+
+                <div class="space-y-2">
+                    <p class="text-xs font-bold tracking-[0.4em] uppercase text-[#800020]">Luxury Customized Leatherwear</p>
+                    <h1 class="serif-title text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-[#2C221E] leading-[1.1]">
+                        Bawa Identitasmu <br class="hidden sm:inline">Dengan <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#800020] via-[#4A3525] to-[#D4AF37] underline decoration-[#D4AF37]/50 underline-offset-8">Elegan</span>.
+                    </h1>
+                </div>
+
+                <p class="text-[#2C221E]/80 text-sm md:text-base font-medium max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                    Platform eksklusif custom tas kulit premium buatan tangan (<span class="italic font-semibold text-[#4A3525]">handmade</span>). Sempurnakan style profesional Anda dengan inisial nama, pilihan material kulit terbaik, dan desain modern haute couture.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                    <a href="#menu" class="cta-pulse w-full sm:w-auto text-center bg-[#800020] text-white font-extrabold text-xs tracking-widest uppercase px-8 py-4 rounded-xl hover:bg-[#5C0612] transition-all duration-300 shadow-xl">
+                        Lihat Koleksi Varian <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </a>
+                    <a href="https://wa.me/6281234567890?text=Halo%20Luxora%20Leather,%20saya%20ingin%20konsultasi%20desain%20tas%20custom." target="_blank" 
+                       class="w-full sm:w-auto text-center glass-card text-[#2C221E] font-bold text-xs tracking-widest uppercase px-8 py-4 rounded-xl hover:bg-[#2C221E] hover:text-white transition-all duration-300">
+                        <i class="fa-brands fa-whatsapp mr-2 text-emerald-600 text-sm"></i> Konsultasi Desain
+                    </a>
+                </div>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4 border-t border-[#E4DBCB]/60">
+                    <div class="flex -space-x-3">
+                        <span class="w-9 h-9 rounded-full border-2 border-[#FDFBF7] bg-[#4A3525] text-white text-[10px] flex items-center justify-center font-bold font-sans">A</span>
+                        <span class="w-9 h-9 rounded-full border-2 border-[#FDFBF7] bg-[#800020] text-white text-[10px] flex items-center justify-center font-bold font-sans">M</span>
+                        <span class="w-9 h-9 rounded-full border-2 border-[#FDFBF7] bg-[#D4AF37] text-[#2C221E] text-[10px] flex items-center justify-center font-bold font-sans">K</span>
+                        <span class="w-9 h-9 rounded-full border-2 border-[#FDFBF7] bg-emerald-800 text-white text-[10px] flex items-center justify-center font-bold font-sans">R</span>
+                    </div>
+                    <div class="text-center lg:text-left">
+                        <div class="flex items-center justify-center lg:justify-start text-amber-500 text-xs">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <span class="ml-2 font-bold text-[#2C221E] text-xs">4.9/5.0</span>
+                        </div>
+                        <p class="text-[11px] text-[#2C221E]/60 uppercase tracking-wider font-semibold mt-0.5">Dipercaya oleh 1,420+ Pebisnis & Profesional</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="lg:col-span-6 relative flex justify-center items-center mt-8 lg:mt-0">
+                
+                <div class="relative w-full max-w-sm sm:max-w-md p-3 glass-card rounded-[2.5rem] shadow-2xl transform rotate-1 hover:rotate-0 transition-all duration-500 z-20 group">
+                    <div class="overflow-hidden rounded-[2rem] aspect-[4/5] relative bg-[#4A3525]/10">
+                        <div class="absolute inset-0 bg-cover bg-center mix-blend-multiply opacity-20" style="background-image: url('https://images.unsplash.com/photo-1547949003-9792a18a2601?auto=format&fit=crop&w=600&q=80');"></div>
+                        
+                        <div class="absolute inset-0 p-8 flex flex-col justify-between text-white bg-gradient-to-t from-[#2C221E] via-transparent to-[#4A3525]/40">
+                            <div class="flex justify-between items-start">
+                                <span class="text-xs font-bold tracking-[0.3em] uppercase bg-black/40 px-3 py-1.5 rounded-full backdrop-blur-sm">Premium Series</span>
+                                <div class="w-10 h-10 rounded-full bg-[#D4AF37] flex items-center justify-center text-black font-bold text-xs shadow-lg">24K</div>
+                            </div>
+                            
+                            <div class="glass-card p-4 rounded-2xl text-[#2C221E] space-y-2 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                                <div class="text-[10px] tracking-widest uppercase font-extrabold text-[#800020]">Your Signature Here</div>
+                                <div class="flex items-center justify-between">
+                                    <div class="serif-title text-2xl font-bold tracking-widest text-[#2C221E] bg-[#4A3525]/10 px-3 py-1 rounded border border-[#4A3525]/30">A.K.P</div>
+                                    <span class="text-xs uppercase bg-[#4A3525] text-white px-2 py-0.5 rounded font-mono">GOLD EMBOSS</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=800&q=80" alt="Luxora Executive Bag" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    </div>
+
+                    <div class="absolute -top-6 -right-6 glass-card p-4 rounded-2xl shadow-xl flex items-center space-x-3 border border-white z-30">
+                        <div class="w-10 h-10 rounded-full bg-[#800020] text-white flex items-center justify-center text-sm"><i class="fa-solid fa-scissors"></i></div>
+                        <div>
+                            <p class="text-[10px] uppercase font-bold text-[#2C221E]/60 tracking-wider">100% Quality</p>
+                            <p class="text-xs font-extrabold text-[#2C221E]">Handmade Leather</p>
+                        </div>
+                    </div>
+
+                    <div class="absolute -bottom-6 -left-6 glass-dark p-4 rounded-2xl shadow-xl flex items-center space-x-3 text-white z-30">
+                        <div class="flex flex-col">
+                            <span class="text-[9px] uppercase tracking-widest text-amber-400 font-extrabold">Best Seller</span>
+                            <span class="serif-title font-bold text-sm">Custom Tote Bag</span>
+                        </div>
+                        <span class="text-xs font-extrabold bg-[#800020] px-2 py-1 rounded">Rp499k</span>
+                    </div>
+                </div>
+
+                <div class="absolute right-4 bottom-4 w-72 h-72 border-2 border-dashed border-[#C4A484]/40 rounded-[3rem] -z-10 transform translate-x-8 translate-y-8"></div>
+                <div class="absolute left-6 top-6 w-48 h-64 bg-[#Maroon] bg-opacity-5 bg-[#800020]/5 rounded-[2rem] -z-10 transform -translate-x-12 -translate-y-6 rotate-12"></div>
+            </div>
+
+        </div>
+
+        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-1 z-10 opacity-70">
+            <span class="text-[9px] tracking-[0.3em] uppercase font-bold text-[#2C221E]/60">Scroll to Explore</span>
+            <div class="w-5 h-8 border-2 border-[#2C221E]/30 rounded-full p-1 flex justify-center">
+                <div class="w-1 h-2 bg-[#800020] rounded-full animate-bounce"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="py-24 px-4 md:px-8 bg-[#FDFBF7] relative">
+        <div class="max-w-7xl mx-auto">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+                
+                <div class="lg:col-span-6 grid grid-cols-12 gap-4 relative reveal">
+                    
+                    <div class="col-span-8 overflow-hidden rounded-3xl shadow-lg aspect-square bg-amber-900/5 group">
+                        <img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=600&q=80" alt="Premium Leather Production" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    
+                    <div class="col-span-4 overflow-hidden rounded-3xl shadow-lg aspect-[3/4] self-end bg-rose-900/5 transform translate-y-8 group">
+                        <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=600&q=80" alt="Elegant Bag Design" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+
+                    <div class="col-span-4 overflow-hidden rounded-3xl shadow-lg aspect-[3/4] -translate-y-8 bg-neutral-900/5 group">
+                        <img src="https://images.unsplash.com/photo-1622560480605-d83c853bc5c3?auto=format&fit=crop&w=400&q=80" alt="Emboss Details" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+
+                    <div class="col-span-8 overflow-hidden rounded-3xl shadow-lg aspect-video bg-amber-950/5 group">
+                        <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=600&q=80" alt="Custom Handwriting Leather Artwork" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+
+                    <div class="absolute -right-8 top-1/3 text-[#E4DBCB]/40 text-7xl font-extrabold select-none pointer-events-none serif-title hidden sm:block">
+                        Hautecouture
+                    </div>
+                </div>
+
+                <div class="lg:col-span-6 flex flex-col space-y-6 reveal">
+                    <span class="text-xs font-bold tracking-[0.4em] uppercase text-[#800020] flex items-center space-x-2">
+                        <span>The Ultimate Craftsmanship</span>
+                    </span>
+                    
+                    <h2 class="serif-title text-3xl sm:text-4xl font-bold text-[#2C221E] leading-tight">
+                        Lebih dari Sekadar Tas. <br>Ini Adalah Pernyataan Karakter & Pencapaian Anda.
+                    </h2>
+
+                    <div class="w-20 h-1 bg-gradient-to-r from-[#800020] to-[#D4AF37]"></div>
+
+                    <p class="text-[#2C221E]/80 text-sm md:text-base leading-relaxed font-medium">
+                        Setiap produk <strong class="text-[#2C221E]">LUXORA LEATHER</strong> dikerjakan secara eksklusif satu per satu oleh pengrajin lokal berbakat tinggi. Kami memadukan estetika warna <span class="text-[#4A3525] font-bold">Coklat Kopi Estetik</span>, keagungan <span class="text-[#800020] font-bold">Maroon Luxury</span>, serta kemewahan <span class="text-[#D4AF37] font-bold">Hitam Gold Premium</span>.
+                    </p>
+
+                    <p class="text-[#2C221E]/70 text-xs md:text-sm leading-relaxed">
+                        Kami paham bahwa di dunia bisnis dan profesional, impresi pertama adalah segalanya. Melalui penambahan inisial nama eksklusif yang di-emboss presisi, tas Anda menjadi satu-satunya di dunia. Menemani setiap langkah sukses, meeting penting, hingga perjalanan bisnis mewah Anda.
+                    </p>
+
+                    <div class="glass-card p-4 rounded-2xl border-l-4 border-l-[#800020] bg-white/60 space-y-2 mt-2">
+                        <div class="flex items-center space-x-2">
+                            <i class="fa-solid fa-handshake-angle text-[#800020]"></i>
+                            <span class="text-xs font-bold uppercase tracking-wider text-[#2C221E]">Peluang Kemitraan & Bisnis</span>
+                        </div>
+                        <p class="text-[11px] text-[#2C221E]/80 leading-relaxed">
+                            Membuka peluang bagi reseller premium, toko fashion, korporasi, serta agen dropship mewah. Dapatkan akses katalog eksklusif dengan margin profit tinggi hingga 35%. <a href="#reseller" class="text-[#800020] font-bold underline hover:text-[#5C0612] ml-1">Pelajari Selengkapnya &rarr;</a>
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-4 pt-4 text-center border-t border-[#E4DBCB]/60">
+                        <div>
+                            <span class="block serif-title text-2xl md:text-3xl font-bold text-[#800020]" id="counter-experience">100%</span>
+                            <span class="text-[10px] uppercase font-bold text-[#2C221E]/60 tracking-wider">Kulit Asli Pilihan</span>
+                        </div>
+                        <div>
+                            <span class="block serif-title text-2xl md:text-3xl font-bold text-[#4A3525]" id="counter-craftsmen">24+</span>
+                            <span class="text-[10px] uppercase font-bold text-[#2C221E]/60 tracking-wider">Master Artisans</span>
+                        </div>
+                        <div>
+                            <span class="block serif-title text-2xl md:text-3xl font-bold text-[#2C221E]" id="counter-shipped">8.5k+</span>
+                            <span class="text-[10px] uppercase font-bold text-[#2C221E]/60 tracking-wider">Produk Terkirim</span>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section id="showcase" class="py-24 px-4 md:px-8 bg-gradient-to-b from-[#FDFBF7] to-[#F5EFE6] relative">
+        <div class="max-w-7xl mx-auto">
+            
+            <div class="text-center max-w-2xl mx-auto mb-16 space-y-3 reveal">
+                <span class="text-xs font-bold tracking-[0.4em] uppercase text-[#800020]">Exquisite Curated Showcase</span>
+                <h2 class="serif-title text-3xl md:text-4xl font-bold text-[#2C221E]">Galeri Varian Signature Masterpiece</h2>
+                <p class="text-xs md:text-sm text-[#2C221E]/70">Eksplorasi asimetris keindahan rancangan kulit sapi kualitas grade-A yang menggabungkan kegunaan harian dan kemewahan sejati.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 reveal">
+                
+                <div class="md:col-span-8 group relative overflow-hidden rounded-3xl shadow-xl bg-[#4A3525]/10 aspect-video md:aspect-auto md:h-[450px] transition-all duration-500 hover:-translate-y-1">
+                    <img src="https://images.unsplash.com/photo-1547949003-9792a18a2601?auto=format&fit=crop&w=1000&q=80" alt="Tote Bag Kulit Custom" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                    
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-6 md:p-8 flex flex-col justify-between text-white">
+                        <div class="flex justify-between items-start">
+                            <span class="bg-[#800020] text-white text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full">BEST SELLER #1</span>
+                            <span class="glass-card text-[#2C221E] font-bold text-[11px] px-3 py-1 rounded-full"><i class="fa-solid fa-fire text-amber-500 mr-1"></i> Terlaris Minggu Ini</span>
+                        </div>
+                        <div class="space-y-2">
+                            <h3 class="serif-title text-2xl md:text-3xl font-bold">Tote Bag Kulit Custom Signature</h3>
+                            <p class="text-xs text-white/80 max-w-md hidden sm:block">Model berkapasitas besar yang sangat elegan untuk meeting kantor, traveling, maupun aktivitas profesional harian Anda.</p>
+                            <div class="flex items-center justify-between pt-2">
+                                <div class="flex items-baseline space-x-2">
+                                    <span class="text-lg md:text-xl font-black text-amber-400">Rp499.000</span>
+                                    <span class="text-xs line-through text-white/50">Rp665.000</span>
+                                </div>
+                                <a href="https://wa.me/6281234567890?text=Saya%20tertarik%20dengan%20Tote%20Bag%20Kulit%20Custom%20Signature%20Grand%20Opening%20Promo." target="_blank" 
+                                   class="bg-white text-[#2C221E] text-[11px] font-extrabold tracking-wider uppercase px-4 py-2 rounded-xl hover:bg-[#800020] hover:text-white transition-all duration-300">
+                                    Pesan Custom
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:col-span-4 group relative overflow-hidden rounded-3xl shadow-xl bg-[#800020]/10 h-[300px] md:h-[450px] transition-all duration-500 hover:-translate-y-1">
+                    <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=600&q=80" alt="Sling Bag Premium" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                    
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent p-6 flex flex-col justify-between text-white">
+                        <div class="text-right">
+                            <span class="bg-amber-500 text-black font-black text-[9px] uppercase tracking-wider px-2 py-1 rounded">PROMO DISKON</span>
+                        </div>
+                        <div class="space-y-2">
+                            <span class="text-[10px] tracking-widest uppercase font-bold text-amber-400">Maroon Luxury Theme</span>
+                            <h3 class="serif-title text-xl font-bold">Sling Bag Premium Luxe</h3>
+                            <div class="flex items-center justify-between pt-1">
+                                <span class="text-base font-bold text-white">Mulai <span class="text-amber-400">Rp389k</span></span>
+                                <span class="text-[10px] tracking-widest uppercase font-semibold text-white/70">Custom Inisial &plus;</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:col-span-5 group relative overflow-hidden rounded-3xl shadow-xl bg-black/10 h-[350px] transition-all duration-500 hover:-translate-y-1">
+                    <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80" alt="Backpack Kulit Elegant" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                    
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent p-6 flex flex-col justify-end text-white">
+                        <div class="space-y-1">
+                            <span class="text-[9px] tracking-[0.2em] uppercase bg-black/40 px-2 py-0.5 rounded text-white/80 w-max block">Executive Choice</span>
+                            <h3 class="serif-title text-xl font-bold">Backpack Kulit Elegant</h3>
+                            <p class="text-xs font-bold text-amber-400">Mulai Rp799.000</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:col-span-7 group relative overflow-hidden rounded-3xl shadow-xl bg-neutral-900/10 h-[350px] transition-all duration-500 hover:-translate-y-1">
+                    <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=700&q=80" alt="Handbag Wanita Luxury" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                    
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent p-6 flex flex-col justify-between text-white">
+                        <div>
+                            <span class="glass-card text-xs text-white/90 font-bold px-3 py-1 rounded-full">Hitam Gold Premium Accent</span>
+                        </div>
+                        <div class="space-y-2">
+                            <h3 class="serif-title text-xl md:text-2xl font-bold">Handbag Wanita Luxury Paris</h3>
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm font-semibold text-white/90">Sangat pas untuk kado eksklusif pasangan atau rekan kerja.</span>
+                                <span class="text-lg font-black text-[#D4AF37] ml-4">Rp699k</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section class="py-20 px-4 md:px-8 bg-[#F5EFE6] relative">
+        <div class="max-w-7xl mx-auto">
+            
+            <div class="text-center max-w-xl mx-auto mb-12 space-y-2 reveal">
+                <span class="text-xs font-bold tracking-[0.4em] uppercase text-[#800020]">Signature Superiority</span>
+                <h2 class="serif-title text-3xl font-bold text-[#2C221E]">Kenapa Memilih Luxora Leather?</h2>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 reveal">
+                
+                <div class="glass-card p-6 rounded-2xl hover:bg-[#2C221E] hover:text-white transition-all duration-300 group shadow-sm">
+                    <div class="w-12 h-12 rounded-xl bg-[#800020] text-white flex items-center justify-center text-xl mb-4 group-hover:bg-white group-hover:text-[#800020] transition-colors duration-300 shadow-md">
+                        <i class="fa-solid fa-signature"></i>
+                    </div>
+                    <h3 class="font-bold text-sm uppercase tracking-wider mb-2">Custom Inisial Nama</h3>
+                    <p class="text-xs text-[#2C221E]/70 group-hover:text-white/80 leading-relaxed">Tambahkan inisial nama eksklusif Anda dengan metode laser emboss permanen berlapis warna gold, silver, atau netral.</p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl hover:bg-[#2C221E] hover:text-white transition-all duration-300 group shadow-sm">
+                    <div class="w-12 h-12 rounded-xl bg-[#4A3525] text-white flex items-center justify-center text-xl mb-4 group-hover:bg-white group-hover:text-[#4A3525] transition-colors duration-300 shadow-md">
+                        <i class="fa-solid fa-gem"></i>
+                    </div>
+                    <h3 class="font-bold text-sm uppercase tracking-wider mb-2">100% Kulit Sapi Asli</h3>
+                    <p class="text-xs text-[#2C221E]/70 group-hover:text-white/80 leading-relaxed">Hanya menggunakan material kulit sapi asli premium jenis Full Grain dan Top Grain pilihan. Kuat, awet, dan semakin eksotik seiring waktu.</p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl hover:bg-[#2C221E] hover:text-white transition-all duration-300 group shadow-sm">
+                    <div class="w-12 h-12 rounded-xl bg-[#D4AF37] text-black flex items-center justify-center text-xl mb-4 group-hover:bg-white group-hover:text-black transition-colors duration-300 shadow-md">
+                        <i class="fa-solid fa-sliders"></i>
+                    </div>
+                    <h3 class="font-bold text-sm uppercase tracking-wider mb-2">Banyak Pilihan Varian</h3>
+                    <p class="text-xs text-[#2C221E]/70 group-hover:text-white/80 leading-relaxed">Tersedia lebih dari 8 model tas esensial mulai dari tipe bisnis formal hingga vintage santai dengan aksen jahitan super rapi.</p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl hover:bg-[#2C221E] hover:text-white transition-all duration-300 group shadow-sm">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-800 text-white flex items-center justify-center text-xl mb-4 group-hover:bg-white group-hover:text-emerald-800 transition-colors duration-300 shadow-md">
+                        <i class="fa-solid fa-truck-shield"></i>
+                    </div>
+                    <h3 class="font-bold text-sm uppercase tracking-wider mb-2">Garansi Pengiriman</h3>
+                    <p class="text-xs text-[#2C221E]/70 group-hover:text-white/80 leading-relaxed">Pengiriman aman menggunakan hardbox premium berlapis bubble wrap tebal ke seluruh Indonesia. Garansi retur baru jika rusak saat logistik.</p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section id="menu" class="py-24 px-4 md:px-8 bg-[#FDFBF7] relative">
+        <div class="max-w-7xl mx-auto">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4 reveal">
+                <div class="space-y-2">
+                    <span class="text-xs font-bold tracking-[0.4em] uppercase text-[#800020]">Signature Catalog 2026</span>
+                    <h2 class="serif-title text-3xl md:text-4xl font-bold text-[#2C221E]">Pilih & Custom Model Tas Anda</h2>
+                </div>
+                <div class="flex flex-wrap gap-2 text-[10px] font-extrabold uppercase tracking-widest">
+                    <button class="bg-[#2C221E] text-white px-4 py-2 rounded-full">Semua Koleksi</button>
+                    <button class="bg-[#F5EFE6] text-[#2C221E] px-4 py-2 rounded-full hover:bg-[#C4A484]/20 transition-colors">Pria Profesional</button>
+                    <button class="bg-[#F5EFE6] text-[#2C221E] px-4 py-2 rounded-full hover:bg-[#C4A484]/20 transition-colors">Wanita Luxury</button>
+                    <button class="bg-[#F5EFE6] text-[#2C221E] px-4 py-2 rounded-full hover:bg-[#C4A484]/20 transition-colors">Unisex</button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 reveal">
+                
+                <div class="flex flex-col space-y-3 group">
+                    <div class="relative overflow-hidden rounded-2xl bg-stone-100 aspect-[4/5] shadow-sm">
+                        <img src="https://images.unsplash.com/photo-1547949003-9792a18a2601?auto=format&fit=crop&w=500&q=80" alt="Tote Bag Kulit Custom" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 bg-[#800020] text-white text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md shadow-sm">Best Seller</span>
+                        
+                        <div class="absolute inset-0 bg-black/60 backdrop-blur-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center p-4 text-center text-white space-y-3">
+                            <p class="text-[11px] font-bold tracking-wider uppercase text-amber-400">Pilihan Custom Tersedia:</p>
+                            <div class="text-[10px] space-y-1 text-white/90">
+                                <p><i class="fa-solid fa-check text-emerald-400 mr-1"></i> Grafir Inisial Nama (Maks 4 Huruf)</p>
+                                <p><i class="fa-solid fa-check text-emerald-400 mr-1"></i> Pilihan Warna: Coklat / Maroon / Hitam</p>
+                                <p><i class="fa-solid fa-check text-emerald-400 mr-1"></i> Jenis Font: Serif / Bold Modern</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start pt-1">
+                        <div>
+                            <h3 class="font-bold text-sm text-[#2C221E] uppercase tracking-wider group-hover:text-[#800020] transition-colors">Tote Bag Kulit Custom</h3>
+                            <p class="text-[11px] text-[#2C221E]/60 italic mt-0.5">Termasuk Free Pouch Kulit</p>
+                        </div>
+                        <span class="text-xs font-extrabold text-[#800020] bg-[#800020]/10 px-2 py-1 rounded">Rp499k</span>
+                    </div>
+                    <a href="https://wa.me/6281234567890?text=Halo,%20saya%20ingin%20pesan%20Tote%20Bag%20Kulit%20Custom%20Mulai%20Rp499.000" target="_blank" 
+                       class="w-full text-center bg-[#2C221E] text-white py-2.5 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-[#800020] transition-colors">
+                        Custom Sekarang
+                    </a>
+                </div>
+
+                <div class="flex flex-col space-y-3 group">
+                    <div class="relative overflow-hidden rounded-2xl bg-stone-100 aspect-[4/5] shadow-sm">
+                        <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=500&q=80" alt="Sling Bag Premium" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        
+                        <div class="absolute inset-0 bg-black/60 backdrop-blur-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center p-4 text-center text-white space-y-3">
+                            <p class="text-[11px] font-bold tracking-wider uppercase text-amber-400">Pilihan Custom Tersedia:</p>
+                            <div class="text-[10px] space-y-1 text-white/90">
+                                <p><i class="fa-solid fa-check text-emerald-400 mr-1"></i> Grafir Inisial Nama</p>
+                                <p><i class="fa-solid fa-check text-emerald-400 mr-1"></i> Tali Selempang Adjustable</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start pt-1">
+                        <div>
+                            <h3 class="font-bold text-sm text-[#2C221E] uppercase tracking-wider group-hover:text-[#800020] transition-colors">Sling Bag Premium</h3>
+                            <p class="text-[11px] text-[#2C221E]/60 italic mt-0.5">Compact & Fleksibel</p>
+                        </div>
+                        <span class="text-xs font-extrabold text-[#800020] bg-[#800020]/10 px-2 py-1 rounded">Rp389k</span>
+                    </div>
+                    <a href="https://wa.me/6281234567890?text=Halo,%20saya%20ingin%20pesan%20Sling%20Bag%20Premium%20Mulai%20Rp389.000" target="_blank" 
+                       class="w-full text-center bg-[#2C221E] text-white py-2.5 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-[#800020] transition-colors">
+                        Custom Sekarang
+                    </a>
+                </div>
+
+                <div class="flex flex-col space-y-3 group">
+                    <div class="relative overflow-hidden rounded-2xl bg-stone-100 aspect-[4/5] shadow-sm">
+                        <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=500&q=80" alt="Backpack Kulit Elegant" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 bg-[#D4AF37] text-black text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md shadow-sm">Executive</span>
+                        
+                        <div class="absolute inset-0 bg-black/60 backdrop-blur-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center p-4 text-center text-white space-y-3">
+                            <p class="text-[11px] font-bold tracking-wider uppercase text-amber-400">Pilihan Custom Tersedia:</p>
+                            <div class="text-[10px] space-y-1 text-white/90">
+                                <p><i class="fa-solid fa-check text-emerald-400 mr-1"></i> Slot Laptop Khusus 15.6 Inch</p>
+                                <p><i class="fa-solid fa-check text-emerald-400 mr-1"></i> Inisial Nama di Sisi Depan</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start pt-1">
+                        <div>
+                            <h3 class="font-bold text-sm text-[#2C221E] uppercase tracking-wider group-hover:text-[#800020] transition-colors">Backpack Kulit Elegant</h3>
+                            <p class="text-[11px] text-[#2C221E]/60 italic mt-0.5">Kapasitas Besar Maksimal</p>
+                        </div>
+                        <span class="text-xs font-extrabold text-[#800020] bg-[#800020]/10 px-2 py-1 rounded">Rp799k</span>
+                    </div>
+                    <a href="https://wa.me/6281234567890?text=Halo,%20saya%20ingin%20pesan%20Backpack%20Kulit%20Elegant%20Mulai%20Rp799.000" target="_blank" 
+                       class="w-full text-center bg-[#2C221E] text-white py-2.5 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-[#800020] transition-colors">
+                        Custom Sekarang
+                    </a>
+                </div>
+
+                <div class="flex flex-col space-y-3 group">
+                    <div class="relative overflow-hidden rounded-2xl bg-stone-100 aspect-[4/5] shadow-sm">
+                        <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=500&q=80" alt="Handbag Wanita Luxury" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        
+                        <div class="absolute inset-0 bg-black/60 backdrop-blur-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center p-4 text-center text-white space-y-3">
+                            <p class="text-[11px] font-bold tracking-wider uppercase text-amber-400">Pilihan Custom Tersedia:</p>
+                            <div class="text-[10px] space-y-1 text-white/90">
+                                <p><i class="fa-solid fa-check text-emerald-400 mr-1"></i> Aksen Gold Premium Metalwork</p>
+                                <p><i class="fa-solid fa-check text-emerald-400 mr-1"></i> Custom Emboss Nama Di Dalam</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start pt-1">
+                        <div>
+                            <h3 class="font-bold text-sm text-[#2C221E] uppercase tracking-wider group-hover:text-[#800020] transition-colors">Handbag Wanita Luxury</h3>
+                            <p class="text-[11px] text-[#2C221E]/60 italic mt-0.5">Sangat Anggun & Berkelas</p>
+                        </div>
+                        <span class="text-xs font-extrabold text-[#800020] bg-[#800020]/10 px-2 py-1 rounded">Rp699k</span>
+                    </div>
+                    <a href="https://wa.me/6281234567890?text=Halo,%20saya%20ingin%20pesan%20Handbag%20Wanita%20Luxury%20Mulai%20Rp699.000" target="_blank" 
+                       class="w-full text-center bg-[#2C221E] text-white py-2.5 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-[#800020] transition-colors">
+                        Custom Sekarang
+                    </a>
+                </div>
+
+                <div class="flex flex-col space-y-3 group">
+                    <div class="relative overflow-hidden rounded-2xl bg-stone-100 aspect-[4/5] shadow-sm">
+                        <img src="https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=500&q=80" alt="Dompet Kulit Inisial Nama" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="flex justify-between items-start pt-1">
+                        <div>
+                            <h3 class="font-bold text-sm text-[#2C221E] uppercase tracking-wider group-hover:text-[#800020] transition-colors">Dompet Kulit Inisial Nama</h3>
+                            <p class="text-[11px] text-[#2C221E]/60 italic mt-0.5">Saku Belakang Minimalis</p>
+                        </div>
+                        <span class="text-xs font-extrabold text-[#800020] bg-[#800020]/10 px-2 py-1 rounded">Rp199k</span>
+                    </div>
+                    <a href="https://wa.me/6281234567890?text=Halo,%20saya%20ingin%20pesan%20Dompet%20Kulit%20Inisial%20Nama%20Mulai%20Rp199.000" target="_blank" 
+                       class="w-full text-center bg-[#2C221E] text-white py-2.5 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-[#800020] transition-colors">
+                        Custom Sekarang
+                    </a>
+                </div>
+
+                <div class="flex flex-col space-y-3 group">
+                    <div class="relative overflow-hidden rounded-2xl bg-stone-100 aspect-[4/5] shadow-sm">
+                        <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=500&q=80" alt="Travel Bag Custom" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="flex justify-between items-start pt-1">
+                        <div>
+                            <h3 class="font-bold text-sm text-[#2C221E] uppercase tracking-wider group-hover:text-[#800020] transition-colors">Travel Bag Premium</h3>
+                            <p class="text-[11px] text-[#2C221E]/60 italic mt-0.5">Sempurna Untuk Akhir Pekan</p>
+                        </div>
+                        <span class="text-xs font-extrabold text-[#800020] bg-[#800020]/10 px-2 py-1 rounded">Rp1.299k</span>
+                    </div>
+                    <a href="https://wa.me/6281234567890?text=Halo,%20saya%20ingin%20pesan%20Travel%20Bag%20Premium%20Mulai%20Rp1.299.000" target="_blank" 
+                       class="w-full text-center bg-[#2C221E] text-white py-2.5 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-[#800020] transition-colors">
+                        Custom Sekarang
+                    </a>
+                </div>
+
+                <div class="flex flex-col space-y-3 group">
+                    <div class="relative overflow-hidden rounded-2xl bg-stone-100 aspect-[4/5] shadow-sm">
+                        <img src="https://images.unsplash.com/photo-1547949003-9792a18a2601?auto=format&fit=crop&w=500&q=80" alt="Laptop Bag Executive" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="flex justify-between items-start pt-1">
+                        <div>
+                            <h3 class="font-bold text-sm text-[#2C221E] uppercase tracking-wider group-hover:text-[#800020] transition-colors">Laptop Bag Executive</h3>
+                            <p class="text-[11px] text-[#2C221E]/60 italic mt-0.5">Profesional Workwear</p>
+                        </div>
+                        <span class="text-xs font-extrabold text-[#800020] bg-[#800020]/10 px-2 py-1 rounded">Rp549k</span>
+                    </div>
+                    <a href="https://wa.me/6281234567890?text=Halo,%20saya%20ingin%20pesan%20Laptop%20Bag%20Executive" target="_blank" 
+                       class="w-full text-center bg-[#2C221E] text-white py-2.5 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-[#800020] transition-colors">
+                        Custom Sekarang
+                    </a>
+                </div>
+
+                <div class="flex flex-col space-y-3 group">
+                    <div class="relative overflow-hidden rounded-2xl bg-stone-100 aspect-[4/5] shadow-sm">
+                        <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=500&q=80" alt="Messenger Bag Vintage" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="flex justify-between items-start pt-1">
+                        <div>
+                            <h3 class="font-bold text-sm text-[#2C221E] uppercase tracking-wider group-hover:text-[#800020] transition-colors">Messenger Bag Vintage</h3>
+                            <p class="text-[11px] text-[#2C221E]/60 italic mt-0.5">Retro Aesthetics</p>
+                        </div>
+                        <span class="text-xs font-extrabold text-[#800020] bg-[#800020]/10 px-2 py-1 rounded">Rp459k</span>
+                    </div>
+                    <a href="https://wa.me/6281234567890?text=Halo,%20saya%20ingin%20pesan%20Messenger%20Bag%20Vintage" target="_blank" 
+                       class="w-full text-center bg-[#2C221E] text-white py-2.5 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-[#800020] transition-colors">
+                        Custom Sekarang
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section class="py-20 px-4 md:px-8 bg-[#F5EFE6] relative overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-5 space-y-6 reveal">
+                    <span class="text-xs font-bold tracking-[0.4em] uppercase text-[#800020]">Verified Customer Traffic</span>
+                    <h2 class="serif-title text-3xl font-bold text-[#2C221E]">Transparansi & Kepuasan Komunitas Luxora</h2>
+                    <p class="text-xs md:text-sm text-[#2C221E]/80 leading-relaxed">
+                        Kami merayakan ribuan cerita sukses para eksekutif dan pebisnis muda yang telah mempercayakan fashion statement mereka bersama kami. Sistem live data kami mencatat pesanan pengerjaan handmade secara waktu nyata dari sabang sampai merauke.
+                    </p>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="glass-card p-4 rounded-xl text-center">
+                            <span class="block text-2xl font-black text-[#800020]">4,829+</span>
+                            <span class="text-[10px] uppercase font-bold tracking-wider text-[#2C221E]/60">Ulasan Google & IG</span>
+                        </div>
+                        <div class="glass-card p-4 rounded-xl text-center">
+                            <span class="block text-2xl font-black text-emerald-800">99.4%</span>
+                            <span class="text-[10px] uppercase font-bold tracking-wider text-[#2C221E]/60">Tingkat Kepuasan</span>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 space-y-2">
+                        <p class="text-[10px] uppercase font-extrabold tracking-widest text-[#2C221E]/40">Sering Dipesan Oleh Eksekutif Perusahaan:</p>
+                        <div class="flex flex-wrap gap-6 items-center opacity-40 text-sm font-black tracking-widest text-[#2C221E]">
+                            <span>TELKOM ID</span>
+                            <span>BCA EXEC</span>
+                            <span>PERTAMINA</span>
+                            <span>MANDIRI</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-4 reveal">
+                    
+                    <div class="glass-card p-2 rounded-2xl space-y-2 transform -rotate-1 hover:rotate-0 transition-transform">
+                        <div class="rounded-xl overflow-hidden aspect-square bg-[#2C221E]/10">
+                            <img src="https://images.unsplash.com/photo-1547949003-9792a18a2601?auto=format&fit=crop&w=300&q=80" alt="UGC Bag Unboxing" class="w-full h-full object-cover">
+                        </div>
+                        <p class="text-[10px] text-[#2C221E]/80 font-medium leading-tight">"Inisial nama rapi banget, kulitnya tebal dan wangi kulit asli premium!"</p>
+                        <span class="text-[9px] font-bold text-[#800020] block">@bramantya_ceo</span>
+                    </div>
+
+                    <div class="glass-card p-2 rounded-2xl space-y-2 transform rotate-2 hover:rotate-0 transition-transform translate-y-4">
+                        <div class="rounded-xl overflow-hidden aspect-square bg-[#2C221E]/10">
+                            <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=300&q=80" alt="UGC Bag Outfit" class="w-full h-full object-cover">
+                        </div>
+                        <p class="text-[10px] text-[#2C221E]/80 font-medium leading-tight">"Handbag maroonnya mewah parah. Cocok buat kado anniversary istri."</p>
+                        <span class="text-[9px] font-bold text-[#800020] block">@dr_anissa.k</span>
+                    </div>
+
+                    <div class="glass-card p-2 rounded-2xl space-y-2 transform -rotate-2 hover:rotate-0 transition-transform hidden sm:block">
+                        <div class="rounded-xl overflow-hidden aspect-square bg-[#2C221E]/10">
+                            <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=300&q=80" alt="UGC Backpack Work" class="w-full h-full object-cover">
+                        </div>
+                        <p class="text-[10px] text-[#2C221E]/80 font-medium leading-tight">"Sangat kokoh buat bawa laptop 15.6 inch + berkas kantor aman."</p>
+                        <span class="text-[9px] font-bold text-[#800020] block">@viko.wiratama</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section class="py-24 px-4 md:px-8 bg-[#FDFBF7] relative overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            
+            <div class="text-center max-w-xl mx-auto mb-12 space-y-2 reveal">
+                <span class="text-xs font-bold tracking-[0.4em] uppercase text-[#800020]">TikTok & Reels Fast Motion</span>
+                <h2 class="serif-title text-3xl font-bold text-[#2C221E]">Proses Kreatif di Balik Layar Kami</h2>
+                <p class="text-xs text-[#2C221E]/60">Ketuk untuk menyaksikan ketelitian, suara potong kulit asli, dan proses keahlian tangan artisan kami via video vertical interaktif.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-center max-w-4xl mx-auto reveal">
+                
+                <div class="relative rounded-3xl overflow-hidden aspect-[9/16] bg-[#2C221E] shadow-2xl group max-w-sm mx-auto w-full">
+                    <img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=500&q=80" alt="Laser Emboss Video Preview" class="w-full h-full object-cover opacity-80 group-hover:scale-102 transition-transform duration-500">
+                    
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-black/30 p-6 flex flex-col justify-between items-stretch text-white">
+                        <div class="flex justify-between items-center">
+                            <span class="bg-red-600 text-white font-extrabold text-[8px] tracking-widest px-2 py-0.5 rounded-sm"><i class="fa-solid fa-circle animate-ping mr-1"></i> LIVE CREATING</span>
+                            <span class="text-xs text-white/80"><i class="fa-solid fa-eye mr-1"></i> 12.4k views</span>
+                        </div>
+                        
+                        <div class="space-y-3">
+                            <div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md mx-auto flex items-center justify-center text-white border border-white/40 cursor-pointer hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-play text-lg ml-1"></i>
+                            </div>
+                            
+                            <div class="space-y-1">
+                                <p class="text-xs font-bold tracking-wide">#CustomProcess: Proses Laser Emboss Nama Klien dengan Plat Kuningan Asli 24K</p>
+                                <p class="text-[10px] text-amber-400 font-bold">@luxoraleather.id</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative rounded-3xl overflow-hidden aspect-[9/16] bg-[#2C221E] shadow-2xl group max-w-sm mx-auto w-full hidden sm:flex">
+                    <img src="img-tas-kulit-video-1.png" alt="Durability Test Video" class="w-full h-full object-cover opacity-80 group-hover:scale-102 transition-transform duration-500">
+                    
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-black/30 p-6 flex flex-col justify-between items-stretch text-white">
+                        <div class="flex justify-between items-center">
+                            <span class="bg-black/60 text-white font-extrabold text-[8px] tracking-widest px-2 py-0.5 rounded-sm uppercase">Uji Kekuatan</span>
+                            <span class="text-xs text-white/80"><i class="fa-solid fa-eye mr-1"></i> 45.1k views</span>
+                        </div>
+                        
+                        <div class="space-y-3">
+                            <div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md mx-auto flex items-center justify-center text-white border border-white/40 cursor-pointer hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-play text-lg ml-1"></i>
+                            </div>
+                            <div class="space-y-1">
+                                <p class="text-xs font-bold tracking-wide">#LeatherTest: Pembuktian Kulit Sapi Asli Luxora Tahan Gores & Tahan Api Ringan!</p>
+                                <p class="text-[10px] text-amber-400 font-bold">@luxoraleather.id</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative rounded-3xl overflow-hidden aspect-[9/16] bg-[#2C221E] shadow-2xl group max-w-sm mx-auto w-full hidden sm:flex">
+                    <img src="img-tas-kulit-video-2.png" alt="Durability Test Video" class="w-full h-full object-cover opacity-80 group-hover:scale-102 transition-transform duration-500">
+                    
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-black/30 p-6 flex flex-col justify-between items-stretch text-white">
+                        <div class="flex justify-between items-center">
+                            <span class="bg-black/60 text-white font-extrabold text-[8px] tracking-widest px-2 py-0.5 rounded-sm uppercase">Uji Kekuatan</span>
+                            <span class="text-xs text-white/80"><i class="fa-solid fa-eye mr-1"></i> 45.1k views</span>
+                        </div>
+                        
+                        <div class="space-y-3">
+                            <div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md mx-auto flex items-center justify-center text-white border border-white/40 cursor-pointer hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-play text-lg ml-1"></i>
+                            </div>
+                            <div class="space-y-1">
+                                <p class="text-xs font-bold tracking-wide">#LeatherTest: Pembuktian Kulit Sapi Asli Luxora Tahan Gores & Tahan Api Ringan!</p>
+                                <p class="text-[10px] text-amber-400 font-bold">@luxoraleather.id</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section class="py-20 px-4 md:px-8 bg-gradient-to-r from-[#2C221E] via-[#4A3525] to-[#2C221E] text-white relative overflow-hidden">
+        
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#D4AF37]/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-5xl mx-auto text-center relative z-10 space-y-8 reveal">
+            
+            <div class="space-y-2">
+                <span class="text-xs font-bold tracking-[0.4em] text-amber-400 uppercase">Limited Time Opportunity</span>
+                <h2 class="serif-title text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">Penawaran Spesial Grand Opening</h2>
+                <p class="text-xs sm:text-sm text-white/70 max-w-xl mx-auto">Klaim slot order custom hari ini untuk mendapatkan paket bonus senilai total <span class="text-amber-400 font-bold">Rp350.000</span> secara gratis!</p>
+            </div>
+
+            <div class="grid grid-cols-4 gap-2 sm:gap-4 max-w-md mx-auto text-center">
+                <div class="glass-dark p-3 sm:p-4 rounded-xl border border-white/10">
+                    <span class="block text-xl sm:text-3xl font-black text-amber-400" id="countdown-hours">02</span>
+                    <span class="text-[9px] sm:text-[10px] uppercase tracking-wider text-white/60 font-medium">Jam</span>
+                </div>
+                <div class="glass-dark p-3 sm:p-4 rounded-xl border border-white/10">
+                    <span class="block text-xl sm:text-3xl font-black text-amber-400" id="countdown-minutes">44</span>
+                    <span class="text-[9px] sm:text-[10px] uppercase tracking-wider text-white/60 font-medium">Menit</span>
+                </div>
+                <div class="glass-dark p-3 sm:p-4 rounded-xl border border-white/10">
+                    <span class="block text-xl sm:text-3xl font-black text-amber-400" id="countdown-seconds">12</span>
+                    <span class="text-[9px] sm:text-[10px] uppercase tracking-wider text-white/60 font-medium">Detik</span>
+                </div>
+                <div class="glass-dark p-3 sm:p-4 rounded-xl border border-white/10">
+                    <span class="block text-xl sm:text-3xl font-black text-rose-400" id="countdown-ms">88</span>
+                    <span class="text-[9px] sm:text-[10px] uppercase tracking-wider text-white/60 font-medium">Ms</span>
+                </div>
+            </div>
+
+            <div class="max-w-xs mx-auto space-y-2">
+                <div class="flex justify-between text-[11px] text-white/80 font-bold uppercase tracking-wider">
+                    <span>Sisa Kuota Slot Promo Hari Ini:</span>
+                    <span class="text-amber-400">Tinggal 4 Slot Lagi</span>
+                </div>
+                <div class="w-full h-2.5 bg-black/40 rounded-full overflow-hidden p-0.5 border border-white/5">
+                    <div class="w-[82%] h-full bg-gradient-to-r from-[#800020] to-amber-500 rounded-full animate-pulse"></div>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-4 text-xs font-semibold text-white/90 pt-2">
+                <span class="inline-flex items-center"><i class="fa-solid fa-circle-check text-emerald-400 mr-2"></i> Gratis Emboss Nama</span>
+                <span class="inline-flex items-center"><i class="fa-solid fa-circle-check text-emerald-400 mr-2"></i> Diskon Hingga 25%</span>
+                <span class="inline-flex items-center"><i class="fa-solid fa-circle-check text-emerald-400 mr-2"></i> Free Gift Pouch Kulit</span>
+                <span class="inline-flex items-center"><i class="fa-solid fa-circle-check text-emerald-400 mr-2"></i> Gratis Ongkir Area Tertentu</span>
+            </div>
+
+            <div class="pt-4">
+                <a href="https://wa.me/6281234567890?text=Saya%20ingin%20klaim%20Promo%20Grand%20Opening%20Luxora%20Leather%20sekarang." target="_blank" 
+                   class="inline-block bg-gradient-to-r from-[#800020] to-[#5C0612] text-white font-extrabold text-xs tracking-widest uppercase px-10 py-4 rounded-xl transition-all duration-300 transform hover:scale-102 shadow-2xl border border-[#800020]">
+                    Klaim Promo Grand Opening <i class="fa-solid fa-gift ml-2 animate-bounce"></i>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="py-24 px-4 md:px-8 bg-gradient-to-b from-[#FDFBF7] to-[#F5EFE6] relative">
+        <div class="max-w-7xl mx-auto">
+            
+            <div class="text-center max-w-xl mx-auto mb-16 space-y-2 reveal">
+                <span class="text-xs font-bold tracking-[0.4em] uppercase text-[#800020]">Authentic Emotion Experience</span>
+                <h2 class="serif-title text-3xl font-bold text-[#2C221E]">Apa Kata Pemilik Luxora?</h2>
+            </div>
+
+            <div class="relative max-w-3xl mx-auto overflow-hidden px-4 reveal" id="testimonial-slider-container">
+                <div class="flex transition-transform duration-500 ease-in-out" id="testimonial-wrapper">
+                    
+                    <div class="w-full flex-shrink-0 px-2">
+                        <div class="glass-card p-8 rounded-3xl shadow-md border border-white space-y-4">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-12 h-12 rounded-full bg-[#4A3525] text-white font-black flex items-center justify-center text-xs">RE</div>
+                                    <div>
+                                        <h4 class="font-bold text-sm text-[#2C221E]">Raymond Effendi</h4>
+                                        <p class="text-[10px] text-[#2C221E]/60 uppercase font-semibold tracking-wider">Investment Banker, Jakarta</p>
+                                    </div>
+                                </div>
+                                <div class="text-amber-500 text-xs flex space-x-0.5">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                            </div>
+                            <p class="text-xs md:text-sm text-[#2C221E]/80 leading-relaxed italic font-medium">
+                                "Sangat kagum dengan kerapian Laptop Bag Executive buatan Luxora. Kulitnya premium, kokoh, dan saat presentasi di hadapan klien corporate, embos nama inisial saya selalu memancing pujian profesional. Investasi penampilan yang sangat worth it!"
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="w-full flex-shrink-0 px-2">
+                        <div class="glass-card p-8 rounded-3xl shadow-md border border-white space-y-4">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-12 h-12 rounded-full bg-[#800020] text-white font-black flex items-center justify-center text-xs">M</div>
+                                    <div>
+                                        <h4 class="font-bold text-sm text-[#2C221E]">Meutia Devina</h4>
+                                        <p class="text-[10px] text-[#2C221E]/60 uppercase font-semibold tracking-wider">Creative Director, Bandung</p>
+                                    </div>
+                                </div>
+                                <div class="text-amber-500 text-xs flex space-x-0.5">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                            </div>
+                            <p class="text-xs md:text-sm text-[#2C221E]/80 leading-relaxed italic font-medium">
+                                "Nyari kado mewah untuk partner bisnis beneran terbantu berkat Handbag Luxury Paris-nya Luxora. CS sangat komunikatif membantu simulasi letak inisial nama. Packaging box tebal elegan seperti brand butik luar negeri."
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="flex justify-center space-x-2 pt-6">
+                    <button class="w-2.5 h-2.5 rounded-full bg-[#800020]" id="slide-dot-0" aria-label="Slide 1"></button>
+                    <button class="w-2.5 h-2.5 rounded-full bg-[#C4A484]" id="slide-dot-1" aria-label="Slide 2"></button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="reseller" class="py-24 px-4 md:px-8 bg-[#F5EFE6] relative border-t border-b border-[#E4DBCB]">
+        <div class="max-w-5xl mx-auto glass-card rounded-[2.5rem] p-8 md:p-12 shadow-xl overflow-hidden relative">
+            <div class="absolute top-0 right-0 bg-gradient-to-l from-[#800020] to-[#4A3525] text-white text-[10px] font-black uppercase tracking-widest px-6 py-2 rounded-bl-2xl">
+                B2B & Dropship Program 2026
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+                <div class="lg:col-span-7 space-y-6">
+                    <span class="text-xs font-bold tracking-[0.3em] uppercase text-[#800020]">Join Our Premium Network</span>
+                    <h2 class="serif-title text-3xl font-bold text-[#2C221E]">Program Kemitraan Reseller Luxora Leather</h2>
+                    <p class="text-xs md:text-sm text-[#2C221E]/80 leading-relaxed">
+                        Apakah Anda pemilik butik fashion, agen merchandise korporasi, atau pebisnis digital? Gapai pasar premium produk kulit custom tanpa perlu khawatir operasional pabrik. Kami menyediakan skema white-label, kustomisasi massal corporate gift, dan diskon grosir eksklusif.
+                    </p>
+                    <ul class="text-xs space-y-2 text-[#2C221E]/90 font-medium">
+                        <li><i class="fa-solid fa-circle-nodes text-[#800020] mr-2"></i> Diskon khusus agen/reseller up to 35% per produk.</li>
+                        <li><i class="fa-solid fa-circle-nodes text-[#800020] mr-2"></i> Disediakan aset foto studio, copywriting, & B-roll video TikTok.</li>
+                        <li><i class="fa-solid fa-circle-nodes text-[#800020] mr-2"></i> Tim produksi prioritas (Leads handling & pengerjaan cepat).</li>
+                    </ul>
+                </div>
+
+                <div class="lg:col-span-5 bg-white/70 backdrop-blur-md p-6 rounded-2xl border border-white/80 space-y-4 shadow-sm">
+                    <h3 class="text-xs uppercase font-extrabold text-[#2C221E] tracking-widest text-center border-b border-stone-200 pb-2">Daftar Slot Kemitraan</h3>
+                    <form action="https://wa.me/6281234567890" method="GET" target="_blank" class="space-y-3">
+                        <input type="hidden" name="text" value="Halo Luxora Leather, saya ingin mendaftar menjadi Reseller/Mitra Corporate Premium. Mohon info syarat ketentuan.">
+                        
+                        <div>
+                            <label class="block text-[10px] uppercase font-bold text-[#2C221E]/60 mb-1">Nama Lengkap / Instansi</label>
+                            <input type="text" placeholder="Contoh: Arga Putra" class="w-full bg-white border border-[#E4DBCB] text-xs px-3 py-2 rounded-xl focus:outline-none focus:border-[#800020]" required>
+                        </div>
+                        <div>
+                            <label class="block text-[10px] uppercase font-bold text-[#2C221E]/60 mb-1">Domisili Kota</label>
+                            <input type="text" placeholder="Contoh: Jakarta Selatan" class="w-full bg-white border border-[#E4DBCB] text-xs px-3 py-2 rounded-xl focus:outline-none focus:border-[#800020]" required>
+                        </div>
+                        <button type="submit" class="w-full bg-[#800020] hover:bg-[#5C0612] text-white text-xs font-bold tracking-widest uppercase py-3 rounded-xl transition-colors shadow-lg">
+                            Daftar Kemitraan Via WA
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-24 px-4 md:px-8 bg-[#FDFBF7] relative">
+        <div class="max-w-3xl mx-auto">
+            
+            <div class="text-center mb-12 space-y-2 reveal">
+                <span class="text-xs font-bold tracking-[0.4em] uppercase text-[#800020]">Information Transparency</span>
+                <h2 class="serif-title text-3xl font-bold text-[#2C221E]">Pertanyaan yang Sering Diajukan</h2>
+            </div>
+
+            <div class="space-y-4 reveal">
+                
+                <div class="bg-white rounded-2xl border border-[#E4DBCB]/60 overflow-hidden shadow-xs">
+                    <button class="w-full px-6 py-4 text-left flex items-center justify-between font-bold text-xs sm:text-sm uppercase tracking-wider text-[#2C221E] focus:outline-none" onclick="toggleFaq(this)">
+                        <span>Berapa lama proses pembuatan tas custom handmade ini?</span>
+                        <i class="fa-solid fa-chevron-down text-xs transition-transform duration-300 text-[#800020]"></i>
+                    </button>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-[#FDFBF7]">
+                        <p class="p-6 text-xs text-[#2C221E]/80 leading-relaxed border-t border-stone-100">
+                            Proses pembuatan pengerjaan handmade membutuhkan waktu sekitar 3–7 hari kerja tergantung tingkat kerumitan model dan antrean laser emboss inisial nama Anda. Kami memastikan detail jahitan diperiksa ketat oleh Quality Control sebelum dikirim.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl border border-[#E4DBCB]/60 overflow-hidden shadow-xs">
+                    <button class="w-full px-6 py-4 text-left flex items-center justify-between font-bold text-xs sm:text-sm uppercase tracking-wider text-[#2C221E] focus:outline-none" onclick="toggleFaq(this)">
+                        <span>Apakah benar menggunakan material 100% kulit asli?</span>
+                        <i class="fa-solid fa-chevron-down text-xs transition-transform duration-300 text-[#800020]"></i>
+                    </button>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-[#FDFBF7]">
+                        <p class="p-6 text-xs text-[#2C221E]/80 leading-relaxed border-t border-stone-100">
+                            Ya, 100% asli. LUXORA LEATHER berkomitmen penuh hanya mengolah kulit sapi asli premium lokal maupun impor grade tertinggi. Kami tidak menggunakan kulit sintetis, imitasi, pu leather, atau pleather. Ada jaminan garansi uang kembali utuh jika terbukti bukan kulit asli.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl border border-[#E4DBCB]/60 overflow-hidden shadow-xs">
+                    <button class="w-full px-6 py-4 text-left flex items-center justify-between font-bold text-xs sm:text-sm uppercase tracking-wider text-[#2C221E] focus:outline-none" onclick="toggleFaq(this)">
+                        <span>Bagaimana cara klaim gratis emboss nama dan free gift pouch?</span>
+                        <i class="fa-solid fa-chevron-down text-xs transition-transform duration-300 text-[#800020]"></i>
+                    </button>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-[#FDFBF7]">
+                        <p class="p-6 text-xs text-[#2C221E]/80 leading-relaxed border-t border-stone-100">
+                            Bonus otomatis diklaim jika Anda memesan dalam periode kuota harian promo Grand Opening melalui tombol WhatsApp resmi di landing page ini. Infokan inisial huruf yang Anda inginkan (Maksimal 4 karakter) langsung ke Customer Service kami.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section class="py-24 px-4 md:px-8 bg-gradient-to-b from-[#F5EFE6] to-[#E8DCC4] text-[#2C221E] relative overflow-hidden text-center">
+        
+        <div class="max-w-3xl mx-auto space-y-6 relative z-10 reveal">
+            <span class="text-xs font-bold tracking-[0.4em] uppercase text-[#800020]">Your Signature Legacy Awaits</span>
+            <h2 class="serif-title text-4xl sm:text-5xl font-bold leading-tight">Siap Tampil Berkelas Menawan Sekaligus Berwibawa?</h2>
+            
+            <p class="text-xs sm:text-sm text-[#2C221E]/80 max-w-xl mx-auto leading-relaxed">
+                Jangan biarkan impresi profesional Anda biasa saja. Dapatkan rasa percaya diri maksimal di hadapan rekan kerja atau klien penting dengan mahakarya tas kulit custom nama eksklusif dari Luxora Leather.
+            </p>
+
+            <div class="glass-card max-w-md mx-auto p-4 rounded-2xl space-y-1 shadow-sm border border-white">
+                <p class="text-xs uppercase font-extrabold tracking-wider text-[#800020]">🎁 BONUS SPESIAL HARI INI</p>
+                <p class="text-[11px] text-[#2C221E]/80">Free Emboss Inisial Nama &plus; Free Pouch Kulit &plus; Potongan Diskon 25%</p>
+            </div>
+
+            <div class="pt-4">
+                <a href="https://wa.me/6281234567890?text=Halo%20Luxora%20Leather,%20saya%20ingin%20mengunci%20slot%20promo%20tas%20custom%20nama%20hari%20ini." target="_blank" 
+                   class="cta-pulse inline-flex items-center space-x-3 bg-gradient-to-r from-[#2C221E] via-[#800020] to-[#2C221E] text-white font-extrabold text-xs sm:text-sm tracking-widest uppercase px-12 py-5 rounded-xl shadow-2xl transition-all">
+                    <i class="fa-brands fa-whatsapp text-lg text-emerald-400"></i>
+                    <span>Pesan Custom Via WhatsApp Resmi</span>
+                </a>
+                <p class="text-[10px] uppercase font-bold text-[#2C221E]/50 tracking-wider mt-3"><i class="fa-solid fa-shield-halved mr-1"></i> Transaksi Aman 100% Terverifikasi & Resmi</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-[#2C221E] text-white/60 text-xs py-12 px-4 md:px-8 border-t border-white/5 relative">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+            
+            <div class="md:col-span-5 space-y-4">
+                <span class="serif-title text-xl font-bold tracking-wider text-white uppercase block">Luxora<span class="text-[#800020]">.</span></span>
+                <p class="text-[11px] leading-relaxed max-w-sm text-white/50">
+                    Produsen tas kulit custom premium asli handmade berkualitas tinggi di Indonesia. Mewujudkan personal branding eksklusif untuk pebisnis, eksekutif muda, dan profesional sejati sejak tahun 2026.
+                </p>
+                <div class="flex space-x-4 text-base text-white/70 pt-1">
+                    <a href="https://tiktok.com/@luxoraleather.id" target="_blank" class="hover:text-white transition-colors" aria-label="TikTok Official"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="https://instagram.com/@luxoraleather.id" target="_blank" class="hover:text-white transition-colors" aria-label="Instagram Official"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://wa.me/6281234567890" target="_blank" class="hover:text-white transition-colors" aria-label="WhatsApp Contact"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <div class="md:col-span-3 space-y-3">
+                <h4 class="font-bold text-white text-[11px] uppercase tracking-widest text-amber-400">Navigasi Kilat</h4>
+                <div class="flex flex-col space-y-2 text-[11px] font-medium">
+                    <a href="#hero" class="hover:text-white transition-colors">Halaman Utama</a>
+                    <a href="#experience" class="hover:text-colors hover:text-white">Cerita Pengrajin Artisans</a>
+                    <a href="#showcase" class="hover:text-white transition-colors">Galeri Best Seller</a>
+                    <a href="#menu" class="hover:text-white transition-colors">Katalog Koleksi Model</a>
+                    <a href="#reseller" class="hover:text-white transition-colors">Pendaftaran Reseller</a>
+                </div>
+            </div>
+
+            <div class="md:col-span-4 space-y-3">
+                <h4 class="font-bold text-white text-[11px] uppercase tracking-widest text-amber-400">Butuh Bantuan?</h4>
+                <p class="text-[11px] leading-relaxed text-white/50">Tim Layanan Klien kami siap mendampingi proses konsultasi desain inisial nama Anda setiap hari kerja pukul 08.00 - 21.00 WIB.</p>
+                <div class="text-[11px] text-white/80 font-bold space-y-1">
+                    <p><i class="fa-solid fa-envelope mr-2 text-stone-500"></i> support@luxoraleather.id</p>
+                    <p><i class="fa-solid fa-phone mr-2 text-stone-500"></i> 0812-3456-7890</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="max-w-7xl mx-auto border-t border-white/5 mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between text-[10px] text-white/40 font-medium tracking-wide">
+            <p>&copy; 2026 LUXORA LEATHER Indonesia. All Rights Reserved. Crafted with Premium Quality.</p>
+            <p class="mt-2 sm:mt-0">Premium Mobile-First Experience Engine v4.0</p>
+        </div>
+    </footer>
+
+    <div class="fixed bottom-0 left-0 right-0 z-40 bg-white/80 backdrop-blur-xl border-t border-stone-200 px-4 py-2.5 flex items-center justify-between md:hidden shadow-lg">
+        <div class="flex flex-col">
+            <span class="text-[9px] uppercase font-bold text-[#800020] tracking-wider leading-none">Grand Opening Promo</span>
+            <span class="text-xs font-black text-[#2C221E] mt-0.5">Diskon 25% + Free Pouch</span>
+        </div>
+        <a href="https://wa.me/6281234567890?text=Saya%20tertarik%20dengan%20Custom%20Signature%20Leather%20Bag%20Luxora%20Leather." target="_blank" 
+           class="bg-[#800020] text-white text-[11px] font-black uppercase tracking-wider px-5 py-2.5 rounded-xl shadow-md flex items-center space-x-2">
+            <i class="fa-brands fa-whatsapp text-sm text-emerald-400"></i>
+            <span>Custom Sekarang</span>
+        </a>
+    </div>
+
+    <div id="live-order-popup" class="fixed bottom-16 sm:bottom-6 left-4 z-50 glass-dark text-white px-4 py-3 rounded-2xl shadow-2xl border border-white/10 flex items-center space-x-3 max-w-xs transition-all duration-500 transform translate-y-32 opacity-0 pointer-events-none">
+        <div class="w-8 h-8 rounded-full bg-[#800020] text-white flex items-center justify-center text-xs"><i class="fa-solid fa-shopping-bag"></i></div>
+        <div class="flex-1">
+            <p class="text-[10px] font-bold text-amber-400 uppercase tracking-wider" id="popup-user-name">Andi (Semarang)</p>
+            <p class="text-[11px] text-white/90 font-medium" id="popup-user-product">Baru saja memesan Tote Bag Custom</p>
+            <p class="text-[9px] text-white/40" id="popup-user-time">1 menit yang lalu</p>
+        </div>
+        <button class="text-white/40 hover:text-white text-xs self-start" onclick="closeLiveOrderPopup()" aria-label="Close Announcement"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <a href="https://wa.me/6281234567890?text=Halo%20Luxora%20Leather,%20saya%20ingin%20bertanya%20mengenai%20tas%20kulit%20custom." target="_blank" 
+       class="fixed bottom-20 sm:bottom-6 right-4 z-40 bg-emerald-600 text-white w-12 h-12 rounded-full flex items-center justify-center text-xl shadow-2xl hover:bg-emerald-700 transition-transform hover:scale-110 shadow-emerald-600/30 group" aria-label="Chat WhatsApp Direct Support">
+        <i class="fa-brands fa-whatsapp"></i>
+        <span class="absolute right-full mr-2 bg-[#2C221E] text-white text-[9px] uppercase tracking-wider font-extrabold px-3 py-1.5 rounded-md shadow-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+            Konsultasi Desain Online
+        </span>
+    </a>
+
+
+    <script>
+        // 1. Loading Screen management
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loading-screen');
+            loader.classList.add('opacity-0');
+            setTimeout(() => {
+                loader.style.display = 'none';
+            }, 500);
+            initCounters();
+        });
+
+        // 2. Mobile Navigation Sidebar Menu Toggle Box
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenuBox = document.querySelector('.id-mobile-menu-box');
+        
+        mobileMenuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            mobileMenuBox.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on clicking links or clicking outside
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenuBox.classList.add('hidden');
+            });
+        });
+        document.addEventListener('click', () => {
+            mobileMenuBox.classList.add('hidden');
+        });
+
+        // 3. Scroll Progress Bar & Navbar Shadow Toggle State 
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('scroll-bar').style.width = scrolled + '%';
+
+            const headerNav = document.getElementById('main-nav');
+            if (window.scrollY > 50) {
+                headerNav.classList.remove('top-4');
+                headerNav.classList.add('top-0', 'w-full', 'max-w-none', 'rounded-none');
+            } else {
+                headerNav.classList.add('top-4', 'w-[92%]', 'max-w-7xl', 'rounded-full');
+            }
+
+            // Scroll Reveal implementation triggers
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(revealElement => {
+                const windowHeight = window.innerHeight;
+                const elementTop = revealElement.getBoundingClientRect().top;
+                const elementVisible = 100;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    revealElement.classList.add('active');
+                }
+            });
+        });
+
+        // Initialize early reveal elements
+        setTimeout(() => {
+            document.querySelectorAll('.reveal').forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight) {
+                    el.classList.add('active');
+                }
+            });
+        }, 600);
+
+        // 4. FAQ Smooth Accordion Logic Toggle
+        function toggleFaq(buttonElement) {
+            const icon = buttonElement.querySelector('i');
+            const contentBlock = buttonElement.nextElementSibling;
+            
+            // Toggle Chevron orientation
+            icon.classList.toggle('rotate-180');
+            
+            if (contentBlock.style.maxHeight && contentBlock.style.maxHeight !== '0px') {
+                contentBlock.style.maxHeight = '0px';
+            } else {
+                contentBlock.style.maxHeight = contentBlock.scrollHeight + 'px';
+            }
+        }
+
+        // 5. Promo Countdown Timer Urgency System (Infinite loop simulation for campaign preservation)
+        function initCountdown() {
+            let hours = 2;
+            let minutes = 44;
+            let seconds = 12;
+            let ms = 88;
+
+            const hourEl = document.getElementById('countdown-hours');
+            const minEl = document.getElementById('countdown-minutes');
+            const secEl = document.getElementById('countdown-seconds');
+            const msEl = document.getElementById('countdown-ms');
+
+            setInterval(() => {
+                ms--;
+                if(ms < 0) {
+                    ms = 99;
+                    seconds--;
+                    if(seconds < 0) {
+                        seconds = 59;
+                        minutes--;
+                        if(minutes < 0) {
+                            minutes = 59;
+                            // Reset back loop slightly preserve beautiful state
+                            hours = hours > 0 ? hours - 1 : 2;
+                        }
+                    }
+                }
+                
+                hourEl.textContent = String(hours).padStart(2, '0');
+                minEl.textContent = String(minutes).padStart(2, '0');
+                secEl.textContent = String(seconds).padStart(2, '0');
+                msEl.textContent = String(ms).padStart(2, '0');
+            }, 10);
+        }
+        initCountdown();
+
+        // 6. Fake Live Order Notification Popups Simulation
+        const namesList = ['Budi (Surabaya)', 'Siti (Bandung)', 'Dedi (Medan)', 'Rian (Makassar)', 'Hana (Yogyakarta)', 'Farhan (Malang)'];
+        const productsList = ['Baru saja memesan Backpack Kulit Elegant', 'Baru saja memesan Handbag Wanita Luxury', 'Baru saja mengklaim Bonus Emboss Inisial Dompet Kulit', 'Baru saja memesan Tote Bag Custom', 'Baru saja mendaftar Mitra Reseller Premium'];
+        const livePopup = document.getElementById('live-order-popup');
+
+        function triggerFakeOrder() {
+            const randomName = namesList[Math.floor(Math.random() * namesList.length)];
+            const randomProduct = productsList[Math.floor(Math.random() * productsList.length)];
+            
+            document.getElementById('popup-user-name').textContent = randomName;
+            document.getElementById('popup-user-product').textContent = randomProduct;
+            document.getElementById('popup-user-time').textContent = 'Baru saja';
+
+            livePopup.classList.remove('opacity-0', 'translate-y-32', 'pointer-events-none');
+            
+            // Hide it automatically after 5 seconds
+            setTimeout(() => {
+                closeLiveOrderPopup();
+            }, 5500);
+        }
+
+        function closeLiveOrderPopup() {
+            livePopup.classList.add('opacity-0', 'translate-y-32', 'pointer-events-none');
+        }
+
+        // Loop fake order notifications every 20 seconds
+        setTimeout(triggerFakeOrder, 4000);
+        setInterval(triggerFakeOrder, 22000);
+
+        // 7. Testimonial Auto Slider Carousel Logic
+        const wrapper = document.getElementById('testimonial-wrapper');
+        let currentSlideIndex = 0;
+        const totalSlidesCount = 2;
+
+        function updateSlidePosition() {
+            wrapper.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+            for(let i=0; i<totalSlidesCount; i++) {
+                const dot = document.getElementById(`slide-dot-${i}`);
+                if(i === currentSlideIndex) {
+                    dot.classList.remove('bg-[#C4A484]');
+                    dot.classList.add('bg-[#800020]');
+                } else {
+                    dot.classList.remove('bg-[#800020]');
+                    dot.classList.add('bg-[#C4A484]');
+                }
+            }
+        }
+
+        // Add event listeners to dots
+        for(let i=0; i<totalSlidesCount; i++) {
+            document.getElementById(`slide-dot-${i}`).addEventListener('click', () => {
+                currentSlideIndex = i;
+                updateSlidePosition();
+            });
+        }
+
+        // Auto roll testimonial every 6 seconds
+        setInterval(() => {
+            currentSlideIndex = (currentSlideIndex + 1) % totalSlidesCount;
+            updateSlidePosition();
+        }, 6500);
+
+        // 8. Animated Counters logic handler
+        function initCounters() {
+            // Safe increment function simulation for aesthetic UI layout
+            const exp = document.getElementById('counter-experience');
+            const crafts = document.getElementById('counter-craftsmen');
+            const ship = document.getElementById('counter-shipped');
+            
+            // Preserve final values elegantly 
+            exp.textContent = "100%";
+            crafts.textContent = "24+";
+            ship.textContent = "8.5k+";
+        }
+    </script>
+</body>
+</html>
