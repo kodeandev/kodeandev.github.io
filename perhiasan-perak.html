@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silvera Artisan - Celuk Heritage Silver Collection</title>
+    <meta name="description" content="Perhiasan perak handmade berkualitas tinggi dengan sentuhan seni khas Celuk, Bali.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        charcoal: '#0f1115',
+                        ash: '#1a1d24',
+                        silver: '#c0c0c0',
+                        silverLight: '#e5e7eb',
+                        midnight: '#0f172a',
+                        royalGold: '#d4af37',
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'silver-glow': '0 0 15px rgba(192, 192, 192, 0.3)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS -->
+    <style>
+        /* Reveal Animation on Scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Glassmorphism Navbar */
+        .glass-nav {
+            background: rgba(15, 17, 21, 0.7);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(192, 192, 192, 0.1);
+        }
+
+        /* Button Hover Glow */
+        .btn-glow:hover {
+            box-shadow: 0 0 20px rgba(192, 192, 192, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Hide Scrollbar for Slider */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;  
+            scrollbar-width: none;  
+        }
+
+        /* Fake Order Popup Animation */
+        .popup-enter {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+    </style>
+</head>
+<body class="bg-charcoal text-silverLight font-sans antialiased overflow-x-hidden">
+
+    <!-- ==========================================
+         NAVBAR SECTION
+    =========================================== -->
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="font-serif text-2xl font-bold text-white tracking-widest uppercase">
+                        Silvera<span class="text-silver text-sm block tracking-[0.3em] font-sans font-light">Artisan</span>
+                    </a>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#hero" class="nav-link text-sm font-medium text-silver hover:text-white transition">Home</a>
+                    <a href="#story" class="nav-link text-sm font-medium text-silver hover:text-white transition">Heritage</a>
+                    <a href="#collection" class="nav-link text-sm font-medium text-silver hover:text-white transition">Collection</a>
+                    <a href="#testimonials" class="nav-link text-sm font-medium text-silver hover:text-white transition">Reviews</a>
+                    <a href="#order" class="btn-glow bg-silver text-charcoal px-5 py-2 rounded-full text-sm font-semibold transition">Request Catalog</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-silver hover:text-white focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-ash border-t border-silver/10">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#hero" class="mobile-link block px-3 py-2 text-base font-medium text-silver hover:text-white">Home</a>
+                <a href="#story" class="mobile-link block px-3 py-2 text-base font-medium text-silver hover:text-white">Heritage</a>
+                <a href="#collection" class="mobile-link block px-3 py-2 text-base font-medium text-silver hover:text-white">Collection</a>
+                <a href="#testimonials" class="mobile-link block px-3 py-2 text-base font-medium text-silver hover:text-white">Reviews</a>
+                <a href="#order" class="block px-3 py-2 text-base font-bold text-royalGold">Order Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ==========================================
+         HERO SECTION
+    =========================================== -->
+    <section id="hero" class="relative h-screen flex items-center justify-center pt-20">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
+            <img src="img-perhiasan-hero.png" alt="Luxury Silver Jewelry" class="w-full h-full object-cover opacity-30 object-center">
+            <div class="absolute inset-0 bg-gradient-to-b from-charcoal/40 via-transparent to-charcoal"></div>
+        </div>
+
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto mt-10">
+            <p class="text-royalGold uppercase tracking-[0.3em] text-sm font-semibold mb-4 reveal">Celuk Heritage Collection</p>
+            <h1 class="text-5xl md:text-7xl font-serif text-white leading-tight mb-6 reveal" style="transition-delay: 100ms;">
+                Keindahan Perak,<br> <span class="italic text-silver">Sentuhan Seni Bali.</span>
+            </h1>
+            <p class="text-silverLight text-lg md:text-xl font-light mb-10 max-w-2xl mx-auto reveal" style="transition-delay: 200ms;">
+                Perhiasan perak artisan handmade dengan detail ukiran eksklusif. Diciptakan dari 925 sterling silver untuk koleksi premium Anda.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4 reveal" style="transition-delay: 300ms;">
+                <a href="#collection" class="btn-glow bg-silver text-charcoal px-8 py-3 rounded-full font-semibold text-lg transition duration-300">
+                    Explore Collection
+                </a>
+                <a href="#order" class="border border-silver text-silver hover:bg-silver hover:text-charcoal px-8 py-3 rounded-full font-semibold text-lg transition duration-300">
+                    Custom Your Design
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         BRAND STORY SECTION
+    =========================================== -->
+    <section id="story" class="py-24 bg-charcoal relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                <div class="order-2 md:order-1 relative reveal">
+                    <img src="img-perhiasan-brand-story.png" alt="Artisan Crafting" class="rounded-lg shadow-2xl object-cover h-[500px] w-full border border-silver/10">
+                    <div class="absolute -bottom-6 -right-6 bg-ash p-6 rounded-lg border border-silver/20 shadow-xl hidden md:block">
+                        <p class="font-serif text-2xl text-royalGold">925</p>
+                        <p class="text-xs uppercase tracking-wider text-silver">Sterling Silver</p>
+                    </div>
+                </div>
+                <div class="order-1 md:order-2 reveal">
+                    <h2 class="text-3xl md:text-5xl font-serif text-white mb-6">Masterpiece dari Tangan Pengrajin Celuk</h2>
+                    <p class="text-silver mb-6 leading-relaxed font-light">
+                        Silvera Artisan bukan sekadar perhiasan. Ini adalah warisan. Kami menggabungkan eksklusivitas handmade craftsmanship dengan estetika premium contemporary jewelry. 
+                    </p>
+                    <p class="text-silver mb-8 leading-relaxed font-light">
+                        Setiap lekukan dan ukiran menceritakan filosofi budaya Bali modern, dibuat khusus oleh artisan berpengalaman untuk individu yang menghargai karya seni autentik.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="text-white font-semibold mb-2"><i class="fa-solid fa-hammer text-royalGold mr-2"></i> 100% Handmade</h4>
+                            <p class="text-sm text-silver/80">Dibuat langsung oleh tangan terampil tanpa mesin massal.</p>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-semibold mb-2"><i class="fa-solid fa-gem text-royalGold mr-2"></i> Premium Quality</h4>
+                            <p class="text-sm text-silver/80">Finishing elegan yang nyaman untuk pemakaian harian.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         PROMO BANNER & COUNTDOWN TIMER
+    =========================================== -->
+    <section class="py-12 bg-midnight border-y border-royalGold/30 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-royalGold via-transparent to-transparent"></div>
+        <div class="max-w-5xl mx-auto px-4 relative z-10 text-center reveal">
+            <span class="bg-royalGold text-charcoal px-3 py-1 rounded text-xs font-bold tracking-widest uppercase mb-4 inline-block">Grand Launch Promo</span>
+            <h3 class="text-2xl md:text-3xl font-serif text-white mb-4">Dapatkan Diskon 15% + Gratis Box Velvet Eksklusif</h3>
+            <p class="text-silver mb-6">Gratis ukiran nama untuk 50 pembeli pertama hari ini. Penawaran berakhir dalam:</p>
+            
+            <div id="countdown" class="flex justify-center space-x-4 md:space-x-6 text-white">
+                <div class="bg-ash border border-silver/20 rounded-lg p-3 md:p-4 min-w-[70px] md:min-w-[90px]">
+                    <span id="hours" class="block text-3xl md:text-4xl font-serif font-bold text-royalGold">00</span>
+                    <span class="text-xs uppercase tracking-wider text-silver">Jam</span>
+                </div>
+                <div class="bg-ash border border-silver/20 rounded-lg p-3 md:p-4 min-w-[70px] md:min-w-[90px]">
+                    <span id="minutes" class="block text-3xl md:text-4xl font-serif font-bold text-royalGold">00</span>
+                    <span class="text-xs uppercase tracking-wider text-silver">Menit</span>
+                </div>
+                <div class="bg-ash border border-silver/20 rounded-lg p-3 md:p-4 min-w-[70px] md:min-w-[90px]">
+                    <span id="seconds" class="block text-3xl md:text-4xl font-serif font-bold text-royalGold">00</span>
+                    <span class="text-xs uppercase tracking-wider text-silver">Detik</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         FEATURED COLLECTION SECTION
+    =========================================== -->
+    <section id="collection" class="py-24 bg-ash">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl md:text-5xl font-serif text-white mb-4">Exclusive Catalog</h2>
+                <p class="text-silver max-w-2xl mx-auto">Koleksi mahakarya terbatas kami. Hadiah premium sempurna untuk diri sendiri atau orang terkasih.</p>
+            </div>
+
+            <!-- Soft Bento Grid / Product Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Product 1 -->
+                <div class="bg-charcoal border border-silver/10 rounded-xl overflow-hidden group hover:border-silver/40 transition duration-500 reveal">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="img-perhiasan-produk-1.png"Cincin Perak Ukir Dewata" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute top-4 right-4 bg-charcoal/80 backdrop-blur px-3 py-1 rounded text-xs text-silver">Best Seller</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-serif text-white mb-2">Cincin Artisan Basic / Dewata</h3>
+                        <p class="text-sm text-silver mb-4 line-clamp-2">Cincin perak murni dengan ukiran minimalis khas Bali. Nyaman dipakai harian.</p>
+                        <div class="flex justify-between items-center mt-4 pt-4 border-t border-silver/10">
+                            <span class="text-lg font-semibold text-royalGold">Rp 189.000</span>
+                            <a href="#order" class="text-sm hover:text-white transition"><i class="fa-solid fa-arrow-right"></i> Order</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="bg-charcoal border border-silver/10 rounded-xl overflow-hidden group hover:border-silver/40 transition duration-500 reveal" style="transition-delay: 100ms;">
+                    <div class="h-64 overflow-hidden">
+                        <img src="img-perhiasan-produk-2.png" alt="Kalung Silver Lotus Bali" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-serif text-white mb-2">Kalung Silver Lotus</h3>
+                        <p class="text-sm text-silver mb-4 line-clamp-2">Liontin bentuk teratai yang melambangkan kemurnian, dipadu rantai silver premium.</p>
+                        <div class="flex justify-between items-center mt-4 pt-4 border-t border-silver/10">
+                            <span class="text-lg font-semibold text-royalGold">Rp 279.000</span>
+                            <a href="#order" class="text-sm hover:text-white transition"><i class="fa-solid fa-arrow-right"></i> Order</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="bg-charcoal border border-silver/10 rounded-xl overflow-hidden group hover:border-silver/40 transition duration-500 reveal" style="transition-delay: 200ms;">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="img-perhiasan-produk-3.png" alt="Cincin Couple Premium" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute top-4 right-4 bg-midnight/80 backdrop-blur px-3 py-1 rounded text-xs text-white border border-silver/20">Custom Engrave</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-serif text-white mb-2">Cincin Couple Premium</h3>
+                        <p class="text-sm text-silver mb-4 line-clamp-2">Sepasang cincin elegan untuk Anda dan pasangan. Gratis grafir inisial nama.</p>
+                        <div class="flex justify-between items-center mt-4 pt-4 border-t border-silver/10">
+                            <span class="text-lg font-semibold text-royalGold">Rp 399.000</span>
+                            <a href="#order" class="text-sm hover:text-white transition"><i class="fa-solid fa-arrow-right"></i> Order</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="bg-charcoal border border-silver/10 rounded-xl overflow-hidden group hover:border-silver/40 transition duration-500 reveal">
+                    <div class="h-64 overflow-hidden">
+                        <img src="img-perhiasan-produk-4.png" alt="Gelang Handmade Ethnic" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-serif text-white mb-2">Gelang Handmade Ethnic</h3>
+                        <p class="text-sm text-silver mb-4 line-clamp-2">Gelang dengan jalinan kawat perak rumit, menonjolkan karakter kuat dan artistik.</p>
+                        <div class="flex justify-between items-center mt-4 pt-4 border-t border-silver/10">
+                            <span class="text-lg font-semibold text-royalGold">Rp 325.000</span>
+                            <a href="#order" class="text-sm hover:text-white transition"><i class="fa-solid fa-arrow-right"></i> Order</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 5 (Set) -->
+                <div class="md:col-span-2 lg:col-span-2 bg-gradient-to-r from-midnight to-charcoal border border-royalGold/30 rounded-xl overflow-hidden group transition duration-500 reveal" style="transition-delay: 100ms;">
+                    <div class="grid grid-cols-1 md:grid-cols-2 h-full">
+                        <div class="p-8 md:p-10 flex flex-col justify-center">
+                            <span class="text-royalGold text-xs uppercase tracking-widest mb-2">Luxury Pack</span>
+                            <h3 class="text-2xl md:text-3xl font-serif text-white mb-4">Set Perhiasan Eksklusif</h3>
+                            <p class="text-silver mb-6">Paket lengkap berisi kalung, cincin, dan anting. Dikemas dalam Wooden Box premium berlapis velvet. Pilihan tepat untuk mahar atau hadiah VIP.</p>
+                            <div class="flex justify-between items-center mt-auto">
+                                <span class="text-xl font-bold text-white">Rp 699.000</span>
+                                <a href="#order" class="btn-glow bg-silver text-charcoal px-6 py-2 rounded-full text-sm font-semibold">Pre-Order</a>
+                            </div>
+                        </div>
+                        <div class="h-64 md:h-full overflow-hidden">
+                            <img src="img-perhiasan-produk-5.png" alt="Set Perhiasan" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="text-center mt-12 reveal">
+                <p class="text-sm text-silver/60 italic">* Custom Engraving Tambahan hanya Rp 49.000 / item.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         TESTIMONIAL SLIDER SECTION
+    =========================================== -->
+    <section id="testimonials" class="py-24 bg-charcoal overflow-hidden relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl md:text-5xl font-serif text-white mb-4">Kepercayaan Pelanggan</h2>
+                <p class="text-silver">Apa kata mereka yang telah memakai mahakarya Silvera Artisan.</p>
+            </div>
+
+            <!-- Slider Container -->
+            <div class="relative max-w-4xl mx-auto reveal">
+                <div id="testimonial-container" class="flex transition-transform duration-500 ease-in-out">
+                    <!-- Cards will be injected by JS -->
+                </div>
+                
+                <!-- Controls -->
+                <div class="flex justify-center space-x-4 mt-8">
+                    <button id="prev-testi" class="w-10 h-10 rounded-full border border-silver/30 flex items-center justify-center text-silver hover:bg-silver hover:text-charcoal transition">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <button id="next-testi" class="w-10 h-10 rounded-full border border-silver/30 flex items-center justify-center text-silver hover:bg-silver hover:text-charcoal transition">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         FAQ SECTION
+    =========================================== -->
+    <section class="py-24 bg-ash border-t border-silver/10">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-3xl font-serif text-white mb-4">Frequently Asked Questions</h2>
+            </div>
+            
+            <div class="space-y-4 reveal">
+                <!-- FAQ Item 1 -->
+                <div class="border border-silver/20 rounded-lg overflow-hidden bg-charcoal">
+                    <button class="faq-btn w-full text-left px-6 py-4 flex justify-between items-center focus:outline-none">
+                        <span class="font-medium text-white">Apakah perak yang digunakan asli?</span>
+                        <i class="fa-solid fa-chevron-down text-silver transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 px-6">
+                        <p class="py-4 text-silver text-sm border-t border-silver/10">Ya, kami menggunakan 100% perak premium 925 sterling silver yang anti karat dan aman untuk kulit sensitif.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="border border-silver/20 rounded-lg overflow-hidden bg-charcoal">
+                    <button class="faq-btn w-full text-left px-6 py-4 flex justify-between items-center focus:outline-none">
+                        <span class="font-medium text-white">Berapa lama proses pembuatan untuk custom ukiran?</span>
+                        <i class="fa-solid fa-chevron-down text-silver transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 px-6">
+                        <p class="py-4 text-silver text-sm border-t border-silver/10">Untuk produk ready stock, pengiriman dilakukan H+1. Jika menambah custom ukiran (engraving), proses memakan waktu 2-3 hari kerja.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="border border-silver/20 rounded-lg overflow-hidden bg-charcoal">
+                    <button class="faq-btn w-full text-left px-6 py-4 flex justify-between items-center focus:outline-none">
+                        <span class="font-medium text-white">Apakah packaging sudah termasuk box?</span>
+                        <i class="fa-solid fa-chevron-down text-silver transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 px-6">
+                        <p class="py-4 text-silver text-sm border-t border-silver/10">Betul, selama masa promo Grand Launch ini, Anda akan mendapatkan Eksklusif Velvet Box dan Kartu Ucapan Premium secara gratis.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         CTA / ORDER SECTION
+    =========================================== -->
+    <section id="order" class="py-24 bg-midnight relative overflow-hidden text-center">
+        <!-- Decoration -->
+        <div class="absolute top-0 left-0 w-64 h-64 bg-royalGold/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+        <div class="absolute bottom-0 right-0 w-64 h-64 bg-silver/10 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
+        
+        <div class="max-w-2xl mx-auto px-4 relative z-10 reveal">
+            <i class="fa-brands fa-whatsapp text-5xl text-green-400 mb-6"></i>
+            <h2 class="text-4xl md:text-5xl font-serif text-white mb-6">Pesan Eksklusif Sekarang</h2>
+            <p class="text-silver mb-8 text-lg">Konsultasikan ukuran jari, desain custom, dan klaim promo gratis ongkir Anda langsung melalui Artisan Consultant kami via WhatsApp.</p>
+            
+            <a href="https://wa.me/6281234567890?text=Halo%20Silvera%20Artisan,%20saya%20tertarik%20dengan%20Celuk%20Heritage%20Collection.%20Boleh%20minta%20katalog%20lengkapnya?" target="_blank" class="inline-flex items-center justify-center btn-glow bg-gradient-to-r from-silver to-white text-charcoal px-8 py-4 rounded-full font-bold text-lg transition duration-300 shadow-xl">
+                <i class="fa-brands fa-whatsapp mr-2 text-xl"></i> Chat via WhatsApp
+            </a>
+            <p class="mt-6 text-xs text-silver/60 uppercase tracking-widest">Limited Stock Available</p>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         FOOTER SECTION
+    =========================================== -->
+    <footer class="bg-charcoal pt-16 pb-8 border-t border-silver/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12 text-center md:text-left">
+                <!-- Brand -->
+                <div>
+                    <a href="#" class="font-serif text-2xl font-bold text-white tracking-widest uppercase mb-4 inline-block">
+                        Silvera<span class="text-silver text-sm block tracking-[0.3em] font-sans font-light">Artisan</span>
+                    </a>
+                    <p class="text-silver text-sm leading-relaxed mt-4">
+                        Keindahan Perak, Sentuhan Seni Bali. Menghadirkan mahakarya perhiasan artisan berkualitas tinggi untuk kolektor sejati.
+                    </p>
+                </div>
+                
+                <!-- Links -->
+                <div>
+                    <h4 class="text-white font-semibold mb-6 uppercase tracking-wider text-sm">Explore</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#story" class="text-silver hover:text-white transition text-sm">Brand Heritage</a></li>
+                        <li><a href="#collection" class="text-silver hover:text-white transition text-sm">Katalog Produk</a></li>
+                        <li><a href="#testimonials" class="text-silver hover:text-white transition text-sm">Testimoni</a></li>
+                        <li><a href="#" class="text-silver hover:text-white transition text-sm">Panduan Ukuran</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact & Social -->
+                <div>
+                    <h4 class="text-white font-semibold mb-6 uppercase tracking-wider text-sm">Connect With Us</h4>
+                    <div class="flex justify-center md:justify-start space-x-4 mb-6">
+                        <a href="https://instagram.com/silveraartisan" target="_blank" class="w-10 h-10 rounded-full bg-ash flex items-center justify-center text-silver hover:bg-silver hover:text-charcoal transition">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="https://tiktok.com/@silveraartisan" target="_blank" class="w-10 h-10 rounded-full bg-ash flex items-center justify-center text-silver hover:bg-silver hover:text-charcoal transition">
+                            <i class="fa-brands fa-tiktok"></i>
+                        </a>
+                    </div>
+                    <p class="text-silver text-sm"><i class="fa-brands fa-whatsapp mr-2"></i> 0812-3456-7890</p>
+                </div>
+            </div>
+            
+            <div class="border-t border-silver/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-silver/60">
+                <p>&copy; 2026 Silvera Artisan. All rights reserved.</p>
+                <p class="mt-2 md:mt-0">Authentic Bali Craftsmanship</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================
+         FAKE LIVE ORDER POPUP
+    =========================================== -->
+    <div id="fake-popup" class="fixed bottom-5 left-5 bg-ash/95 backdrop-blur border border-silver/20 p-4 rounded-lg shadow-2xl opacity-0 transform translate-y-10 transition-all duration-700 z-50 flex items-center max-w-sm pointer-events-none">
+        <div class="w-12 h-12 bg-charcoal rounded overflow-hidden mr-4 border border-silver/10 flex-shrink-0">
+            <img src="img-perhiasan-produk-5.png" alt="Product" class="w-full h-full object-cover">
+        </div>
+        <div>
+            <p class="text-white text-sm font-semibold mb-1" id="popup-name">Seseorang di Jakarta</p>
+            <p class="text-silver text-xs">Baru saja memesan <span class="text-royalGold font-medium" id="popup-product">Cincin Couple Premium</span></p>
+            <p class="text-silver/50 text-[10px] mt-1" id="popup-time">10 menit yang lalu</p>
+        </div>
+    </div>
+
+
+    <!-- ==========================================
+         JAVASCRIPT LOGIC
+    =========================================== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // 1. Mobile Navbar Toggle
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+            const icon = btn.querySelector('i');
+
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+                if(menu.classList.contains('hidden')){
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                } else {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-xmark');
+                }
+            });
+
+            // Close mobile menu on link click
+            document.querySelectorAll('.mobile-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    menu.classList.add('hidden');
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                });
+            });
+
+            // 2. Navbar Scroll Effect & Active State
+            const navbar = document.getElementById('navbar');
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            window.addEventListener('scroll', () => {
+                // Navbar BG
+                if (window.scrollY > 50) {
+                    navbar.classList.add('shadow-lg');
+                } else {
+                    navbar.classList.remove('shadow-lg');
+                }
+
+                // Active Link Highlighting
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (scrollY >= (sectionTop - sectionHeight / 3)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('text-white', 'font-bold');
+                    link.classList.add('text-silver');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.remove('text-silver');
+                        link.classList.add('text-white', 'font-bold');
+                    }
+                });
+            });
+
+            // 3. Smooth Scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // 4. Reveal Animation on Scroll
+            const reveals = document.querySelectorAll('.reveal');
+            const revealOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // Reveal only once
+                });
+            }, revealOptions);
+
+            reveals.forEach(reveal => {
+                revealObserver.observe(reveal);
+            });
+
+            // 5. FAQ Accordion
+            const faqBtns = document.querySelectorAll('.faq-btn');
+            faqBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const content = this.nextElementSibling;
+                    const icon = this.querySelector('i');
+                    
+                    // Close all others
+                    faqBtns.forEach(otherBtn => {
+                        if (otherBtn !== this) {
+                            otherBtn.nextElementSibling.style.maxHeight = null;
+                            otherBtn.querySelector('i').classList.remove('rotate-180');
+                        }
+                    });
+
+                    // Toggle current
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                        icon.classList.remove('rotate-180');
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                        icon.classList.add('rotate-180');
+                    }
+                });
+            });
+
+            // 6. Countdown Timer (Set to 24 hours from load for demo)
+            let time = 24 * 3600; // 24 hours in seconds
+            const hoursEl = document.getElementById('hours');
+            const minutesEl = document.getElementById('minutes');
+            const secondsEl = document.getElementById('seconds');
+
+            setInterval(() => {
+                if (time <= 0) time = 24 * 3600; // Reset for demo purposes
+                
+                let h = Math.floor(time / 3600);
+                let m = Math.floor((time % 3600) / 60);
+                let s = Math.floor(time % 60);
+
+                hoursEl.textContent = h < 10 ? '0' + h : h;
+                minutesEl.textContent = m < 10 ? '0' + m : m;
+                secondsEl.textContent = s < 10 ? '0' + s : s;
+                time--;
+            }, 1000);
+
+            // 7. Testimonial Slider
+            const testimonials = [
+                {
+                    name: "Amanda R.",
+                    location: "Jakarta",
+                    text: "Kualitas peraknya luar biasa. Cincin couple yang saya pesan grafirnya rapi banget. Packaging velvet box-nya bikin kelihatan super mewah buat kado anniversary.",
+                    rating: 5
+                },
+                {
+                    name: "Bimo S.",
+                    location: "Bandung",
+                    text: "Detail ukiran khas Celuk-nya kerasa otentik. Beli gelang handmade ethnic dan pas dipakai rasanya premium. Worth every penny!",
+                    rating: 5
+                },
+                {
+                    name: "Siska W.",
+                    location: "Surabaya",
+                    text: "Suka banget sama kalung lotus-nya. Desainnya elegan dan gak pasaran. Pelayanan via WA juga sangat ramah dan membantu pilih ukuran.",
+                    rating: 5
+                }
+            ];
+
+            const sliderContainer = document.getElementById('testimonial-container');
+            let currentTesti = 0;
+
+            // Generate HTML
+            testimonials.forEach(testi => {
+                const card = document.createElement('div');
+                card.className = "w-full flex-shrink-0 px-4";
+                card.innerHTML = `
+                    <div class="bg-ash border border-silver/10 p-8 md:p-12 rounded-xl text-center shadow-lg">
+                        <div class="text-royalGold mb-4 text-sm">
+                            ${'<i class="fa-solid fa-star"></i>'.repeat(testi.rating)}
+                        </div>
+                        <p class="text-lg md:text-xl font-serif text-white mb-8 leading-relaxed italic">"${testi.text}"</p>
+                        <h4 class="font-bold text-silver uppercase tracking-wider text-sm">${testi.name}</h4>
+                        <p class="text-xs text-silver/60 mt-1">${testi.location}</p>
+                    </div>
+                `;
+                sliderContainer.appendChild(card);
+            });
+
+            const updateSlider = () => {
+                sliderContainer.style.transform = `translateX(-${currentTesti * 100}%)`;
+            };
+
+            document.getElementById('next-testi').addEventListener('click', () => {
+                currentTesti = (currentTesti === testimonials.length - 1) ? 0 : currentTesti + 1;
+                updateSlider();
+            });
+
+            document.getElementById('prev-testi').addEventListener('click', () => {
+                currentTesti = (currentTesti === 0) ? testimonials.length - 1 : currentTesti - 1;
+                updateSlider();
+            });
+
+            // Auto slide
+            setInterval(() => {
+                currentTesti = (currentTesti === testimonials.length - 1) ? 0 : currentTesti + 1;
+                updateSlider();
+            }, 6000);
+
+            // 8. Fake Live Order Popup
+            const fakeBuyers = ["Seseorang di Jakarta", "Putri di Bali", "Rangga di Surabaya", "Seseorang di Medan", "Ayu di Bandung"];
+            const fakeProducts = ["Cincin Couple Premium", "Kalung Silver Lotus", "Cincin Artisan Basic", "Gelang Handmade Ethnic", "Set Perhiasan Eksklusif"];
+            const popup = document.getElementById('fake-popup');
+            const popName = document.getElementById('popup-name');
+            const popProd = document.getElementById('popup-product');
+            const popTime = document.getElementById('popup-time');
+
+            const showPopup = () => {
+                // Randomize data
+                const rBuyer = fakeBuyers[Math.floor(Math.random() * fakeBuyers.length)];
+                const rProd = fakeProducts[Math.floor(Math.random() * fakeProducts.length)];
+                const rTime = Math.floor(Math.random() * 59) + 1;
+
+                popName.textContent = rBuyer;
+                popProd.textContent = rProd;
+                popTime.textContent = `${rTime} menit yang lalu`;
+
+                // Show
+                popup.classList.add('popup-enter');
+
+                // Hide after 4 seconds
+                setTimeout(() => {
+                    popup.classList.remove('popup-enter');
+                }, 4000);
+            };
+
+            // Initial delay, then loop
+            setTimeout(() => {
+                showPopup();
+                setInterval(showPopup, 15000); // Show every 15 seconds
+            }, 5000);
+
+        });
+    </script>
+</body>
+</html>
